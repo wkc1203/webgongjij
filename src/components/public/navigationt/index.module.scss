@@ -1,0 +1,51 @@
+
+  .navigationt {
+    height: 42px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .left {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .fanhui {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    .center {
+      width: 280px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight:500;
+      line-height: 24px;
+    }
+    .right {
+      flex: 1;
+      height: 100%;
+    }
+  }
+  .chaxun_bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 196px;
+    height: 196px;
+    z-index: -1;
+  }
+  .gjjchaxunjieguo_bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 375px;
+    height: 174px;
+    z-index: -1;
+  }
+  .Gjjchaxunjieguo_bg {
+    color: white;
+  }

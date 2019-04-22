@@ -1,0 +1,49 @@
+
+  .xyk {
+    .tietu {
+      width: 351px;
+      border-radius: 8px;
+    }
+    .xykItem {
+      width: 345px;
+      border-bottom:1px solid rgba(229,229,229,1);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      .img {
+        width: 105px;
+        height: 65px;
+        margin-top: 21px;
+        margin-right: 20px;
+        border-radius: 6px;
+      }
+      .right {
+        margin-top: 24px;
+        .title {
+          color: #484848;
+          font-size: 16px;
+          line-height: 16px;
+          font-weight:500;
+          margin-bottom: 8px;
+        }
+        .tips {
+          color: #99A1A4;
+          font-size: 12px;
+          line-height: 12px;
+          margin-bottom: 8px;
+        }
+        .btn {
+          width: 75px;
+          height: 22px;
+          background: #FF4400;
+          border-radius: 11px;
+          color: #FFFFFF;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }

@@ -1,0 +1,16 @@
+.tips {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  .tip {
+    background: #FF4400;
+    width: 3px;
+    height: 16px;
+    margin-right: 9px;
+  }
+  .title {
+    color: #272427;
+    font-size: 17px;
+    line-height: 17px;
+  }
+}

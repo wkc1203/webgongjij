@@ -1,0 +1,33 @@
+
+  .find {
+    .tab {
+      height: 37px;
+      width:375px;
+      white-space: nowrap;
+      overflow-x:scroll;
+      overflow-y:hidden;
+      padding-top: 20px;
+      border-bottom: 1px solid #E5E5E5;
+      .ti{
+        display:inline-block;
+        width: 23px;
+      }
+      .tabs{
+        display:inline-block;
+        font-size: 18px;
+        line-height: 18px;
+        color: #272427;
+        font-weight: 500;
+        margin-right: 30px;
+        position: relative;
+        .bot {
+          position: absolute;
+          width: 100%;
+          height: 8px;
+          bottom: -2px;
+          background: rgba($color: #FF4400, $alpha: 0.85);
+          border-radius: 4px;
+        }
+      }
+    }
+  }

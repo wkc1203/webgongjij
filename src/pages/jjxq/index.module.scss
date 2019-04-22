@@ -1,0 +1,40 @@
+
+  .jjxq {
+    .bj {
+      width: 345px;
+      height: 151px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      box-shadow:0px 2px 20px 0px rgba(2,7,55,0.14);
+      background: rgba($color: #FFFFFF, $alpha: .97);
+      .bt {
+        width: 21px;
+      }
+      .bjs {
+        .top {
+          font-size: 16px;
+          color: #717171;
+          display: flex;
+          align-items: center;
+          font-weight:500;
+          .img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+          }
+        }
+        .bot {
+          color: #272427;
+          font-size: 22px;
+          line-height: 17px;
+          font-weight:500;
+          margin-left: 21px;
+          margin-top: 17px;
+        }
+      }
+    }
+  }

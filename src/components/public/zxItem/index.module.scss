@@ -1,0 +1,46 @@
+
+  .zxItem {
+    display: flex;
+    width: 345px;
+    border-bottom: 1px solid #E5E5E5;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    .left {
+      .content {
+        width: 206px;
+        line-height: 26px;
+        color: #484848;
+        font-size: 15px;
+        height: 52px;
+        display: -webkit-box;
+        /* autoprefixer: off */
+        -webkit-box-orient: vertical;
+        /* autoprefixer: on */
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .bot {
+        display: flex;
+        align-items: center;
+        .tip {
+          border: 1px solid #FF4400;
+          border-radius: 4px;
+          padding: 1px 3px;
+          color: #FF4400;
+          font-size: 12px;
+          margin-right: 15px;
+        }
+        .num {
+          color: #99A1A4;
+          font-size: 12px;
+        }
+      }
+    }
+    .img {
+      width: 110px;
+      height: 80px;
+      background-color: grey;
+    }
+  }

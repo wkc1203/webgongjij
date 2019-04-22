@@ -1,0 +1,45 @@
+
+import React, { useState, useEffect } from 'react';
+import style from './index.module.scss';
+import { Center } from '@components/public';
+
+export type Inputs = {
+  img: string,
+  placeholder: string,
+  getState: (...rest: any) => void,
+  Child?: JSX.Element,
+  type?: string,
+  disabled?: boolean,
+  val?: string
+}
+
+export const Inputs = ({ img, placeholder, getState, Child, type = 'text', disabled = false, val = '' }: Inputs) => {
+  const [num, setNum] = useState({ val: val, pla: placeholder })
+  useEffect(() => {
+    getState(num)
+  }, [num])
+  useEffect(()=>{
+    setNum({ val: val, pla: placeholder })
+  },[val])
+  return (
+    <Center>
+      <div className={style['inputs']}>
+        <img src={img} className={style['img']} />
+        <input
+          className={style['input']}
+          disabled={disabled}
+          onChange={v => {
+            setNum({
+              val: v.target.value,
+              pla: placeholder
+            })
+          }}
+          value={num.val}
+          placeholder={placeholder}
+          type={type}
+        />
+        {Child}
+      </div>
+    </Center>
+  )
+}

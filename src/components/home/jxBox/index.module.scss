@@ -1,0 +1,62 @@
+
+  .jxBox {
+    width: 345px;
+    height: 179px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow:0px 2px 20px 0px rgba(2,7,55,0.17);
+    margin-bottom: 10px; 
+    .bg {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 345px;
+      height: 179px;
+       z-index: -1;
+    }
+    .title {
+      margin-top: 25px;
+      margin-left: 25px;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    .num {
+      margin-left: 25px;
+      font-size: 30px;
+      line-height: 30px;
+      margin-bottom: 10px;
+    }
+    .dai {
+      margin-left: 25px;
+      opacity: 0.6;
+      font-size: 14px;
+      line-height: 14px;
+      margin-bottom: 20px;
+    }
+    .tip {
+      margin-left: 25px;
+      width: 295px;
+      height: 30px;
+      border-radius: 15px;
+      
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      .tips {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        font-size: 11px;
+        line-height: 16px;
+        .icon {
+          width: 10px;
+          height: 10px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }

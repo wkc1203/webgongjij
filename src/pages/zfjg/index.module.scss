@@ -1,0 +1,51 @@
+
+  .zfjg {
+    .box {
+      width: 345px;
+      border-radius: 6px;
+      background: rgba($color: #FFFFFF, $alpha: 0.95);
+      box-shadow:0px 2px 20px 0px rgba(2,7,55,0.14);
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        .title {
+          font-size: 22px;
+          line-height: 22px;
+          color: #272427;
+          margin: 0px 10px;
+          font-weight: 500;
+        }
+        img{
+          width: 71px;
+        }
+      }
+    }
+  }
+  .boxt {
+    z-index: 9999;
+    position: fixed;
+    width: 345px;
+    height: 510px;
+    border: 1px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+  .call {
+    text-align: right;
+    width: 335px;
+    height: 30px;
+    padding-right: 10px;
+    
+  }
+  .xieyi {
+    overflow-y: scroll;
+    width: 345px;
+    height: 470px;
+  }

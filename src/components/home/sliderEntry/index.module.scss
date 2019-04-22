@@ -1,0 +1,36 @@
+
+  .sliderEntry {
+    border-radius: 8px;
+    height: 155px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 44px;
+    box-shadow: 0px 2px 20px 0px rgba(2,7,55,0.14);
+    margin-bottom: 15px;
+    .title {
+      font-size: 23px;
+      color: #272427;
+      line-height: 22px;
+      margin-bottom: 14px;
+    }
+    .tips {
+      color: #99A1A4;
+      font-size: 14px;
+      line-height: 14px;
+      margin-bottom: 28px;
+    }
+    .btncx {
+      height: 48px;
+      width: 212px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 17px;
+      background: linear-gradient(to right, #FF6B52, #FF4400);
+      box-shadow:0px 4px 10px 0px rgba(255,68,0,0.3);
+    }
+  }

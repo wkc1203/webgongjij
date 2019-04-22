@@ -1,0 +1,121 @@
+
+  .cxjg {
+    .box {
+      width: 345px;
+      height: 151px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 2px 20px 0px rgba(2,7,55,0.14);
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 20px;
+        margin-left: 15px;
+        .t1 {
+          width: 21px;
+          height: 21px;
+          margin-right: 6px;
+        }
+        .t2 {
+          color: #484848;
+          font-size: 18px;
+          line-height: 18px;
+          font-weight: 500;
+          margin-right: 8px;
+        }
+        .t3 {
+          color: #484848;
+          font-size: 14px;
+          line-height: 14px;
+        }
+      }
+      .bot {
+        margin-left: 15px;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+          .t1 {
+            color: #272427;
+            font-size: 30px;
+            line-height: 30px;
+            margin-bottom: 8px;
+          }
+          .t2 {
+            color: #99A1A4;
+            font-size: 14px;
+            line-height: 14px;
+          }
+        }
+        .right {
+          margin-right: 15px;
+          width: 134px;
+          height: 39px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #FF6B52;
+          border-radius: 22px;
+          color: #FEFEFE;
+          font-size: 15px;
+        }
+      }
+    }
+    .t {
+      margin: 0px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+.boxs {
+    width: 168px;
+    height: 98px;
+    border-radius: 6px;
+    border: 1px solid rgba(210,210,210,1);
+    position: relative;
+    .t0 {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top:15px;
+      right: 15px;
+    }
+    .t1 {
+      margin-top: 14px;
+      margin-left: 15px;
+      color: #484848;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight:500;
+    }
+    .t2 {
+      margin-top: 17px;
+      margin-left: 15px;
+      color: #272427;
+      font-size: 17px;
+      line-height: 17px;
+      font-weight: 500;
+    }
+    .t3 {
+      margin-top: 12px;
+      margin-left: 15px;
+      color: #99A1A4;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 400;
+    }
+  }
+  .kd {
+    width: 345px;
+    height: 109px;
+  }
+  .tbg {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 375px;
+    z-index: -1;
+  }

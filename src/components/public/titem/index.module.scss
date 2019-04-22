@@ -1,0 +1,20 @@
+
+  .titem {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight:400;
+    .title {
+      color: #717171;
+      width: 60px;
+      white-space:nowrap; 
+      margin-right: 55px;
+    }
+    .content {
+      color: #272427;
+    }
+  }

@@ -1,0 +1,50 @@
+
+  .loan {
+    .tietu {
+      width: 351px;
+      border-radius: 8px;
+    }
+    .loItem {
+      width: 345px;
+      height: 84px;
+      border-bottom: 1px solid #E5E5E5;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .img {
+        width: 44px;
+        height: 44px;
+        margin-right: 15px;
+        border-radius: 3px;
+      }
+      .right {
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          .title {
+            color: #272427;
+            font-size: 17px;
+            line-height: 17px;
+            font-weight: 500;
+            margin-right: 10px;
+          }
+          .biqa {
+            color: #484848;
+            font-size: 11px;
+            border-radius: 9px;
+            border: 1px solid rgba(210,210,210,1);
+            padding: 2px 4px;
+            margin-right: 8px;
+            line-height: 11px;
+          }
+        }
+        .text {
+          margin-top: 12px;
+          color: #99A1A4;
+          font-size: 12px;
+          line-height: 12px;
+        }
+      }
+    }
+  }
