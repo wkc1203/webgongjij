@@ -15,6 +15,7 @@ import { ZxItem } from './zxItem';
 import { Load } from './load';
 import { Error } from './error';
 import { Ckgd } from './ckgd';
+import { Check } from './check';
 
 export {
   Tips,
@@ -33,5 +34,6 @@ export {
   ZxItem,
   Load,
   Error,
-  Ckgd
+  Ckgd,
+  Check
 }

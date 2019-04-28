@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt, Cutoff, Center, Inputs, Btus, Title, Modal, Yzm } from '@components/public';
+import { Navigationt, Cutoff, Center, Inputs, Btus, Title, Modal, Yzm, Check } from '@components/public';
 import cs from 'classnames';
 
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
@@ -20,6 +20,7 @@ export default ({ history }: Gjjz) => {
   const [yzm, setYzm] = useState('')
   const [show, setShow] = useState(false)
   const [gou, setGou] = useState(false)
+  const [check, setCheck] = useState(false)
   return (
     <div className={style['gjjz']}>
       <Navigationt title='公积金注册' history={history} tbg='Chaxun_bg' />
@@ -32,15 +33,7 @@ export default ({ history }: Gjjz) => {
       <Cutoff hg='20' />
       {/* <Inputs img={pImgs['yanzhengma']} placeholder='请输入验证码' getState={setYzm} Child={<Yzm/>} /> */}
       <Cutoff hg='20' />
-      <div onClick={()=>{setGou(!gou)}} className = { style['ty'] } >
-        <img src={pImgs[gou?'gouxuan_h':'gouxuan_n']}/>
-        <div className = { style['t1'] }>
-          { '同意' }
-        </div>
-        <div className = { style['t2'] }>
-          { '《网上业务大厅服务协议》' }
-        </div>
-      </div>
+      <Check title={ '《网上业务大厅服务协议》' } setState = { setCheck } />
       <Cutoff hg='70' />
       <Btus text='登录' fn={()=>{setShow(true)}}/>
       <Cutoff hg='20' />
