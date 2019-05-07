@@ -53,9 +53,11 @@ const Home = ({ history }: Home) => {
     src: 'zhufangchaxun',
     title: '住房查询',
     fn: () => {
-      sendMessageToNative({ type: 'push' })
-      history.push('wqcx')
-      routing('wqcx')
+      if(orLogin()){
+        sendMessageToNative({ type: 'push' })
+        history.push('wqcx')
+        routing('wqcx')
+      }
     }
   }, {
     src: 'chagongjijin',

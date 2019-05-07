@@ -31,8 +31,8 @@ export function useAxios<
   const [res, setRes] = useState<boolean>(true)
   const api = apiSwitch ? api2 : api1
   const headers = {
-    'Authorization': token && getGlobalData('token'),
-    'Content-Type': form && 'application/x-www-form-urlencoded'
+    'Authorization': token ? getGlobalData('token') : null,
+    'Content-Type': form ? 'application/x-www-form-urlencoded' : 'application/json;charset=UTF-8'
   }
   const thens = (res: AxiosResponse<response>) => {
     try {
