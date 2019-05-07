@@ -12,13 +12,14 @@ export default ({ history }: Zxxq) => {
   const {
     title,
     data: {
-      name
+      name,
+      second
     },
     content
   } = history.location.state
   return (
     <div className={style['zxxq']}>
-      <Navigationt title='资讯详情' history={history} />
+      <Navigationt title='资讯详情' history={history} second={second} />
       <Cutoff hg='10' />
       <Title title={title} />
       <Cutoff hg='10' />

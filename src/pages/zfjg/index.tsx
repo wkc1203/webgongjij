@@ -3,10 +3,9 @@ import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
 import { Navigationt, Cutoff, Center, Titem, Btus, Modal, Load } from '@components/public';
-import { xieyi } from './xieyi';
 import { useAxios } from '@hooks/useAxios';
 import { code } from '@api/basis';
-import { getGlobalData } from '@util/index';
+import { getGlobalData, routing } from '@util/index';
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
@@ -111,7 +110,7 @@ export default ({ history }: Zfjg) => {
         setShow={setShow3}
         title='保存成功'
         btuText='确定'
-        box={true}
+        box='m'
         onDetermine={() => {
           setShow3(false)
           history.replace('home?token='+getGlobalData('token'))
@@ -122,13 +121,12 @@ export default ({ history }: Zfjg) => {
         show={show4}
         setShow={setShow4}
       />
+      <Modal
+        show={xy}
+        setShow={setXy}
+        box='g'
+      />
       <Load show={on && netSign.code === code.init} />
-      <div className={style['boxt']} style={{ display: xy ? 'block' : 'none' }}>
-        <div className={style['call']} onClick={() => { setXy(false) }}>
-          {'关闭'}
-        </div>
-        <div className={style['xieyi']} dangerouslySetInnerHTML={{ __html: xieyi }} />
-      </div>
     </div>
   )
 }

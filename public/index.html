@@ -12,6 +12,11 @@
     -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title></title>
+  <style type="text/css">
+    #root{
+
+    }
+  </style>
 </head>
 
 <body>
@@ -21,15 +26,30 @@
   <div id="load"></div>
 </body>
 <script type="text/javascript">
-  var routing = []
+
+  function sendMessageToAndroid (msg)  {
+    if (
+      window &&
+      window.objJS &&
+      window.objJS.gotoJump
+    ) {
+      window.objJS.gotoJump(JSON.stringify(msg))
+    }
+  }
+  window.routing = []
 
   function nativeFunction() {
-    if (routing.length >= 1) {
+    if (window.routing.length >= 1) {
       history.go(-1)
-      routing.pop()
+      window.routing.pop()
+      sendMessageToAndroid({type:'pop'})
     }
   }
   window.nativeFunction = nativeFunction
+  function signOut() {
+    window.sessionStorage.setItem('token', '')
+  }
+  window.signOut = signOut
 </script>
 
 </html>

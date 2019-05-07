@@ -5,14 +5,16 @@ import { Tips, Center, Cutoff, ZxItem } from '@components/public';
 import { useAxios } from '@hooks/useAxios';
 import { code } from '@api/basis';
 import { History } from 'history';
-import { setGlobalData, orLogin, getGlobalData } from '@util/index';
-
+import { setGlobalData, orLogin, getGlobalData, sendMessageToNative, routing } from '@util/index';
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
 const Ckgd = ({ history }: any) => {
   return (
-    <div onClick={() => history.push('find')} className={style['ckgd']}>
+    <div onClick={() => {
+      sendMessageToNative({ type: 'jumpFind' })
+      routing('find')
+    }} className={style['ckgd']}>
       {'查看更多'}
     </div>
   )
@@ -47,53 +49,63 @@ const Home = ({ history }: Home) => {
       page: 1
     }
   })
-  //const [token, setToken] = useState('')
   const [iconsData]: [Icons[], any] = useState([{
     src: 'zhufangchaxun',
     title: '住房查询',
     fn: () => {
-      orLogin() && history.push('wqcx')
+      sendMessageToNative({ type: 'push' })
+      history.push('wqcx')
+      routing('wqcx')
     }
   }, {
     src: 'chagongjijin',
     title: '查公积金',
     fn: () => {
-      orLogin() && history.push('gjjc')
+      // orLogin() && history.push('gjjc')
     }
   }, {
     src: 'xinuongdaikuan',
     title: '信用贷款',
     fn: () => {
-      history.push('loan')
+      sendMessageToNative({ type: 'jumpLoan' })
+      routing('loan')
     }
   }, {
     src: 'xinyongka',
     title: '信用卡',
     fn: () => {
       history.push('xyk')
+      sendMessageToNative({ type: 'push' })
+      routing('xyk')
     }
   }])
+  const [height, setHeight] = useState('20')
   useEffect(() => {
-    const tokens = history.location.search.slice(1).split('=')
-    if (tokens.length === 2 && tokens[0] === 'token') {
-      //setToken(tokens[1])
-      setGlobalData('token', tokens[1])
-      console.log(getGlobalData('token'))
+    let param = history.location.search.slice(1).split('&')
+    const params: any = {}
+    param.forEach(v => {
+      const a = v.split('=')
+      params[a[0]] = a[1]
+    })
+    if(!!params['height']){
+      setHeight(params['height'])
     }
+    setGlobalData('token', params['token'])
+    setGlobalData('height', params['height'])
   }, [])
   return (
-    <div className={style['page']} >
+    <div className={style['page']} style={{ marginTop: (parseInt(height) + 11) + 'px' }}>
       <img className={style['tbg']} src={pImgs['shouye_bg']} />
       <div className={style['title']}>
         {'壹米金融'}
       </div>
       <Swipers>
         <SliderEntry fn={() => {
-          orLogin() && history.push('gjjc')
+          // orLogin() && history.push('gjjc')
         }} title='重庆公积金快速查询' num={search.code === code.success ? search.data.GJJ : '0'} />
         <SliderEntry fn={() => {
           orLogin() && history.push('wqcx')
-        }} title='重庆网签快速查询' num={search.code === code.success ? search.data.ZFXX : '0'} />
+        }} title='重庆住房信息快速查询' num={search.code === code.success ? search.data.ZFXX : '0'} />
       </Swipers>
       <div className={style['icons']}>
         {
@@ -139,13 +151,16 @@ const Home = ({ history }: Home) => {
           hotRes.data.records.map(({ content, surfacePlotUrl, title, classifiedName }, i) =>
             <ZxItem
               fn={() => {
+                sendMessageToNative({ type: 'push' })
+                routing('zxxq')
                 history.push({
                   pathname: 'zxxq',
                   state: {
                     content: content,
                     title: title,
                     data: {
-                      name: classifiedName
+                      name: classifiedName,
+                      second: true
                     }
                   }
                 })

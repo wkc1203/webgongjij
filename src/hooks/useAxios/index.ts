@@ -6,7 +6,7 @@ import { getGlobalData } from '@util/index';
 import qs from 'qs';
 
 const api1 = 'http://10.0.11.227:8891/apis'
-const api2 = 'http://10.0.11.166:8000'
+const api2 = 'http://10.0.11.213:9000'
 
 type fn = (rest?: any) => any
 

@@ -5,13 +5,12 @@ import { Navigationt, Center, ZxItem, Load, Ckgd } from '@components/public';
 import { useAxios } from '@hooks/useAxios';
 import { code } from '@api/basis';
 import { useCounter, useList } from 'react-use';
+import { globalData, sendMessageToNative, routing } from '@util/index';
 
 
 const Context = createContext({ state: { index: 0 }, dispatch: (index: 0) => { } })
 
 const reducer = (state: any, action: number) => ({ index: action })
-
-const tabData = ['推荐', '买房', '公积金社保', '信用卡', '推荐', '买房', '公积金社保',]
 
 const Tabs = ({ title, index, fn }: any) => {
   const { state, dispatch } = useContext(Context);
@@ -33,11 +32,24 @@ type Find = {
 }
 
 export default ({ history }: Find) => {
-  const [state, dispatch] = useReducer(reducer, { index: 0 });
+  const [state, dispatch] = useReducer(reducer, { index: globalData.index});
   const [fiedRes] = useAxios({
     url: '/classiFied/appClassiFied',
     method: 'get'
   })
+  const [height, setHeight] = useState('20')
+  useEffect(() => {
+    let param = history.location.search.slice(1).split('&')
+    const params: any = {}
+    param.forEach(v => {
+      const a = v.split('=')
+      params[a[0]] = a[1]
+    })
+    if(!!params['height']){
+      setHeight(params['height'])
+      window.sessionStorage.setItem('height', params['height'])
+    }
+  }, [])
   const [page, { inc: incPage, reset: resetPage }] = useCounter(1)
   const [hotRes, getHotRes] = useAxios({
     url: '/consultation/hotNewsPage',
@@ -56,7 +68,7 @@ export default ({ history }: Find) => {
   }, [hotRes.code])
   return (
     <div className={style['find']}>
-      <Navigationt title='发现' history={history} lev />
+      <Navigationt title='发现' history={history} lev top={height} />
       <Context.Provider value={{ state, dispatch }}>
         <div className={style['tab']}>
           <div className={style['ti']} />
@@ -69,14 +81,20 @@ export default ({ history }: Find) => {
               list.map(({ content, surfacePlotUrl, title }, i) =>
                 <ZxItem
                   fn={() => {
+                    sendMessageToNative({ type: 'push' })
+                    routing('zxxq')
                     history.push({
                       pathname: 'zxxq',
                       state: {
                         content: content,
                         title: title,
-                        data: fiedRes.data[state.index]
+                        data: {
+                          ...fiedRes.data[state.index],
+                          second: true
+                        },
                       }
                     })
+                    globalData.index = state.index
                   }}
                   key={i}
                   content={title}

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
 import cs from 'classnames'
@@ -12,7 +12,7 @@ requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireCon
 export type Navigationt = {
   title: string,
   history: History,
-  top?: number | string,
+  top?: string,
   tbg?: undefined | 'Chaxun_bg' | 'Gjjchaxunjieguo_bg',
   lev?: boolean,
   second?: boolean
@@ -36,15 +36,24 @@ const backImg = {
   Gjjchaxunjieguo_bg: <Gjjchaxunjieguo_bg />
 }
 
-export const Navigationt = ({ title, history, top = 20, tbg = undefined, lev = false, second = false }: Navigationt) => {
+export const Navigationt = ({ title, history, top, tbg = undefined, lev = false, second = false }: Navigationt) => {
   const back = () => {
     history.goBack()
     second && sendMessageToNative({ type: 'pop' });
-    //window.routing.pop()
   }
-
+  const [height, setHeight] = useState('20')
+  useEffect(() => {
+    if (!!top) {
+      setHeight(top)
+    } else {
+      const h = window.sessionStorage.getItem('height')
+      if (!!h) {
+        setHeight(h)
+      }
+    }
+  }, [top])
   return (
-    <div className={cs([style['navigationt'], tbg && style[tbg]])} style={{ marginTop: top + 'px' }}>
+    <div className={cs([style['navigationt'], tbg && style[tbg]])} style={{ marginTop: height + 'px' }}>
       <div className={style['left']} >
         <img onClick={back} src={pImgs[tbg ? fhBtn[tbg] : 'fanhui']} className={style['fanhui']} style={{ display: lev ? 'none' : 'block' }} />
       </div>

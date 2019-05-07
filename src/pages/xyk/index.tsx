@@ -25,7 +25,7 @@ const XykItem = ({ name, imgUrl, content }: XykItem) => (
         {name}
       </div>
       <div className={style['tips']}>
-        {content}
+        {content&&content.split(',').join('|')}
       </div>
       <div className={style['btn']}>
         {'我要办理'}
@@ -46,7 +46,7 @@ export default ({ history }: Xyk) => {
   })
   return (
     <div className={style['xyk']}>
-      <Navigationt title='信用卡' history={history} />
+      <Navigationt title='信用卡' history={history} second />
       <Cutoff hg='30' />
       <Center>
         <img className={style['tietu']} src={pImgs['xinyongka']} />

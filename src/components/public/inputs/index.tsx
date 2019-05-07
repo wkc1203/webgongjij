@@ -18,14 +18,23 @@ export const Inputs = ({ img, placeholder, getState, Child, type = 'text', disab
   useEffect(() => {
     getState(num)
   }, [num])
-  useEffect(()=>{
+  useEffect(() => {
     setNum({ val: val, pla: placeholder })
-  },[val])
+  }, [val])
+  useEffect(() => {
+
+  }, [])
   return (
     <Center>
       <div className={style['inputs']}>
         <img src={img} className={style['img']} />
         <input
+          style={{fontSize:'15px'}}
+          onBlur={() => {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+            }, 10)
+          }}
           className={style['input']}
           disabled={disabled}
           onChange={v => {

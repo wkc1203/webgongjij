@@ -20,7 +20,8 @@ export default ({ history }: Gjjc) => {
   const [mm, setMm] = useState({ val: '', pla: '请输入密码' })
   const [show, setShow] = useState(false)
   const [show1, setShow1] = useState(false)
-  const [shows, setShows] = useState(false)
+  const [show2, setShow2] = useState(false)
+  const [show3, setShow3] = useState(true)
   const [pla, setPla] = useState('')
   const [check, setCheck] = useState()
   useListener('storage_evt', (storage)=>{
@@ -35,7 +36,9 @@ export default ({ history }: Gjjc) => {
   return (
     <div className={style['gjjc']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />
-      <div className = { style['tip'] }>
+      <div onClick={()=>{
+        setShow3(true)
+      }} className = { style['tip'] }>
         { '请注册后再查询，点击查看帮助' }
       </div>
       <Cutoff hg='49' />
@@ -54,9 +57,9 @@ export default ({ history }: Gjjc) => {
         })
         if (yanz) {
           storage_evt({ zh: zh.val, mm: mm.val })
-          setShows(true)
+          setShow2(true)
           setTimeout(() => {
-            setShows(false)
+            setShow2(false)
             history.push({
               pathname: 'gjjcy',
               state: {
@@ -85,7 +88,12 @@ export default ({ history }: Gjjc) => {
         show={show1}
         setShow={setShow1}
       />
-      <Load show={shows} />
+      <Modal
+        show={show3}
+        setShow={setShow3}
+        box='y'
+      />
+      <Load show={show2} />
     </div>
   )
 }

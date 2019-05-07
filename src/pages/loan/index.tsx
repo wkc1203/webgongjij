@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
 import { Navigationt, Cutoff, Center, Tips, Load, Ckgd } from '@components/public';
@@ -68,9 +68,23 @@ export default ({ history }: Loan) => {
       page: page
     }
   })
+  const [height, setHeight] = useState('20')
+  useEffect(() => {
+    let param = history.location.search.slice(1).split('&')
+    const params: any = {}
+    param.forEach(v => {
+      const a = v.split('=')
+      params[a[0]] = a[1]
+    })
+    if (!!params['height']) {
+      setHeight(params['height'])
+      window.sessionStorage.setItem('height', params['height'])
+    }
+  }, [])
+  console.log(height)
   return (
     <div className={style['loan']}>
-      <Navigationt title='贷款' history={history} lev />
+      <Navigationt title='贷款' history={history} lev top={height} />
       <Cutoff hg='30' />
       <Center>
         <img className={style['tietu']} src={pImgs['xinyongdaikuan']} />

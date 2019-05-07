@@ -3,8 +3,9 @@ import style from './index.module.scss';
 import { History } from 'history';
 import { Navigationt, Cutoff, Title, Inputs, Yzm, Btus, Modal, Load } from '@components/public';
 import { useAxios } from '@hooks/useAxios';
-import { validate } from '@util/index';
+import { validate, routing } from '@util/index';
 import { code } from '@api/basis';
+import {useWindowScroll} from 'react-use';
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
@@ -38,14 +39,21 @@ export default ({ history }: Wqcx) => {
         pathname: 'zfjg',
         state: wangqian.object
       })
+      routing('zfjg')
     } else if (wangqian.code === code.error) {
       setPla(wangqian.msg)
       setShow(true)
     }
   }, [wangqian.code])
+  const [a,seta] = useState('11')
+  useEffect(()=>{
+    window.onresize = () =>{
+      seta('22')
+    }
+  },[])
   return (
     <div className={style['wqcx']}>
-      <Navigationt title='网签查询' history={history} tbg='Chaxun_bg' />
+      <Navigationt title='网签查询' history={history} tbg='Chaxun_bg' second />
       <Cutoff hg='49' />
       <Title title='重庆市住房信息查询' />
       <Cutoff hg='70' />
@@ -68,7 +76,7 @@ export default ({ history }: Wqcx) => {
         }
       }} />
       <Modal
-        title={pla}
+        title={pla||'系统错误'}
         show={show}
         setShow={setShow}
       />

@@ -40,7 +40,7 @@ export default ({ history }: Wsxx) => {
         show={show}
         setShow={setShow}
         title='注册成功'
-        box={true}
+        box='m'
         btuText='查询公积金'
         onDetermine={() => { history.push('jjxq') }}
       />

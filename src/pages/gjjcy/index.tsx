@@ -17,7 +17,22 @@ type Gjjcy = {
 }
 let zz = ''
 export default ({ history }: Gjjcy) => {
-  const storage = useListener('storage_evt')
+  useListener('storage_evt', (storage) => {
+    console.log(storage)
+    if (storage) {
+      const data = storage.detail
+      if (data.code === code.success) {
+        history.push({
+          pathname: 'cxjg',
+          state: data.object
+        })
+      } else if (data.code === code.error) {
+        setError(data.msg || '系统错误请重试')
+        setShows1(true)
+      }
+      setShow(false)
+    }
+  })
   const [zh, setZh] = useState({ val: '', pla: '请输入绑定手机' })
   const [z, setz] = useState('')
   const [mm, setMm] = useState({ val: '', pla: '请输入短信验证码' })
@@ -57,22 +72,6 @@ export default ({ history }: Gjjcy) => {
       setShows1(true)
     }
   }, [phone.code])
-  useEffect(() => {
-    console.log(storage)
-    if (storage) {
-      const data = storage.detail
-      if (data.code === code.success) {
-        history.push({
-          pathname: 'cxjg',
-          state: data.object
-        })
-      } else if (data.code === code.error) {
-        setError(data.msg || '系统错误请重试')
-        setShows1(true)
-      }
-      setShow(false)
-    }
-  }, [storage])
   return (
     <div className={style['gjjcy']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />

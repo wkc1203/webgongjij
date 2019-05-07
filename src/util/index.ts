@@ -1,8 +1,9 @@
-import { getGlobalData, setGlobalData } from './globalData';
+import { getGlobalData, setGlobalData, globalData } from './globalData';
 import { orLogin } from './orLogin';
 import { sendMessageToNative } from './sendMessageToNative';
 import { validate } from './validate';
 import { storage } from './storage';
+import { routing } from './routing';
 
 export {
   orLogin,
@@ -10,5 +11,7 @@ export {
   getGlobalData,
   setGlobalData,
   validate,
-  storage as storage_evt
+  storage as storage_evt,
+  routing,
+  globalData
 }

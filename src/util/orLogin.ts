@@ -2,6 +2,12 @@ import { getGlobalData } from './index';
 import { sendMessageToNative } from '@util/index';
 
 export function orLogin() {
-  sendMessageToNative({ type: 'push' })
-  return getGlobalData('token') !== ''
+  const token = getGlobalData('token')
+  if (!!token) {
+    sendMessageToNative({ type: 'push' })
+    return true
+  } else {
+    sendMessageToNative({ type: 'login' })
+    return false
+  }
 }
