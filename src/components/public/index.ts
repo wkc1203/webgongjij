@@ -16,6 +16,7 @@ import { Load } from './load';
 import { Error } from './error';
 import { Ckgd } from './ckgd';
 import { Check } from './check';
+import { Clipboard } from './clipboard';
 
 export {
   Tips,
@@ -35,5 +36,6 @@ export {
   Load,
   Error,
   Ckgd,
-  Check
+  Check,
+  Clipboard
 }

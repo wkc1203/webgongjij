@@ -25,10 +25,12 @@ export type Modal = {
   setShow: fn,
   box?: 't' | 'm' | 'y' | 'g',
   btuText?: string,
-  titleFn?: (...rest: any) => any
+  titleFn?: (...rest: any) => any,
+  fnzhuce?: (...rest: any) => any,
+  fnmima?: (...rest: any) => any,
 }
 
-export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDetermine = '确定', textCancel = '取消', box = 'm', titles, btuText = '确定', titleFn }: Modal) => {
+export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDetermine = '确定', textCancel = '取消', box = 'm', titles, btuText = '确定', titleFn, fnzhuce, fnmima }: Modal) => {
   let child = <div />
   switch (box) {
     case 'm':
@@ -93,16 +95,12 @@ export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDe
               </div>
               <Cutoff hg='14' />
               <Center>
-                <div onClick={()=>{
-                  window.location.href='https://person-office.cqgjj.cn:9443/netface/reg.do'
-                }} className={style['btncx']}>
+                <div onClick={fnzhuce} className={style['btncx']}>
                   {'去注册'}
                 </div>
               </Center>
               <Cutoff hg='42' />
-                <div onClick={()=>{
-                  window.location.href='https://person-office.cqgjj.cn:9443/netface/getpwd.do'
-                }} className={style['title']}>
+                <div className={style['title']}>
                   {'忘记密码？'}
                 </div>
               <Cutoff hg='12' />
@@ -111,7 +109,7 @@ export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDe
               </div>
               <Cutoff hg='14' />
               <Center>
-                <div className={style['btncx']}>
+                <div onClick={fnmima} className={style['btncx']}>
                   {'去找回密码'}
                 </div>
               </Center>

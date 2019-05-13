@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import style from './index.module.scss';
-import { Navigationt, Inputs, Cutoff, Title, Btus, Center, Modal, Load, Check } from '@components/public';
+import { Navigationt, Inputs, Cutoff, Title, Btus, Center, Modal, Load, Check, Clipboard } from '@components/public';
 import { History } from 'history';
 import { validate, sendMessageToNative } from '@util/index';
-import { storage_evt } from '@util/index';
+import { routing } from '@util/index';
 import { useListener } from '@hooks/useListener';
 import { code } from '@api/basis';
+import { useAxios } from '@hooks/useAxios';
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
@@ -21,25 +22,44 @@ export default ({ history }: Gjjc) => {
   const [show, setShow] = useState(false)
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
-  const [show3, setShow3] = useState(true)
+  const [show3, setShow3] = useState(false)
   const [pla, setPla] = useState('')
-  const [check, setCheck] = useState()
-  useListener('storage_evt', (storage)=>{
-    if (storage) {
-      const data = storage.detail
-      if (data.code === code.error) {
-        setShow1(true)
-        setShow(false)
+  const [, setCheck] = useState()
+  const [on, toggle] = useState(false)
+  const [wangqian, getwangqian] = useAxios({
+    url: '/signIn',
+    method: 'post',
+    request: {
+      userNmae: zh.val,
+      password: mm.val,
+    },
+    execute: on,
+    api3: true
+  })
+  useEffect(() => {
+    if (wangqian.code != code.init) {
+      setShow2(false)
+      if (wangqian.success) {
+        history.push({
+          pathname: 'gjjcy',
+          state: {
+            username: zh.val
+          }
+        })
+        routing('gjjcy')
+      } else {
+        setPla(wangqian.msg || '系统错误')
+        setShow(true)
       }
     }
-  })
+  }, [wangqian.success])
   return (
     <div className={style['gjjc']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />
-      <div onClick={()=>{
+      <div onClick={() => {
         setShow3(true)
-      }} className = { style['tip'] }>
-        { '请注册后再查询，点击查看帮助' }
+      }} className={style['tip']}>
+        {'请注册后再查询，点击查看帮助'}
       </div>
       <Cutoff hg='49' />
       <Title title='重庆市住房公积金查询' />
@@ -48,7 +68,7 @@ export default ({ history }: Gjjc) => {
       <Cutoff hg='20' />
       <Inputs img={pImgs['mima']} placeholder={mm.pla} getState={setMm} />
       <Cutoff hg='20' />
-      <Check agree='勾选即代表您同意' title='《解析住房网签数据协议》' setState = { setCheck } />
+      <Check agree='勾选即代表您同意' title='《解析住房网签数据协议》' setState={setCheck} />
       <Cutoff hg='70' />
       <Btus fn={() => {
         const yanz = validate([zh, mm], (vals) => {
@@ -56,17 +76,9 @@ export default ({ history }: Gjjc) => {
           setShow(true)
         })
         if (yanz) {
-          storage_evt({ zh: zh.val, mm: mm.val })
+          toggle(true)
           setShow2(true)
-          setTimeout(() => {
-            setShow2(false)
-            history.push({
-              pathname: 'gjjcy',
-              state: {
-                username: zh.val
-              }
-            })
-          }, 3000)
+          getwangqian()
         }
       }} text='登录' />
       <Cutoff hg='20' />
@@ -92,6 +104,15 @@ export default ({ history }: Gjjc) => {
         show={show3}
         setShow={setShow3}
         box='y'
+        fnzhuce={() => {
+          // window.clipboardData.setData('text','2345678')
+          setPla('注册链接已复制到剪贴板')
+          setShow(true)
+        }}
+        fnmima={() => {
+          setPla('找回密码链接已复制到剪贴板')
+          setShow(true)
+        }}
       />
       <Load show={show2} />
     </div>

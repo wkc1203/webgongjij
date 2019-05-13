@@ -33,26 +33,34 @@ const LoData = [{
   text: '最长48期，最高额度 20万，最低日利率0.035%'
 },]
 
-const LoItem = ({ img, title, biqa, text }: any) => (
-  <div className={style['loItem']}>
-    <img className={style['img']} src={pImgs[img]} />
-    <div className={style['right']}>
-      <div className={style['top']}>
-        <div className={style['title']}>
-          {title}
+const LoItem = ({ img, title, biqa, text, introduceUrl }: {
+  img: string,
+  title: string,
+  biqa: string[],
+  text: string,
+  introduceUrl: string,
+}) => (
+    <div onClick={() => {
+      window.location.href = introduceUrl
+    }} className={style['loItem']}>
+      <img className={style['img']} src={img} />
+      <div className={style['right']}>
+        <div className={style['top']}>
+          <div className={style['title']}>
+            {title}
+          </div>
+          {
+            biqa.map((v: string, i: number) => <div key={i} className={style['biqa']}>
+              {v}
+            </div>)
+          }
         </div>
-        {
-          biqa.map((v: any, i: any) => <div key={i} className={style['biqa']}>
-            {v}
-          </div>)
-        }
-      </div>
-      <div className={style['text']}>
-        {text}
+        <div className={style['text']}>
+          {text}
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
 
 type Loan = {
   history: History
@@ -94,7 +102,7 @@ export default ({ history }: Loan) => {
       <Cutoff hg='10' />
       <Center>
         {
-          product.code === code.success && product.data.records.map(({ icoUrl, label, content, name }, i) => <LoItem key={i} img={icoUrl} title={name} biqa={label ? label.split(',') : []} text={content} />)
+          product.code === code.success && product.data.records.map(({ icoUrl, label, content, name, introduceUrl }, i) => <LoItem introduceUrl={introduceUrl} key={i} img={icoUrl} title={name} biqa={label ? label.split(',') : []} text={content} />)
         }
         <Ckgd
           fn={() => {

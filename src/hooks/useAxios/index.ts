@@ -7,6 +7,8 @@ import qs from 'qs';
 
 const api1 = 'http://10.0.11.227:8891/apis'
 const api2 = 'http://10.0.11.213:9000'
+const api_3 = 'http://10.0.10.159:50000'
+
 
 type fn = (rest?: any) => any
 
@@ -16,7 +18,7 @@ export function useAxios<
   response extends API[URL]['response'],
   method extends API[URL]['method'],
   >({
-    url, method, request, execute = true, callback, apiSwitch = false, form = false, token = false
+    url, method, request, execute = true, callback, apiSwitch = false, form = false, token = false, api3
   }: {
     url: URL,
     method: method,
@@ -25,25 +27,26 @@ export function useAxios<
     callback?: () => void,
     apiSwitch?: boolean,
     form?: boolean,
-    token?: boolean
+    token?: boolean,
+    api3?: boolean
   }): [API[URL]['response'], fn] {
   const [data, setData] = useState<res>({ code: code.init })
   const [res, setRes] = useState<boolean>(true)
-  const api = apiSwitch ? api2 : api1
+  const api = api3 ? api_3 : apiSwitch ? api2 : api1
   const headers = {
     'Authorization': token ? getGlobalData('token') : null,
     'Content-Type': form ? 'application/x-www-form-urlencoded' : 'application/json;charset=UTF-8'
   }
   const thens = (res: AxiosResponse<response>) => {
     try {
-      if (res.data.code === code.success) {
+      if (res.data.code === code.success || res.data.success) {
         setData({ ...res.data, code: code.success })
         callback && callback()
       } else {
         setData({ ...res.data, code: code.error })
       }
     } catch {
-      setData({ ...res.data, code: code.success })
+      setData({ ...res.data, code: code.error })
     }
   }
   const catchs = (res: AxiosResponse<response>) => {

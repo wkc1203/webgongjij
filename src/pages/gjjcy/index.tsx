@@ -17,70 +17,39 @@ type Gjjcy = {
 }
 let zz = ''
 export default ({ history }: Gjjcy) => {
-  useListener('storage_evt', (storage) => {
-    console.log(storage)
-    if (storage) {
-      const data = storage.detail
-      if (data.code === code.success) {
-        history.push({
-          pathname: 'cxjg',
-          state: data.object
-        })
-      } else if (data.code === code.error) {
-        setError(data.msg || '系统错误请重试')
-        setShows1(true)
-      }
-      setShow(false)
-    }
-  })
-  const [zh, setZh] = useState({ val: '', pla: '请输入绑定手机' })
-  const [z, setz] = useState('')
+  const [zh, setZh] = useState({ val: 'dutian'||history.location.state.username, pla: '请输入账号' })
   const [mm, setMm] = useState({ val: '', pla: '请输入短信验证码' })
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const [shows, setShows] = useState(false)
   const [shows1, setShows1] = useState(false)
   const [pla, setPla] = useState('')
   const [on, setOn] = useState(false)
   const [error, setError] = useState('')
-  const [phone] = useAxios({
-    url: '/bindPhone',
+  const [obtain, getObtain] = useAxios({
+    url: '/obtain',
     method: 'post',
     request: {
-      username: history.location.state.username
+      userNmae: zh.val,
+      code: mm.val,
     },
-    apiSwitch: true,
-    form: true,
+    execute: on,
+    api3: true
   })
-  const [codeLogin, getcodeLogin] = useAxios({
-    url: '/codeLogin',
-    method: 'post',
-    request: {
-      username: history.location.state.username,
-      yzm: mm.val
-    },
-    apiSwitch: true,
-    form: true,
-    execute: on
-  })
-  useEffect(() => {
-    if (phone.code === code.success) {
-      setz(phone.object.phone)
-      zz = phone.object.phone
+  useEffect(()=>{
+    if(obtain.code !=code.init){
       setShow(false)
-    } else if (phone.code === code.error) {
-      setError(phone.msg || '系统错误请重试')
-      setShows1(true)
+      
     }
-  }, [phone.code])
+  },[obtain.code])
   return (
     <div className={style['gjjcy']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />
       <Cutoff hg='49' />
       <Title title='重庆市住房公积金查询' />
       <Cutoff hg='70' />
-      <Inputs img={pImgs['shouji']} placeholder={zh.pla} getState={setZh} val={z} disabled={true} />
+      <Inputs img={pImgs['shouji']} placeholder={zh.pla} getState={setZh} val={zh.val} disabled={false} />
       <Cutoff hg='20' />
-      <Inputs img={pImgs['yanzhengma']} placeholder={mm.pla} getState={setMm} Child={<Yzm username={z} disabled={phone.code !== code.success} />} />
+      <Inputs img={pImgs['yanzhengma']} placeholder={mm.pla} getState={setMm} />
       <Cutoff hg='70' />
       <Btus fn={() => {
         const yanz = validate([zh, mm], (vals) => {
@@ -90,7 +59,6 @@ export default ({ history }: Gjjcy) => {
         if (yanz) {
           setShow(true)
           setOn(true)
-          getcodeLogin()
         }
       }} text='提交' />
       <Modal

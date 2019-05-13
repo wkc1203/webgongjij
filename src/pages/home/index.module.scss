@@ -2,7 +2,6 @@
   .title {
     color: white;
     text-align: center;
-    margin-top: 31px;
     margin-bottom: 44px;
     line-height: 24px;
     font-size: 17px;
@@ -16,6 +15,7 @@
     top: 0px;
     z-index: -1;
   }
+
   .icons {
     display: flex;
     align-items: center;
@@ -24,6 +24,7 @@
     margin-bottom: 50px;
   }
 }
+
 .ckgd {
   color: #99A1A4;
   display: flex;
@@ -32,4 +33,30 @@
   width: 100%;
   height: 80px;
   font-size: 14px;
+}
+.navigationt {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 17px;
+  top: 0px;
+  z-index: 9999;
+  background: white;
+  border-bottom: 1px solid grey;
+  opacity: 0;
+}
+.refPage {
+  transform:translateY(-76px);
+}
+.refresh {
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform:translateY(-76px);
 }

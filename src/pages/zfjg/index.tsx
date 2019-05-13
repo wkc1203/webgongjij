@@ -27,13 +27,15 @@ export default ({ history }: Zfjg) => {
     name,
     businessnumber,
     idcard,
-    address
+    address,
+    projectname,
   } = history.location.state || {
     serialnumber: '',
     name: '',
     businessnumber: '',
     idcard: '',
-    address: ''
+    address: '',
+    projectname: ''
   }
   const [netSign, getNetSign] = useAxios({
     url: '/netSign/save',
@@ -75,6 +77,7 @@ export default ({ history }: Zfjg) => {
           <Titem title='业务编号' content={businessnumber} />
           <Titem title='证件号码' content={idcard} />
           <Titem title='房屋地址' content={address} />
+          <Titem title='项目名称' content={projectname} />
           <Cutoff hg='115' />
           <Btus text='保存房屋信息' fn={() => setShow1(true)} />
           <Cutoff hg='40' />

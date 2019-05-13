@@ -9,6 +9,8 @@ import { storage } from './storage';
 import { bindPhone } from './bindPhone';
 import { sendYZM } from './sendYZM';
 import { codeLogin } from './codeLogin';
+import { gjjSignIn } from './gjjSignIn';
+import { gjjObtain } from './gjjObtain';
 
 export interface API {
   '/classiFied/appClassiFied': classiFied,
@@ -22,4 +24,6 @@ export interface API {
   '/bindPhone': bindPhone,
   '/sendYZM': sendYZM,
   '/codeLogin': codeLogin,
+  '/signIn': gjjSignIn,
+  '/obtain': gjjObtain
 }
