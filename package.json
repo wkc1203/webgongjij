@@ -15,6 +15,7 @@
     "@types/react-dom": "16.8.2",
     "@types/react-router-dom": "^4.3.1",
     "@types/webpack-env": "^1.13.9",
+    "antd-mobile": "^2.2.14",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
@@ -142,6 +143,18 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.12.0"
   }
 }

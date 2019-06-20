@@ -6,9 +6,9 @@ import { Navigationt } from '@components/public';
 import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
 import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
 
-const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
-const pImgs: any = {}
-requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
+// const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
+// const pImgs: any = {}
+// requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
 
 export const Item = () => (
   <div className={style['item']}>
