@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt, Cutoff, Title, Inputs, Btus, Modal, Yzm } from '@components/public';
+import { Navigationt, Cutoff, Title, Inputs, Btus, Modal, AntdButton } from '@components/public';
 import { Picker,List } from 'antd-mobile';
 
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
@@ -77,6 +77,7 @@ export default ({ history }: Wsxx) => {
       <Cutoff hg='20' />
       {/* <Inputs img={pImgs['yanzhengma']} placeholder='请输入短信验证码' getState={setyz} Child={<Yzm />} /> */}
       <Cutoff hg='70' />
+      <AntdButton  fn={() => alert(1) }></AntdButton>
       <Picker
           data={colors}
           value={ ['#00FF00']}

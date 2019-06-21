@@ -5,6 +5,7 @@ import { Navigationt } from './navigationt';
 import { Inputs } from './inputs';
 import { Title } from './title';
 import { Btus } from './btus';
+import { AntdButton } from './antdButton'
 import { Modal } from './modal';
 import { Ttitle } from './ttitle';
 import { Titem } from './titem';
@@ -26,6 +27,7 @@ export {
   Inputs,
   Title,
   Btus,
+  AntdButton,
   Modal,
   Ttitle,
   Titem,
