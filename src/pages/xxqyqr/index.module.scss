@@ -1,0 +1,19 @@
+
+  .test {
+    // display: flex;
+    // flex-direction: column;
+    // height: 667px;
+    .refresh{
+      height: 603px;
+      border: 1px solid black;
+      overflow: scroll;
+      
+    }
+    .item{
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+    }
+  }

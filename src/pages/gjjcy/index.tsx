@@ -45,14 +45,16 @@ export default ({ history }: Gjjcy) => {
     <div className={style['gjjcy']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />
       <Cutoff hg='49' />
-      <Title title='重庆市住房公积金查询' />
+      <Title title='重庆市住房公积金查询1' />
       <Cutoff hg='70' />
       <Inputs img={pImgs['shouji']} placeholder={zh.pla} getState={setZh} val={zh.val} disabled={false} />
       <Cutoff hg='20' />
       <Inputs img={pImgs['yanzhengma']} placeholder={mm.pla} getState={setMm} />
       <Cutoff hg='70' />
       <Btus fn={() => {
+        console.log(zh,mm)
         const yanz = validate([zh, mm], (vals) => {
+          
           setPla(vals.pla)
           setShows(true)
         })
