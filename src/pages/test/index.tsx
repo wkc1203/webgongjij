@@ -5,7 +5,6 @@ import { History } from 'history';
 import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,AntdPickerRadio} from '@components/public';
 import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
 import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
-import { Button } from 'antd';
 // const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 // const pImgs: any = {}
 // requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
