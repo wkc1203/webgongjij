@@ -4,8 +4,8 @@ import style from './index.module.scss';
 import { Center } from '@components/public';
 
 export type Inputs = {
-  img: string,
-  placeholder: string,
+  img?: string,
+  placeholder?: string,
   getState: (...rest: any) => void,
   Child?: JSX.Element,
   type?: string,
@@ -38,6 +38,7 @@ export const Inputs = ({ img, placeholder, getState, Child, type = 'text', disab
           className={style['input']}
           disabled={disabled}
           onChange={v => {
+            console.log(v.target.value)
             setNum({
               val: v.target.value,
               pla: placeholder
@@ -47,7 +48,7 @@ export const Inputs = ({ img, placeholder, getState, Child, type = 'text', disab
           placeholder={placeholder}
           type={type}
         />
-        {Child}
+        {Child}111
       </div>
     </Center>
   )
