@@ -18,7 +18,7 @@ const Find = lazy(() => import('@pages/find'))
 const Loan = lazy(() => import('@pages/loan'))
 const Zxxq = lazy(() => import('@pages/zxxq'))
 const Gjjcy = lazy(() => import('@pages/gjjcy'))
-const xxqyqr = lazy(() => import('@pages/xxqyqr'))
+const signing = lazy(() => import('@pages/signing'))
 
 
 
@@ -42,7 +42,7 @@ export const Layout = () => {
         <Route path='/loan' component={Loan} exact />
         <Route path='/zxxq' component={Zxxq} exact />
         <Route path='/gjjcy' component={Gjjcy} exact />
-        <Route path='/xxqyqr' component={xxqyqr} exact />
+        <Route path='/signing' component={signing} exact />
       </Switch>
     </Suspense>
   )
