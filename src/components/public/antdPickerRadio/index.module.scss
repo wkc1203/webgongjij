@@ -1,0 +1,28 @@
+
+  .labelinputs{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  body{
+    background: #fff;
+  }
+  .am-list-item{
+    background-color: #f7f7f7;
+  }
+  .labelinputs-label{
+    color: #999;
+    margin-bottom: 10px;
+    display: block;
+    &:before{
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 15px;
+      margin-right: 10px;
+      background: #999;
+      position: relative;
+      top: 3px;
+    }
+  }
+  
+  

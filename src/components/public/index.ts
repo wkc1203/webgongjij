@@ -6,6 +6,9 @@ import { Inputs } from './inputs';
 import { Title } from './title';
 import { Btus } from './btus';
 import { AntdInputItem } from './antdInputItem';
+import { AntdSteps } from './antdSteps';
+import { AntdPickerRadio } from './antdPickerRadio';
+
 import { AntdButton } from './antdButton'
 import { Modal } from './modal';
 import { Ttitle } from './ttitle';
@@ -21,7 +24,9 @@ import { Check } from './check';
 import { Clipboard } from './clipboard';
 
 export {
+  AntdPickerRadio,
   Tips,
+  AntdSteps,
   Center,
   AntdInputItem,
   Cutoff,

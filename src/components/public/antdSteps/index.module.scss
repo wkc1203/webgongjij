@@ -1,0 +1,57 @@
+@font-face {font-family: "iconfont";
+  src: url('./iconfont/iconfont.eot?t=1561277273255'); /* IE9 */
+  src: url('./iconfont/iconfont.eot?t=1561277273255#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOkAAsAAAAAB/QAAANWAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqDLIJqATYCJAMQCwoABCAFhG0HShveBsgOJcHAwABggAFABNUa2bO7B0/ogFBx+VdfHjgukoVLlI1QMTrCsEz5v/+8qqIBWCuN7J9up1/6L5xe8DanBcTb4I/7qcvzgeXzhcvvNVVoNG00igQc2Gw3oG7MFAiQDSfGG8auvIjZBDqNG425yCmqAhuF0SgQbzSqdrBJaZWa8NAKdUnPAvEVBG2az14D8MV/f/yDiLABSZXBaHl5n90FaT+ZDzc5pV/R5NKAGG8+qJCxChTisdR6jQu9qzidSnnePtBqJcbKu/LhZn8/Iveias2/PEKWiBqM0G6wi3yZn4yt5KuvQLxMfROGSPBCnm9R4x3wbTQLyfxlt63DcIehk++9q7r/vvrhx9oHH5rsuGNFzMNa+4KSx+wWPBhYu/j4wpOWE9H3B9fuP8pYtizY5FOz8uRV+4XJ20Ep2n8alPaiDg8ql95M3HrUex03Ys6NXrTKx86SerZ64eURm3cru05VHbrl4wiTecpDITBQeIgRF3Vk8Wj7viR0V3fH5YaFZAyC4P/KIx6Rh+KPMfiR8FgIDj7fo2BsX78pJakkq7bcJgQjYtMH+7gQ2yyXFD+vLaO+jy52GO+8ZXBKzqsR8W9qLw5PAMzKIwFRAJxHiDL4qOjPZZBx9Kp54nnjEW3Lyl9hu2/9CUqo6f9bBIPfdlWKKVP+l0X2N6htYyAN4HVW7slTftxnrE7mfmp1TvpvY88D/IiuqvcjXpUC+TPA2ydaE7+JaJlWVMrQlSLLbFyzF7u9GyR06sTPCTLoxRiakdZuQpsiGCSNMchas/TCXoVKl12otY6h04rc/l2GyDhRbIFlswGEfjsh6fUdsn7X6YX9HCqjvkOtPzjodBXuI3aZD41dpkzaKenCjomo6ZSMomWgdkF4BVGN1bfLScrn1hDZrHFgeEhYNpBLjEQeo415nCqCUhFFWTJgDpiP6PUSmmRJSzppiJpSU0JoqFi2o5BOyQB2zsmIdhTRBXWYCGl0khiJbm7KLvf6CoTKWHrt5JqoinQNQmamKR6FCxHWgp6rMraKupZFzMZRiUBRIiSSSQxQDjATetMrQabyalpEJyqEuofbJEEoyia2VYXMrzE8QIzFYXQvwTIcwzMC1FtjOiXTxIsqMIYSM42MLFEAAAA=') format('woff2'),
+  url('./iconfont/iconfont.woff?t=1561277273255') format('woff'),
+  url('./iconfont/iconfont.ttf?t=1561277273255') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('./iconfont/iconfont.svg?t=1561277273255#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 26px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // color: #DEB575;
+}
+
+.icon-1-copy:before {
+  content: "\e601";
+}
+
+.icon-icon-test3:before {
+  content: "\e6cf";
+}
+
+.icon-icon-test4:before {
+  content: "\e6ca";
+}
+
+
+.labelinputs{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  body{
+    background: #fff;
+  }
+  .am-list-item{
+    background-color: #f7f7f7;
+  }
+  .labelinputs-label{
+    color: #999;
+    margin-bottom: 10px;
+    display: block;
+    &:before{
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 15px;
+      margin-right: 10px;
+      background: #999;
+      position: relative;
+      top: 3px;
+    }
+  }
+  
+  

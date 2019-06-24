@@ -32,19 +32,19 @@ export const Yzm = ({ username = '', disabled = false }: Yzm) => {
       setY(false)
       seton(true)
       getaa()
-      // timer = setInterval(() => {
-      //   if (s) {
-      //     console.log('object')
-      //     setYzm(i + 's')
-      //     i--
-      //     if (i <= 0) {
-      //       clearInterval(timer)
-      //       setYzm('发送失败')
-      //     }
-      //   }else{
-      //     clearInterval(timer)
-      //   }
-      // }, 1000)
+      timer = setInterval(() => {
+        if (s) {
+          console.log('object')
+          setYzm(i + 's')
+          i--
+          if (i <= 0) {
+            clearInterval(timer)
+            setYzm('发送失败')
+          }
+        }else{
+          clearInterval(timer)
+        }
+      }, 1000)
     }
   }
   useEffect(() => {
