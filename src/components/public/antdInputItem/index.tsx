@@ -182,6 +182,7 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
           <div className = {cs(style['am-list-item-picker'])}><Picker
           data={picmov.value}
           value={ ['']}
+          title={placeholder}
           cols={1}
           onChange = {v=>{
             console.log(v)

@@ -41,11 +41,11 @@ export default ({ history }: Test) => {
       <Navigationt title='test' history={history} />
       <AntdPickerRadio/>
       <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName}  />
-      <AntdInputItem  labeltext='月收入' placeholder='请输入产品名称' getState={productName} picker = {true} pickertype = 'Mon' />
-      <AntdInputItem  labeltext='家庭月收入' placeholder='请输入产品名称' getState={productName} picker = {true} pickertype = 'Tot' />
-      <AntdInputItem  labeltext='亲属关系' placeholder='请输入产品名称' getState={productName} picker = {true} pickertype = 'Kin' />
-      <AntdInputItem  labeltext='最高学历' placeholder='请输入产品名称' getState={productName} picker = {true} pickertype = 'Rec' />
-      <AntdInputItem  labeltext='婚姻情况' placeholder='请输入产品名称' getState={productName} picker = {true} pickertype = 'Mar' />
+      <AntdInputItem  labeltext='月收入' placeholder='请选择月收入' getState={productName} picker = {true} pickertype = 'Mon' />
+      <AntdInputItem  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={productName} picker = {true} pickertype = 'Tot' />
+      <AntdInputItem  labeltext='亲属关系' placeholder='请选择亲属关系' getState={productName} picker = {true} pickertype = 'Kin' />
+      <AntdInputItem  labeltext='最高学历' placeholder='请选择最高学历' getState={productName} picker = {true} pickertype = 'Rec' />
+      <AntdInputItem  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={productName} picker = {true} pickertype = 'Mar' />
       {/* <Inputs img={pImgs['zhanghao']} placeholder={zh.pla} getState={setZh} /> */}
       <AntdSteps currentNum={currentNum} status ="finish"/>
       <AntdButton fn={() => {

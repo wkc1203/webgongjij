@@ -48,7 +48,7 @@ export const Inputs = ({ img, placeholder, getState, Child, type = 'text', disab
           placeholder={placeholder}
           type={type}
         />
-        {Child}111
+        {Child}
       </div>
     </Center>
   )
