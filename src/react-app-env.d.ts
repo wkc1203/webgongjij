@@ -8,7 +8,10 @@ declare namespace NodeJS {
     PUBLIC_URL: string;
   }
 }
-
+declare module 'antd-mobile-demo-data' {
+  export const district: any;
+  export const provinceLite: any;
+}
 declare module '*.bmp' {
   const src: string;
   export default src;

@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { List, InputItem, WhiteSpace ,WingBlank, Picker} from 'antd-mobile';
+import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Center } from '@components/public';
 import cs from 'classnames'
+import districtData from './address';
 export type AntdInputItem = {
   placeholder: string,
   labeltext: string,
@@ -141,7 +143,7 @@ const marriageStatus = [
     value: '其他',
   },
 ]
-// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况
+// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域
 export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child, type = 'text',  disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ value: value,labeltext:labeltext })
   const [picValue, setpicker] = useState()
@@ -153,6 +155,7 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
     setNum({ value: value,labeltext:labeltext })
   }, [value])
   useEffect(() => {
+    console.log(district)
     switch (pickertype) {
       case 'Mon':
         setMon({value:monthlyIncome})
@@ -169,31 +172,35 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
       case 'Mar':
         setMon({value:marriageStatus})
         break
+      case 'Areas':
+        setMon({value:district})
+        break
     }
   },[setMon])
   
   return (
     <div style={{ margin: '15px' }}>
       <WingBlank size="sm">
+      
       <div className={style['labelinputs']}>
           <label className={style['labelinputs-label']}>{labeltext}</label>
         {
           picker?
-          <div className = {cs(style['am-list-item-picker'])}><Picker
-          data={picmov.value}
-          value={ ['']}
-          title={placeholder}
-          cols={1}
-          onChange = {v=>{
-            console.log(v)
-            setpicker(v)
-          }}
-        >
-          <List.Item arrow="horizontal">{picValue?picValue:placeholder}</List.Item>
-        </Picker></div>
-          
-      : 
-      <List>
+          <div className = {cs(style['am-list-item-picker'])}>
+            <Picker
+              data={picmov.value}
+              title={placeholder}
+              cols={1}
+              onChange = {v=>{
+                console.log(v)
+                setpicker(v)
+              }}
+            >
+              <List.Item arrow="horizontal">{picValue?picValue:placeholder}</List.Item>
+            </Picker>
+          </div>
+        : 
+          <List>
             <InputItem className = {cs(style['am-list-item'])}
               clear
               extra={extra}
