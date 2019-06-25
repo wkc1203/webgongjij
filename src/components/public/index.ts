@@ -8,6 +8,7 @@ import { Btus } from './btus';
 import { AntdInputItem } from './antdInputItem';
 import { AntdSteps } from './antdSteps';
 import { AntdPickerRadio } from './antdPickerRadio';
+import { AntdResult } from './antdResult';
 
 import { AntdButton } from './antdButton'
 import { Modal } from './modal';
@@ -24,6 +25,7 @@ import { Check } from './check';
 import { Clipboard } from './clipboard';
 
 export {
+  AntdResult,
   AntdPickerRadio,
   Tips,
   AntdSteps,

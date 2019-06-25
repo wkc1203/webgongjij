@@ -14,7 +14,10 @@ declare module "rc-form" {
   export const createFormField: any;
   export const formShape: any;
 }
-
+declare module 'antd-mobile-demo-data' {
+  export const district: any;
+  export const provinceLite: any;
+}
 declare module '*.bmp' {
   const src: string;
   export default src;

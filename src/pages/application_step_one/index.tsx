@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt ,AntdInputItem,AntdButton,AntdSteps} from '@components/public';
+import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff} from '@components/public';
 import { Picker,List } from 'antd-mobile';
 type Step_one = {
   history: History
@@ -32,27 +32,25 @@ export default ({ history }: Step_one) => {
     <div className={style['xxqyqr']}>
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
-      <Picker data={[{value:1,label:'one'},{value:2,label:'two'},{value:3,label:'three'}]} cols={1} extra={" "}>
-          <List.Item arrow="down" >请选择购买车位楼盘</List.Item>
-      </Picker>
-      <AntdInputItem  labeltext='用款金额' placeholder='请输入用款金额' getState={withAmount} />
-      <AntdInputItem  labeltext='贷款年利率' placeholder='请输入贷款年利率' getState={annuaInterestRate} />
-      <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={loanUsedFor} />
-      <AntdInputItem  labeltext='放款方式' placeholder='请输入放款方式' getState={lendingWay} />
-      <AntdInputItem  labeltext='受托方' placeholder='请输入受托方' getState={entrusted} />
-      <AntdInputItem  labeltext='还款方式' placeholder='请输入还款方式' getState={reimbursementMeans} />
-      <AntdInputItem  labeltext='还款期数' placeholder='请输入还款期数' getState={repaymentperiods} />
-      <AntdInputItem  labeltext='应还本息' placeholder='请输入应还本息' getState={shouldAlso} />
-      <AntdInputItem  labeltext='壹米金融服务费' placeholder='请输入壹米金融服务费' getState={serviceFee} />
-      <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} />
-      <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} />
-      <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} />
-      <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} />
-      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} />
-      <AntdButton fn={() => {
-        console.log(pr)
-        console.log(wi)
+      <AntdInputItem  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={withAmount} picker={true}/>
+      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={withAmount} />
+      <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={annuaInterestRate} />
+      <AntdInputItem  labeltext='申请城市' placeholder='请选择申请城市' getState={loanUsedFor} picker={true}/>
+      <AntdInputItem  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={lendingWay} picker={true}/>
+      <AntdInputItem  labeltext='最高学历' placeholder='请选择最高学历' getState={entrusted} picker={true}/>
+      <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={reimbursementMeans}/>
+      <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={repaymentperiods} />
+      <AntdInputItem  labeltext='居住地' placeholder='请选择居住地' getState={shouldAlso} picker={true}/>
+      <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={serviceFee} />
+      <AntdInputItem  labeltext='个人月收入' placeholder='请选择个人月收入' getState={repaymentAccount} picker={true}/>
+      <AntdInputItem  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={carNumber} picker={true}/>
+      <AntdInputItem  labeltext='亲属联系人' placeholder='请输入一位您亲属联系人的姓名' getState={dealValence} picker={true}/>
+      <AntdInputItem  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={phone} />
+      <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={code} />
+      <AntdButton text='下一步' fn={() => {
+       
       }}></AntdButton>
+      <Cutoff hg='20' />
     </div>
   )
 }
