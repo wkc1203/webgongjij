@@ -19,6 +19,8 @@ const Loan = lazy(() => import('@pages/loan'))
 const Zxxq = lazy(() => import('@pages/zxxq'))
 const Gjjcy = lazy(() => import('@pages/gjjcy'))
 const signing = lazy(() => import('@pages/signing'))
+const Application_step_one = lazy(() => import('@pages/application_step_one'))
+const ParkingSpace = lazy(() => import('@pages/parkingSpace'))
 
 
 
@@ -43,6 +45,8 @@ export const Layout = () => {
         <Route path='/zxxq' component={Zxxq} exact />
         <Route path='/gjjcy' component={Gjjcy} exact />
         <Route path='/signing' component={signing} exact />
+        <Route path='/step_one' component={Application_step_one} exact />
+        <Route path='/parkingSpace' component={ParkingSpace} exact />
       </Switch>
     </Suspense>
   )

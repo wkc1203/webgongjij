@@ -1,20 +1,14 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { createForm } from 'rc-form';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt ,AntdInputItem,AntdButton} from '@components/public';
-import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
-import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
-
-const pImgs: any = {}
-export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-type Test = {
+import { Navigationt ,AntdInputItem,AntdButton,AntdSteps} from '@components/public';
+import { Picker,List } from 'antd-mobile';
+type Step_one = {
   history: History
 }
-
-export default ({ history }: Test) => {
+export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+export default ({ history }: Step_one) => {
   const [pr, productName] = useState({ val: ''})
   const [wi, withAmount] = useState({ val: ''})
   const [an, annuaInterestRate] = useState({ val: ''})
@@ -36,8 +30,11 @@ export default ({ history }: Test) => {
   const refresh = useRef(null)
   return (
     <div className={style['xxqyqr']}>
-      <Navigationt title='签约信息确认' history={history} />
-      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} />
+      <Navigationt title='申请流程' history={history} />
+      <AntdSteps currentNum={0} ></AntdSteps>
+      <Picker data={[{value:1,label:'one'},{value:2,label:'two'},{value:3,label:'three'}]} cols={1} extra={" "}>
+          <List.Item arrow="down" >请选择购买车位楼盘</List.Item>
+      </Picker>
       <AntdInputItem  labeltext='用款金额' placeholder='请输入用款金额' getState={withAmount} />
       <AntdInputItem  labeltext='贷款年利率' placeholder='请输入贷款年利率' getState={annuaInterestRate} />
       <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={loanUsedFor} />

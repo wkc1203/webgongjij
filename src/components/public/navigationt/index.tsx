@@ -13,7 +13,7 @@ export type Navigationt = {
   title: string,
   history: History,
   top?: string,
-  tbg?: undefined | 'Chaxun_bg' | 'Gjjchaxunjieguo_bg',
+  tbg?: undefined | 'Chaxun_bg' | 'Gjjchaxunjieguo_bg'|'ParkingSpace_bg',
   lev?: boolean,
   second?: boolean
 }
@@ -26,14 +26,20 @@ const Gjjchaxunjieguo_bg = () => (
   <img className={style['gjjchaxunjieguo_bg']} src={pImgs['gjjchaxunjieguo_bg']} />
 )
 
+const ParkingSpace_bg = () => (
+  <img className={style['parkingSpace_bg']} src={pImgs['parkingSpace_bg']} />
+)
+
 const fhBtn = {
   Gjjchaxunjieguo_bg: 'fanhui_h',
-  Chaxun_bg: 'fanhui'
+  Chaxun_bg: 'fanhui',
+  ParkingSpace_bg:'fanhui'
 }
 
 const backImg = {
   Chaxun_bg: <Chaxun_bg />,
-  Gjjchaxunjieguo_bg: <Gjjchaxunjieguo_bg />
+  Gjjchaxunjieguo_bg: <Gjjchaxunjieguo_bg />,
+  ParkingSpace_bg:<ParkingSpace_bg/>
 }
 
 export const Navigationt = ({ title, history, top, tbg = undefined, lev = false, second = false }: Navigationt) => {

@@ -1,0 +1,66 @@
+.flex-container{
+    margin: 0 35px;
+    .block{
+        box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.13)
+    }
+    .text_center{
+        text-align: center
+    }
+    .step_title{
+        color:rgba(225, 70, 26, 1);
+        font-size: 13px;
+        .icon_font{
+            width: 10px;
+            height: 10px;
+            padding: 0 5px;
+        }
+    }
+    .step,.step_err{
+        position: relative;
+        border: 1px dashed rgba(205, 205, 205, 1);
+        height: 30px;
+        line-height: 30px;
+        padding-left: 40px;
+        font-size:14px;
+        
+    }
+    .step{
+        color: rgba(222, 181, 117, 1);
+        .step_icon{
+            position: absolute;
+            top:2px;
+            right: 40px;
+        }
+    }
+    .step_err{
+        color: rgba(193, 193, 193, 1);
+        .step_icon_err{
+            position: absolute;
+            top:2px;
+            right: 40px;
+        }
+    }
+    .button_bottom{
+        color:rgba(0, 0, 0, 0.85)
+    }
+}
+.container{
+    background-color: white;
+    text-align:center;
+    padding:15px 0 20px 0;
+    .one_line{
+        margin: 6px 0;
+        color:rgba(222, 181, 117, 1);
+        font-size: 18px
+    }
+    .two_line{
+        margin: 6px 26px;
+        color:rgba(118, 116, 116, 1);
+        font-size: 12px;
+        max-height: 10px
+    }
+}
+.container_img{
+    height: 60px;
+    width: 60px;
+}

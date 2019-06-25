@@ -120,8 +120,8 @@ module.exports = function(webpackEnv) {
           loader,
           options: {
             modifyVars: {
-              'brand-primary': "#142cab",
-              'color-text-base':  "#333"
+              'brand-primary': "#F54E4C",
+              'color-text-base':  "#F54E4C"
             },
             javascriptEnabled: true,
           }
