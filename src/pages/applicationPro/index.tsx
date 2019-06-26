@@ -42,7 +42,7 @@ export default ({ history }: Test) => {
     <div className={style['test']}>
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={currentNum} status ="finish"/> 
-      <Cutoff hg='20' />
+      <Cutoff hg='6' colorValue='rgba(216,216,216,1)'/>
 
       <AntdPickerRadio pickertype = {pickertype} pickertypepro = {pickertypepro} />
       <AntdImagePicker labeltext = '上传购车位证明' />
