@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createForm } from 'rc-form';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt ,AntdInputItem,AntdButton} from '@components/public';
+import { Navigationt ,AntdInputItem,AntdButton,Cutoff} from '@components/public';
 import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
 import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
 
@@ -55,7 +55,9 @@ export default ({ history }: Test) => {
       <AntdButton fn={() => {
         console.log(pr)
         console.log(wi)
+        history.push('creditauthor')
       }}></AntdButton>
+      <Cutoff hg='30' />
     </div>
   )
 }

@@ -17,7 +17,7 @@ export const AntdSteps = ({ currentNum,status ="wait",titleList=['个人信息',
 
   return (
     <WingBlank>
-      <WhiteSpace />
+      <WhiteSpace style={{marginBottom:'10px'}}/>
       <Steps direction="horizontal" current={currentNum} >
         <Step title={titleList[0]} icon={<span  className = { cs(style['iconfont'], [style['icon-1-copy'] ]) }></span>} />
         <Step title={titleList[1]} icon={<span  className = { cs(style['iconfont'], [style['icon-icon-test4'] ]) }></span>} />
