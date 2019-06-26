@@ -51,7 +51,7 @@ export default ({ history }: Test) => {
       <AntdResult  resulttype='audit' title='审核中' messageFist='您的资料正在银行审核中'/>
       <AntdResult  resulttype='tips' messageFist='由于您提交的资料有误或缺失 请您点击补件按钮检查并补全资料' btnShow={true} btnText='去补件'/>
       <AntdResult  resulttype='wrong' messageFist='抱歉，您未通过贷款审批'/> 
-      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName}  />
+      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName}/>
       <AntdInputItem  labeltext='地址' placeholder='请选择地址' getState={productName} picker = {true} pickertype = 'Areas' />
       <AntdInputItem  labeltext='地址' placeholder='请选择地址' getState={productName} picker = {true} pickertype = 'Tot' />
       <AntdSteps currentNum={currentNum} status ="finish"/> 
