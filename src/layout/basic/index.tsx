@@ -22,8 +22,8 @@ const signing = lazy(() => import('@pages/signing'))
 const Application_step_one = lazy(() => import('@pages/application_step_one'))
 const Application_step_two = lazy(() => import('@pages/application_step_two'))
 const ParkingSpace = lazy(() => import('@pages/parkingSpace'))
-const applicationPro = lazy(() => import('@pages/applicationPro'))
-const parkingSpace_result = lazy(() => import('@pages/parkingSpace_result'))
+const Application_step_three = lazy(() => import('@pages/application_step_three'))
+const Application_result = lazy(() => import('@pages/application_result'))
 const creditauthor = lazy(() => import('@pages/creditauthor'))
 
 
@@ -51,8 +51,8 @@ export const Layout = () => {
         <Route path='/step_one' component={Application_step_one} exact />
         <Route path='/parkingSpace' component={ParkingSpace} exact />
         <Route path='/step_two' component={Application_step_two} exact />
-        <Route path='/applicationPro' component={applicationPro} exact />
-        <Route path='/parkingSpace_result' component={parkingSpace_result} exact />
+        <Route path='/step_three' component={Application_step_three} exact />
+        <Route path='/application_result' component={Application_result} exact />
         <Route path='/creditauthor' component={creditauthor} exact />
       </Switch>
     </Suspense>

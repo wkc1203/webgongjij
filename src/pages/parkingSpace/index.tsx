@@ -42,18 +42,32 @@ export default ({ history }: Gjjc) => {
             { text: '立即查询', onPress: () => console.log('ok') },
           ]);
     }
-    // 审核结果 success、audit、tips、wrong
-    const result =()=>{
+    // // 审核结果 success、audit、tips、wrong
+    // const result =()=>{
+    //     sendMessageToNative({ type: 'push' })
+    //     history.push({
+    //         pathname: 'parkingSpace_result',
+    //         state: {
+    //           data: {
+    //             resulttype: 'success',
+    //           }
+    //         }
+    //       })
+    //     routing('wqparkingSpace_resultcx')
+    // }
+    
+    // 下一步
+    const next_step = ()=>{
         sendMessageToNative({ type: 'push' })
         history.push({
-            pathname: 'parkingSpace_result',
-            state: {
-              data: {
-                resulttype: 'success',
-              }
-            }
+            pathname: 'step_one',
+            // state: {
+            //   data: {
+            //     resulttype: 'success',
+            //   }
+            // }
           })
-        routing('wqparkingSpace_resultcx')
+        routing('step_one')
     }
     return (
         <div className={style['gjjc']}>
@@ -105,7 +119,7 @@ export default ({ history }: Gjjc) => {
         </Flex>
         </div>
         <Cutoff hg='20' />
-        <AntdButton text={"开始申请"} fn={()=>result()}></AntdButton>
+        <AntdButton text={"开始申请"} fn={()=>next_step()}></AntdButton>
         <Cutoff hg='30' />
         <div className={style['flex-container']}>
             <Flex justify="center">

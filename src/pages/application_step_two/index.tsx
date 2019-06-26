@@ -2,11 +2,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
+import { sendMessageToNative, routing } from '@util/index';
 import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff} from '@components/public';
-import { Picker,List } from 'antd-mobile';
+import { Modal } from 'antd-mobile';
 type Step_two = {
   history: History
 }
+const alert=Modal.alert;
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default ({ history }: Step_two) => {
   const [pr, productName] = useState({ val: ''})
@@ -28,6 +30,27 @@ export default ({ history }: Step_two) => {
   const [list, setList] = useState(l)
   const [y, setY] = useState(0)
   const refresh = useRef(null)
+
+    // 下一步
+    const next_step = ()=>{
+      sendMessageToNative({ type: 'push' })
+      history.push({
+          pathname: 'step_three',
+          // state: {
+          //   data: {
+          //     resulttype: 'success',
+          //   }
+          // }
+        })
+      routing('step_three')
+    } 
+      // 提交申请
+    const passAllShowAlert = ()=>{
+        alert('提示', '请确认信息无误', [
+            { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+            { text: '确认无误', onPress: () => next_step() },
+          ]);
+    }
   return (
     <div className={style['xxqyqr']}>
       <Navigationt title='申请流程' history={history} />
@@ -40,9 +63,7 @@ export default ({ history }: Step_two) => {
       <AntdInputItem  labeltext='贷款分期数' placeholder='请选择请选择贷款分期数' getState={entrusted}/>
       <AntdInputItem  labeltext='计息方式' placeholder='请选择计息方式' getState={reimbursementMeans}  picker={true}/>
       <AntdInputItem  labeltext='贷款年利率' placeholder='请输入工作单位' getState={repaymentperiods} />
-      <AntdButton text='下一步' fn={() => {
-       
-      }}></AntdButton>
+      <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
     </div>
   )

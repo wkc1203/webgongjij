@@ -2,11 +2,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
+import { sendMessageToNative, routing } from '@util/index';
 import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff} from '@components/public';
-import { Picker,List } from 'antd-mobile';
+import { Modal } from 'antd-mobile';
 type Step_one = {
   history: History
 }
+const alert=Modal.alert;
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default ({ history }: Step_one) => {
   const [pr, productName] = useState({ val: ''})
@@ -28,6 +30,27 @@ export default ({ history }: Step_one) => {
   const [list, setList] = useState(l)
   const [y, setY] = useState(0)
   const refresh = useRef(null)
+
+  // 下一步
+  const next_step = ()=>{
+    sendMessageToNative({ type: 'push' })
+    history.push({
+        pathname: 'step_two',
+        // state: {
+        //   data: {
+        //     resulttype: 'success',
+        //   }
+        // }
+      })
+    routing('step_two')
+  } 
+    // 提交申请
+  const passAllShowAlert = ()=>{
+      alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
+        ]);
+  }
   return (
     <div className={style['xxqyqr']}>
       <Navigationt title='申请流程' history={history} />
@@ -47,9 +70,7 @@ export default ({ history }: Step_one) => {
       <AntdInputItem  labeltext='亲属联系人' placeholder='请输入一位您亲属联系人的姓名' getState={dealValence} picker={true}/>
       <AntdInputItem  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={phone} />
       <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={code} />
-      <AntdButton text='下一步' fn={() => {
-       
-      }}></AntdButton>
+      <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
     </div>
   )

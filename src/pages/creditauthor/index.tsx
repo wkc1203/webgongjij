@@ -2,12 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,AntdPickerRadio,Inputs,AntdResult,AntdAccordion,AntdImagePicker,Modal,Cutoff} from '@components/public';
+import { sendMessageToNative, routing } from '@util/index';
+import { Modal } from 'antd-mobile';
+import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,AntdPickerRadio,Inputs,AntdResult,AntdAccordion,AntdImagePicker,Cutoff} from '@components/public';
 import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
 import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
-// const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
-// const pImgs: any = {}
-// requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
 
 export const Item = () => (
   <div className={style['item']}>
@@ -21,7 +20,7 @@ export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 type Test = {
   history: History
 }
-
+const alert=Modal.alert;
 
 export default ({ history }: Test) => {
   const [currentNum, setcurrentNum] = useState(0);
@@ -38,6 +37,27 @@ export default ({ history }: Test) => {
     }
   }, [currentNum])
 
+   // 下一步
+   const next_step = ()=>{
+    sendMessageToNative({ type: 'push' })
+    history.push({
+        pathname: 'application_result',
+        state: {
+          data: {
+            resulttype: 'success',
+          }
+        }
+      })
+    routing('application_result')
+  } 
+    // 同意授权
+  const passAllShowAlert = ()=>{
+      alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
+        ]);
+  }
+
   return (
     <div className={style['test']}>
       <Navigationt title='申请流程' history={history} />
@@ -50,17 +70,9 @@ export default ({ history }: Test) => {
         </p>
       </div>
       <AntdButton text='同意授权查看个人征信' fn={() => {
-          // pickertypepro(true)
+          passAllShowAlert()
           setcurrentNum(currentNum + 1)
-          setShow(true)
         }}></AntdButton>
-       <Modal
-        titles={'系统消息'}
-        title={'系统错误请重试'}
-        show={show1}
-        box = 'g'
-        setShow={setShow}
-      />
     </div>
   )
 }

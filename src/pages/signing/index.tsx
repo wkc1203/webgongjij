@@ -3,9 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createForm } from 'rc-form';
 import style from './index.module.scss';
 import { History } from 'history';
+import cs from 'classnames';
+import { sendMessageToNative, routing } from '@util/index';
 import { Navigationt ,AntdInputItem,AntdButton,Cutoff} from '@components/public';
-import { fromEvent, timer, from, interval, range, EMPTY, NEVER, pipe } from 'rxjs';
-import { map, pluck, startWith, first, auditTime, take, switchMapTo, tap, throttleTime } from 'rxjs/operators';
+import { Modal,Flex ,WingBlank} from 'antd-mobile';
 
 const pImgs: any = {}
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -13,6 +14,8 @@ export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 type Test = {
   history: History
 }
+
+const alert=Modal.alert;
 
 export default ({ history }: Test) => {
   const [pr, productName] = useState({ val: ''})
@@ -34,6 +37,34 @@ export default ({ history }: Test) => {
   const [list, setList] = useState(l)
   const [y, setY] = useState(0)
   const refresh = useRef(null)
+
+  // 下一步
+  const next_step = ()=>{
+    sendMessageToNative({ type: 'push' })
+    history.push({
+        pathname: 'step_three',
+        // state: {
+        //   data: {
+        //     resulttype: 'success',
+        //   }
+        // }
+      })
+    routing('step_three')
+  } 
+    // 提交申请
+  const passAllShowAlert = ()=>{
+      alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
+        ]);
+  }
+  // 重新申请
+  const applyApplicationShowAlert = ()=>{
+    alert('提示', '请确认信息无误', [
+        { text: '确认取消签约，重新申请贷款吗？', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+        { text: '确认', onPress: () => next_step() },
+      ]);
+}
   return (
     <div className={style['xxqyqr']}>
       <Navigationt title='签约信息确认' history={history} />
@@ -52,12 +83,19 @@ export default ({ history }: Test) => {
       <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} />
       <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} />
       <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} />
-      <AntdButton fn={() => {
-        console.log(pr)
-        console.log(wi)
-        history.push('creditauthor')
-      }}></AntdButton>
-      <Cutoff hg='30' />
+      <Cutoff hg='20' />
+      <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
+      <Cutoff hg='20' />
+      <WingBlank>
+        <div>
+              <Flex justify="center">
+                  <Flex.Item className={cs(style['text_center'],style['button_bottom'])}>
+                      <div onClick={()=>applyApplicationShowAlert()}>重新申请</div>
+                  </Flex.Item>
+              </Flex>
+          </div>
+        <Cutoff hg='30' />
+      </WingBlank>
     </div>
   )
 }
