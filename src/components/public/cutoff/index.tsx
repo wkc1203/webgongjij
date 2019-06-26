@@ -7,7 +7,7 @@ export type Cutoff = {
   colorValue?:string
 }
 
-export const Cutoff = ({ hg,colorValue='#fff' }: Cutoff) => (
+export const Cutoff = ({ hg,colorValue='transparent' }: Cutoff) => (
   <div className={style['cutoff']} style={{height:hg+'px',backgroundColor:colorValue,opacity:0.5}}>
     
   </div>
