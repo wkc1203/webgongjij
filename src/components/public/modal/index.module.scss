@@ -9,6 +9,93 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .cancle-box{
+      float: right;
+      padding-right: 10px;
+    }
+    .theloan{
+      display: flex;
+      .theloan-left{
+        color: #C1C1C1;
+        font-size: 14px;
+      }
+      .theloan-right{
+        color: #FA6400;
+        font-size: 14px;
+        float: right;
+      }
+     
+    }
+    .theloan-title-g{
+      
+      font-size:12px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(193,193,193,1);
+      line-height:17px;
+    }
+    .theloan-list-text{
+      font-weight:400;
+      color:rgba(0,0,0,0.25);
+      line-height:17px;
+      padding-top: 15px;
+    }
+    .theloan-list-g{
+      margin-top: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .theloan-list-lr{
+      display: flex;
+      .theloan-list-l{
+        width:51px;
+        height:21px;
+        background:rgba(235,235,235,1);
+        border-radius:4px;
+        font-size:12px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(109,109,109,1);
+        line-height:17px;
+        text-align: center;
+      }
+      .theloan-list-r{
+        margin-left: auto;
+        font-size:17px;
+        font-family:DINAlternate-Bold;
+        font-weight:bold;
+        color:rgba(0,0,0,0.85);
+      }
+    }
+    .theloan-num{
+      display: flex;
+      margin: 10px 0;
+      .theloan-jinw{
+        font-size:36px;
+        font-family:DINAlternate-Bold;
+        font-weight:bold;
+        color:rgba(0,0,0,1);
+        line-height:42px;
+      }
+      .theloan-qishu{
+        margin-left: auto;
+        background: #DEB575;
+        width: 40px;
+        height: 21px;
+        text-align: center;
+        line-height: 21px;
+        border-radius: 5px;
+        margin-top: 15px;
+        font-weight:400;
+        color:rgba(0,0,0,0.5);
+      }
+    }
+    
+    .title-h{
+      width: 100%;
+      border-top: 1px solid #ccc;
+      height: 1px;
+    }
     .boxt {
       z-index: 9999;
       position: fixed;
@@ -174,6 +261,8 @@
           color: #272427;
           line-height: 17px;
           font-weight:500;
+          width: 100%;
+          text-align: center;
         }
       }
       .bbox {

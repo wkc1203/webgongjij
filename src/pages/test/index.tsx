@@ -44,6 +44,7 @@ export default ({ history }: Test) => {
         show={show1}
         setShow={setShow1}
       />
+      <AntdAccordion/>
       <AntdImagePicker labeltext = '上传购车位证明' />
       <AntdResult fn={() => {
         console.log(111)
@@ -51,10 +52,10 @@ export default ({ history }: Test) => {
       <AntdResult  resulttype='audit' title='审核中' messageFist='您的资料正在银行审核中'/>
       <AntdResult  resulttype='tips' messageFist='由于您提交的资料有误或缺失 请您点击补件按钮检查并补全资料' btnShow={true} btnText='去补件'/>
       <AntdResult  resulttype='wrong' messageFist='抱歉，您未通过贷款审批'/> 
-      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} inputiconright={require('./img/g-1.png')} rightBtntype='icon' ImgClick={()=>{
+      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} inputiconright={require('./img/g-1.png')} rightType={true} rightBtntype='icon' ImgClick={()=>{
         console.log(111)
       }}/>
-       <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} inputiconright={require('./img/g-1.png')} rightBtntype='btn' ImgClick={()=>{
+       <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} inputiconright={require('./img/g-1.png')} rightType={true} rightBtntype='btn' ImgClick={()=>{
         console.log(111)
       }}/>
       <AntdInputItem  labeltext='地址' placeholder='请选择地址' getState={productName} picker = {true} pickertype = 'Areas' />

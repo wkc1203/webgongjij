@@ -73,6 +73,16 @@ export default ({ history }: Test) => {
           passAllShowAlert()
           setcurrentNum(currentNum + 1)
         }}></AntdButton>
+<<<<<<< HEAD
+=======
+       <Modal
+        titles={'系统消息'}
+        title={'系统错误请重试'}
+        show={show1}
+        box = 'plan'
+        setShow={setShow}
+      />
+>>>>>>> db554f82771e919f912013597dc6b8b0366ab61d
     </div>
   )
 }

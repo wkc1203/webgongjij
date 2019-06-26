@@ -96,6 +96,13 @@ export default ({ history }: Test) => {
           </div>
         <Cutoff hg='30' />
       </WingBlank>
+      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn'/>
+      <AntdButton fn={() => {
+        console.log(pr)
+        console.log(wi)
+        history.push('creditauthor')
+      }}></AntdButton>
+      <Cutoff hg='30' />
     </div>
   )
 }

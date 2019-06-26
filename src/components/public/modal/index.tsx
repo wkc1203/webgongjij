@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Icon, Grid } from 'antd-mobile';
 import style from './index.module.scss';
 import { createPortal } from 'react-dom';
 import { Btus, Cutoff, Center } from '@components/public';
@@ -23,7 +24,7 @@ export type Modal = {
   onCancel?: fn,
   show: boolean,
   setShow: fn,
-  box?: 't' | 'm' | 'y' | 'g',
+  box?: 't' | 'm' | 'y' | 'g'|'plan',
   btuText?: string,
   titleFn?: (...rest: any) => any,
   fnzhuce?: (...rest: any) => any,
@@ -148,6 +149,73 @@ export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDe
         </div>
       )
       break;
+    case 'plan':
+        child=(
+          <div className={style['modal']}>
+            <div className={style['box3']}>
+              <div className={style['tbox']} >
+                <div className = { style['title'] }>
+                  { '还款计划' }
+                  <span className = { style['cancle-box'] }><Icon type='cross' onClick={()=>{
+                  setShow(false)
+                }} /></span>
+                </div>
+                <div className = { style['title-h'] }></div>
+                <div className = { style['cbox'] }>
+                  <div className = { style['theloan'] }>
+                    <p className = { style['theloan-left'] }>贷款总额（元）</p>
+                    <p className = { style['theloan-right'] }>年利率</p>
+                  </div>
+                  <div className = { style['theloan-num'] }>
+                    <p className = { style['theloan-jinw'] }>100.000</p>
+                    <p className = { style['theloan-qishu'] }>48期</p>
+                  </div>
+                  <div className = { style['theloan-title-g'] }>此试算仅为参考，具体每月还款金额以签约后还款计划为准</div>
+                  <div className = { style['theloan-list'] }>
+                    <div className = { style['theloan-list-g'] }>
+                      <div className = { style['theloan-list-lr'] }>
+                        <p className = { style['theloan-list-l'] }>08-03</p>
+                        <p className = { style['theloan-list-r'] }>¥ 3,868</p>
+                      </div>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                    </div>
+                    <div className = { style['theloan-list-g'] }>
+                      <div className = { style['theloan-list-lr'] }>
+                        <p className = { style['theloan-list-l'] }>08-03</p>
+                        <p className = { style['theloan-list-r'] }>¥ 3,868</p>
+                      </div>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                    </div>
+                    <div className = { style['theloan-list-g'] }>
+                      <div className = { style['theloan-list-lr'] }>
+                        <p className = { style['theloan-list-l'] }>08-03</p>
+                        <p className = { style['theloan-list-r'] }>¥ 3,868</p>
+                      </div>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                    </div>
+                    <div className = { style['theloan-list-g'] }>
+                      <div className = { style['theloan-list-lr'] }>
+                        <p className = { style['theloan-list-l'] }>08-03</p>
+                        <p className = { style['theloan-list-r'] }>¥ 3,868</p>
+                      </div>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                    </div>
+                    <div className = { style['theloan-list-g'] }>
+                      <div className = { style['theloan-list-lr'] }>
+                        <p className = { style['theloan-list-l'] }>08-03</p>
+                        <p className = { style['theloan-list-r'] }>¥ 3,868</p>
+                      </div>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Center>
+              </Center>
+            </div>
+          </div>
+        )
+        break;
     default:
       break;
   }
