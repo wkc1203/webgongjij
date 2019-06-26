@@ -9,6 +9,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .cancle-box{
+      float: right;
+      padding-right: 10px;
+    }
+    .theloan{
+      display: flex;
+      .theloan-left{
+        color: #C1C1C1;
+        font-size: 14px;
+      }
+      .theloan-right{
+        color: #FA6400;
+        font-size: 14px;
+        float: right;
+      }
+     
+    }
+    .theloan-title-g{
+      font-size:12px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(193,193,193,1);
+      line-height:17px;
+    }
+    .theloan-num{
+      display: flex;
+      .theloan-jinw{
+        font-size:36px;
+        font-family:DINAlternate-Bold;
+        font-weight:bold;
+        color:rgba(0,0,0,1);
+        line-height:42px;
+      }
+    }
+    
+    .title-h{
+      width: 100%;
+      border-top: 1px solid #ccc;
+      height: 1px;
+    }
     .boxt {
       z-index: 9999;
       position: fixed;
@@ -174,6 +214,8 @@
           color: #272427;
           line-height: 17px;
           font-weight:500;
+          width: 100%;
+          text-align: center;
         }
       }
       .bbox {

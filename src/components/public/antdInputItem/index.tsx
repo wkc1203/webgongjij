@@ -17,6 +17,7 @@ export type AntdInputItem = {
   extra?: string,
   pickertype?:string,
   picker?:boolean,
+  rightType?:boolean,
   rightBtntype?:string,
   inputiconright?:string,
   onChange?:(...rest: any) => void,
@@ -148,17 +149,40 @@ const marriageStatus = [
     value: '其他',
   },
 ]
-// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn)
-export const AntdInputItem = ({rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
+export const AntdInputItem = ({rightType=false,rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ value: value,labeltext:labeltext })
   const [picValue, setpicker] = useState()
   const [picmov, setMon] = useState({value:monthlyIncome})
+  const [yzm, setYzm] = useState('获取验证码')
+  const [y, setY] = useState(true)
   useEffect(() => {
     getState(num)
   }, [num])
   useEffect(() => {
     setNum({ value: value,labeltext:labeltext })
   }, [value])
+  let i = 60
+  let s = true
+  let timer: any = null
+  const getYzm = () => {
+    if (y) {
+      setY(false)
+      timer = setInterval(() => {
+        if (s) {
+          console.log('object')
+          setYzm(i + 's')
+          i--
+          if (i <= 0) {
+            clearInterval(timer)
+            setYzm('发送失败')
+          }
+        }else{
+          clearInterval(timer)
+        }
+      }, 1000)
+    }
+  }
   useEffect(() => {
     switch (pickertype) {
       case 'Mon':
@@ -219,11 +243,11 @@ export const AntdInputItem = ({rightBtntype,ImgClick,inputiconright='', placehol
                 })
               }}
             ></InputItem>
-            <div className = {style['am-list-item-extra-icon']} onClick = { ImgClick }>
+            <div className = {style['am-list-item-extra-icon']}>
               {
-                rightBtntype==="icon"?
-                <img src={inputiconright}/> 
-                :<Button type="primary" inline size="small" style={{ marginRight: '0px' }}>获取验证码</Button>
+                rightType===true?(rightBtntype==="icon"?
+                <img src={inputiconright}  onClick = { ImgClick }/> 
+                :<Button type="primary" onClick={getYzm} inline size="small" style={{ marginRight: '0px' }}>{yzm}</Button>):''
               }
             </div>
           </List>

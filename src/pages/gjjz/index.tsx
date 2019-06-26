@@ -31,7 +31,7 @@ export default ({ history }: Gjjz) => {
       <Cutoff hg='20' />
       <Inputs img={pImgs['shenfenzheng']} placeholder='请输入身份证号' getState={setSfz} />
       <Cutoff hg='20' />
-      {/* <Inputs img={pImgs['yanzhengma']} placeholder='请输入验证码' getState={setYzm} Child={<Yzm/>} /> */}
+      <Inputs img={pImgs['yanzhengma']} placeholder='请输入验证码' getState={setYzm} Child={<Yzm/>} />
       <Cutoff hg='20' />
       <Check title={ '《网上业务大厅服务协议》' } setState = { setCheck } />
       <Cutoff hg='70' />

@@ -58,7 +58,7 @@ export default ({ history }: Test) => {
         titles={'系统消息'}
         title={'系统错误请重试'}
         show={show1}
-        box = 'g'
+        box = 'plan'
         setShow={setShow}
       />
     </div>

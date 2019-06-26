@@ -51,7 +51,7 @@ export default ({ history }: Test) => {
       <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} />
       <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} />
       <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} />
-      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} />
+      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn'/>
       <AntdButton fn={() => {
         console.log(pr)
         console.log(wi)
