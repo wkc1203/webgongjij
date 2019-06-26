@@ -17,7 +17,8 @@ export type AntdInputItem = {
   extra?: string,
   pickertype?:string,
   picker?:boolean,
-  onChange?:(...rest: any) => void
+  onChange?:(...rest: any) => void,
+  onFocus?:(...rest: any) => void,
 }
 const colorStyle = {
   display: 'inline-block',
@@ -144,7 +145,7 @@ const marriageStatus = [
   },
 ]
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域
-export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child, type = 'text',  disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ value: value,labeltext:labeltext })
   const [picValue, setpicker] = useState()
   const [picmov, setMon] = useState({value:monthlyIncome})
@@ -206,6 +207,8 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
               clear
               extra={extra}
               placeholder={placeholder}
+              value = {value}
+              onFocus = {onFocus}
               onChange={v => {
                 setNum({
                   value: v,

@@ -2,12 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { Picker, List, WhiteSpace,WingBlank, Radio, Flex,ActionSheet, Button, Toast } from 'antd-mobile';
+import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Inputs,AntdResult,AntdAccordion,AntdImagePicker} from '@components/public';
 import { Center } from '@components/public';
 import cs from 'classnames'
 const RadioItem = Radio.RadioItem;
 export type AntdPickerRadio = {
   placeholder?: string,
   valueNum?:number
+  pickertype?:boolean
+  pickertypepro: (...rest: any) => any
 }
 const colorStyle = {
   display: 'inline-block',
@@ -16,106 +19,44 @@ const colorStyle = {
   height: '16px',
   marginRight: '10px',
 };
-const Radiolist= [
-  {
-    label:(<RadioItem   onChange={ () => {
-      console.log(1)
-     }} >
-       测试
-     </RadioItem>),
-     value:11
-  },
-  {
-    label:(<RadioItem   onChange={ () => {
-      console.log(1)
-     }} >
-       测试
-     </RadioItem>),
-     value:11
-  }
-  
-]
-const colors = [
-  {
-    label:
-    (<div>
-      <span
-        style={{ ...colorStyle, backgroundColor: '#FF0000' }}
-      />
-      <span>红色</span>
-    </div>),
-    value: '#FF0000',
-  },
-  {
-    label:
-    (<div>
-      <span
-        style={{ ...colorStyle, backgroundColor: '#00FF00' }}
-      />
-      <span>绿色</span>
-    </div>),
-    value: '#00FF00',
-  },
-  {
-    label:
-    (<div>
-      <span
-        style={{ ...colorStyle, backgroundColor: '#0000FF' }}
-      />
-      <span>蓝色</span>
-    </div>),
-    value: '#0000FF',
-  },
-];
 const data = [
-  { value: 0, label: 'doctor' },
-  { value: 1, label: 'bachelor' },
-  { value: 2, label: 'bachelor2' },
+  { value: 0, label: '房产证' },
+  { value: 1, label: '产调证明（不动产登记查询证明）' },
+  { value: 2, label: '购房合同+全款发票' },
+  { value: 3, label: '首付款发票+房贷合同' },
 ];
-export const AntdPickerRadio = ({ placeholder}: AntdPickerRadio) => {
+export const AntdPickerRadio = ({ placeholder,pickertype,pickertypepro}: AntdPickerRadio) => {
+  const [currentNum, setcurrentNum] = useState(true);
   const [valueNum, setCount] = useState(0)
+  const [radioItemLabel, radioItem] = useState()
+  const [pr, productName] = useState({ val: ''})
   useEffect(() => {
     console.log(valueNum)
-    
+    console.log(radioItemLabel)
   });
-  function showActionSheet  (){
-    const BUTTONS = ['Operation1', 'Operation2', 'Operation2', 'Delete', 'Cancel'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: 'title',
-      message: 'I am description, description, description',
-      maskClosable: true,
-    },
-    (buttonIndex) => {
-      console.log(111)
-      // this.setState({ clicked: BUTTONS[buttonIndex] });
-    });
-  }
   return (
-    <div style={{ margin: '15px' }}>
+    <div>
       <WingBlank size="sm">
-      <Button onClick={showActionSheet}>showActionSheet</Button>
-      <List renderHeader={() => 'RadioItem demo'}>
-        {data.map(i => (
-          <RadioItem key={i.value} checked={ valueNum === i.value } onChange={() => {
-            setCount(i.value)
-          }} >
-            {i.label}
-          </RadioItem>
-        ))}
-      </List>
-      <Picker
-          data={colors}
-          value={ ['#00FF00']}
-          cols={1}
-          onChange = {v=>{
-            console.log(v)
-          }}
-        >
-          <List.Item arrow="horizontal">Complex Labels</List.Item>
-        </Picker>
+      <AntdInputItem  labeltext='上传购房相关证明（四选一）'  value={radioItemLabel} placeholder='请输入产品名称' getState={productName}  onFocus={() => {
+            pickertypepro(true)
+          }}/>
+      <div className = { cs(style['pirckerido-box'], { [style['pirckerido-acitve']]: pickertype}) }>
+        <div className={style['pirckerido-rido']}>
+          <List renderHeader={() => '请选择上传购房相关证明类型（四选一）'}>
+            {data.map(i => (
+              <RadioItem key={i.value} checked={ valueNum === i.value } onChange={() => {
+                  console.log(i)
+                  radioItem(i.label)
+                  pickertypepro(false)
+                  setCount(i.value)
+              }} >
+                {i.label}
+              </RadioItem>
+            ))}
+          </List>
+        </div>
+        <div className={style['am-popover-mask']}></div>
+      </div>
       </WingBlank>
     </div>
   )

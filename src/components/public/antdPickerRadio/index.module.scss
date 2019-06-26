@@ -1,28 +1,25 @@
 
-  .labelinputs{
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  body{
-    background: #fff;
-  }
-  .am-list-item{
-    background-color: #f7f7f7;
-  }
-  .labelinputs-label{
-    color: #999;
-    margin-bottom: 10px;
-    display: block;
-    &:before{
-      content: "";
-      display: inline-block;
-      width: 1px;
-      height: 15px;
-      margin-right: 10px;
-      background: #999;
-      position: relative;
-      top: 3px;
-    }
-  }
-  
-  
+.pirckerido-box{
+ display: none;
+}
+.pirckerido-acitve{
+  display: block !important;
+}
+.am-popover-mask {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  z-index: 999;
+}
+.pirckerido-rido{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1999;
+}

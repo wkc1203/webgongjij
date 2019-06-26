@@ -22,7 +22,7 @@ const signing = lazy(() => import('@pages/signing'))
 const Application_step_one = lazy(() => import('@pages/application_step_one'))
 const Application_step_two = lazy(() => import('@pages/application_step_two'))
 const ParkingSpace = lazy(() => import('@pages/parkingSpace'))
-
+const applicationPro = lazy(() => import('@pages/applicationPro'))
 
 
 export const Layout = () => {
@@ -49,6 +49,7 @@ export const Layout = () => {
         <Route path='/step_one' component={Application_step_one} exact />
         <Route path='/parkingSpace' component={ParkingSpace} exact />
         <Route path='/step_two' component={Application_step_two} exact />
+        <Route path='/applicationPro' component={applicationPro} exact />
       </Switch>
     </Suspense>
   )
