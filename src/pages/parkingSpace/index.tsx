@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import style from './index.module.scss';
 import cs from 'classnames';
-import {Flex,Icon} from 'antd-mobile'
-import { Navigationt, Inputs, Cutoff, Title, Center, AntdButton } from '@components/public';
+import {Flex,Icon,Modal} from 'antd-mobile'
+import { Navigationt, Inputs, Cutoff, Title, AntdButton } from '@components/public';
 import { History } from 'history';
 import { validate, sendMessageToNative } from '@util/index';
 
@@ -12,7 +12,7 @@ requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireCon
 type Gjjc = {
   history: History
 }
-  
+const alert=Modal.alert;
 export default ({ history }: Gjjc) => {
     const Block=({text_one,text_two,img}:{text_one:any,text_two:any,img:any})=>(
         <div className={style['container']}>
@@ -21,6 +21,27 @@ export default ({ history }: Gjjc) => {
             <div className={style['two_line']}>{text_two}</div>
         </div>
     );
+    // 已提交过申请
+    const passAllShowAlert = ()=>{
+        alert('提示', '您已提交过申请，请查看申请结果', [
+            { text: '取消', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+            { text: '请查看申请结果', onPress: () => console.log('ok') },
+          ]);
+    }
+    //未完成审核提示
+    const reviewingShowAlert = (text:string)=>{
+        alert('提示', `请先完成${text}查询后再申请`, [
+            { text: '取消', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+            { text: '立即查询', onPress: () => console.log('ok') },
+          ]);
+    }
+    //实名未认证提示
+    const verifiedShowAlert = ()=>{
+        alert('提示', '您还未完成身份认证及绑定,请完成后再进行贷款申请', [
+            { text: '取消', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+            { text: '立即查询', onPress: () => console.log('ok') },
+          ]);
+    }
     return (
         <div className={style['gjjc']}>
         <Navigationt history={history} title='我的贷款' tbg='ParkingSpace_bg' second />
@@ -71,7 +92,7 @@ export default ({ history }: Gjjc) => {
         </Flex>
         </div>
         <Cutoff hg='20' />
-        <AntdButton text={"开始申请"}></AntdButton>
+        <AntdButton text={"开始申请"} fn={()=>verifiedShowAlert()}></AntdButton>
         <Cutoff hg='30' />
         <div className={style['flex-container']}>
             <Flex justify="center">
