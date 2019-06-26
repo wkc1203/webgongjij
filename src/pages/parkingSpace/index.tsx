@@ -4,7 +4,7 @@ import cs from 'classnames';
 import {Flex,Icon,Modal} from 'antd-mobile'
 import { Navigationt, Inputs, Cutoff, Title, AntdButton } from '@components/public';
 import { History } from 'history';
-import { validate, sendMessageToNative } from '@util/index';
+import { sendMessageToNative, routing } from '@util/index';
 
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
@@ -41,6 +41,19 @@ export default ({ history }: Gjjc) => {
             { text: '取消', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
             { text: '立即查询', onPress: () => console.log('ok') },
           ]);
+    }
+    // 审核结果 success、audit、tips、wrong
+    const result =()=>{
+        sendMessageToNative({ type: 'push' })
+        history.push({
+            pathname: 'parkingSpace_result',
+            state: {
+              data: {
+                resulttype: 'success',
+              }
+            }
+          })
+        routing('wqparkingSpace_resultcx')
     }
     return (
         <div className={style['gjjc']}>
@@ -92,7 +105,7 @@ export default ({ history }: Gjjc) => {
         </Flex>
         </div>
         <Cutoff hg='20' />
-        <AntdButton text={"开始申请"} fn={()=>verifiedShowAlert()}></AntdButton>
+        <AntdButton text={"开始申请"} fn={()=>result()}></AntdButton>
         <Cutoff hg='30' />
         <div className={style['flex-container']}>
             <Flex justify="center">
