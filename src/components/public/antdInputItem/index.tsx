@@ -216,7 +216,6 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
                 })
               }}
             ></InputItem>
-            
           </List>
         }
         </div>
