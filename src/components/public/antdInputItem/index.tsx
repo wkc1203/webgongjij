@@ -187,8 +187,9 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
           <label className={style['labelinputs-label']}>{labeltext}</label>
         {
           picker?
-          <div className = {cs(style['am-list-item-picker'])}>
+          <List>
             <Picker
+             
               data={picmov.value}
               title={placeholder}
               cols={1}
@@ -198,9 +199,9 @@ export const AntdInputItem = ({ placeholder, onChange, getState, labeltext,Child
                 setpicker(v)
               }}
             >
-              <List.Item arrow="horizontal">{picValue?picValue:placeholder}</List.Item>
+            <List.Item arrow="horizontal"  className = {style['am-list-item-picker']}>{picValue?picValue:placeholder}</List.Item>
             </Picker>
-          </div>
+          </List>
         : 
           <List>
             <InputItem className = {cs(style['am-list-item'])}

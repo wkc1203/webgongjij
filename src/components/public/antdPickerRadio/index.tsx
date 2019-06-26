@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { Picker, List, WhiteSpace,WingBlank, Radio, Flex,ActionSheet, Button, Toast } from 'antd-mobile';
-import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Inputs,AntdResult,AntdAccordion,AntdImagePicker} from '@components/public';
+import { AntdInputItem} from '@components/public';
 import { Center } from '@components/public';
 import cs from 'classnames'
 const RadioItem = Radio.RadioItem;
