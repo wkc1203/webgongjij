@@ -24,4 +24,15 @@
   .am-list-item-picker{
     background-color: #f7f7f7 !important;
   }
+  .am-list-item-extra{
+    position: relative;
+    .am-list-item-extra-icon{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      img{
+        width: 20px;
+      }
+    }
+  }
   
