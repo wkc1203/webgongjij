@@ -41,7 +41,7 @@ export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDe
               {
                 titles && <Titles titles={titles} />
               }
-              <div className={style['']} onClick={titleFn} >
+              <div className={style['box-center']} onClick={titleFn} >
                 {title}
               </div>
             </div>

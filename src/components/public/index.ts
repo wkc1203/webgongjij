@@ -6,6 +6,9 @@ import { Inputs } from './inputs';
 import { Title } from './title';
 import { Btus } from './btus';
 import { AntdInputItem } from './antdInputItem';
+import { AntdAccordion } from './antdAccordion';
+import { AntdImagePicker } from './antdImagePicker';
+
 import { AntdSteps } from './antdSteps';
 import { AntdPickerRadio } from './antdPickerRadio';
 import { AntdResult } from './antdResult';
@@ -25,6 +28,8 @@ import { Check } from './check';
 import { Clipboard } from './clipboard';
 
 export {
+  AntdImagePicker,
+  AntdAccordion,
   AntdResult,
   AntdPickerRadio,
   Tips,
