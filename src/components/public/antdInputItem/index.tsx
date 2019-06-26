@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
-import { List, InputItem, WhiteSpace ,WingBlank, Picker,Icon} from 'antd-mobile';
+import { List, InputItem, WhiteSpace ,WingBlank, Picker,Icon,Button} from 'antd-mobile';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Center } from '@components/public';
 import cs from 'classnames'
@@ -17,10 +17,12 @@ export type AntdInputItem = {
   extra?: string,
   pickertype?:string,
   picker?:boolean,
+  rightBtntype?:string,
   inputiconright?:string,
   onChange?:(...rest: any) => void,
   onFocus?:(...rest: any) => void,
   ImgClick?:(...rest: any) => void,
+  
 }
 const colorStyle = {
   display: 'inline-block',
@@ -146,8 +148,8 @@ const marriageStatus = [
     value: '其他',
   },
 ]
-// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域
-export const AntdInputItem = ({ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn)
+export const AntdInputItem = ({rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ value: value,labeltext:labeltext })
   const [picValue, setpicker] = useState()
   const [picmov, setMon] = useState({value:monthlyIncome})
@@ -158,7 +160,6 @@ export const AntdInputItem = ({ImgClick,inputiconright='', placeholder, onChange
     setNum({ value: value,labeltext:labeltext })
   }, [value])
   useEffect(() => {
-    console.log(district)
     switch (pickertype) {
       case 'Mon':
         setMon({value:monthlyIncome})
@@ -219,7 +220,11 @@ export const AntdInputItem = ({ImgClick,inputiconright='', placeholder, onChange
               }}
             ></InputItem>
             <div className = {style['am-list-item-extra-icon']} onClick = { ImgClick }>
-                <img src={inputiconright}/>
+              {
+                rightBtntype==="icon"?
+                <img src={inputiconright}/> 
+                :<Button type="primary" inline size="small" style={{ marginRight: '0px' }}>获取验证码</Button>
+              }
             </div>
           </List>
         }
