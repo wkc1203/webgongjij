@@ -6,7 +6,9 @@ import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Center } from '@components/public';
 import cs from 'classnames'
 import districtData from './address';
+import { useAxios } from '@hooks/useAxios';
 export type AntdInputItem = {
+  data?: Array<Object>,
   placeholder: string,
   labeltext: string,
   getState: (...rest: any) => void,
@@ -20,6 +22,7 @@ export type AntdInputItem = {
   rightType?:boolean,
   rightBtntype?:string,
   inputiconright?:string,
+  fiedRes?:string,
   onChange?:(...rest: any) => void,
   onFocus?:(...rest: any) => void,
   ImgClick?:(...rest: any) => void,
@@ -149,18 +152,32 @@ const marriageStatus = [
     value: '其他',
   },
 ]
+let once = true;
+const axionsData =()=>{
+  const [fiedRes] = useAxios({
+    url: '/classiFied/appClassiFied',
+    method: 'get'
+  })
+  console.log(fiedRes)
+}
+
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
-export const AntdInputItem = ({rightType=false,rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
-  const [num, setNum] = useState({ value: value,labeltext:labeltext })
+export const AntdInputItem = ({data,rightType=false,rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+  console.log(data)
+  console.log(monthlyIncome)
+  console.log(data&&JSON.stringify(data))
+  console.log(data&&JSON.parse(JSON.stringify(data)))
+  const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
-  const [picmov, setMon] = useState({value:monthlyIncome})
+  const [picmovdata, setMondata] = useState({val:data})
+  const [picmov, setMon] = useState({val:monthlyIncome})
   const [yzm, setYzm] = useState('获取验证码')
   const [y, setY] = useState(true)
   useEffect(() => {
     getState(num)
   }, [num])
   useEffect(() => {
-    setNum({ value: value,labeltext:labeltext })
+    setNum({ val: value,labeltext:labeltext,placeholder:placeholder })
   }, [value])
   let i = 60
   let s = true
@@ -186,22 +203,22 @@ export const AntdInputItem = ({rightType=false,rightBtntype,ImgClick,inputiconri
   useEffect(() => {
     switch (pickertype) {
       case 'Mon':
-        setMon({value:monthlyIncome})
+        setMon({val:monthlyIncome})
         break
       case 'Tot':
-        setMon({value:totalRevenue})
+        setMon({val:totalRevenue})
         break
       case 'Kin':
-        setMon({value:kinship})
+        setMon({val:kinship})
         break
       case 'Rec':
-        setMon({value:record})
+        setMon({val:record})
         break
       case 'Mar':
-        setMon({value:marriageStatus})
+        setMon({val:marriageStatus})
         break
       case 'Areas':
-        setMon({value:district})
+        setMon({val:district})
         break
     }
   },[setMon])
@@ -216,7 +233,7 @@ export const AntdInputItem = ({rightType=false,rightBtntype,ImgClick,inputiconri
           picker?
           <List >
             <Picker
-              data={picmov.value}
+              data={picmov.val}
               title={placeholder}
               cols={1}
               extra={" "}
@@ -234,12 +251,14 @@ export const AntdInputItem = ({rightType=false,rightBtntype,ImgClick,inputiconri
               clear
               // extra="<span  className = { cs(style['iconfont'], [style['icon-1-copy'] ]) }></span>"
               placeholder={placeholder}
-              value = {value}
+              value={num.val}
               onFocus = {onFocus}
               onChange={v => {
+                console.log(v)
                 setNum({
-                  value: v,
-                  labeltext:labeltext
+                  val: v,
+                  labeltext:labeltext,
+                  placeholder:placeholder
                 })
               }}
             ></InputItem>

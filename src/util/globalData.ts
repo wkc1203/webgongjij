@@ -4,7 +4,7 @@ export const globalData = {
   index: 0
 }
 export function getGlobalData(key: keyof typeof globalData) {
-  const keys = window.sessionStorage.getItem(key)
+  const keys = window.sessionStorage.getItem('key')
   if (keys == 'undefined') {
     return false
   }

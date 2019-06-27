@@ -11,6 +11,7 @@ import { sendYZM } from './sendYZM';
 import { codeLogin } from './codeLogin';
 import { gjjSignIn } from './gjjSignIn';
 import { gjjObtain } from './gjjObtain';
+import { loanApplication } from './loanApplication';
 
 export interface API {
   '/classiFied/appClassiFied': classiFied,
@@ -24,6 +25,7 @@ export interface API {
   '/bindPhone': bindPhone,
   '/sendYZM': sendYZM,
   '/codeLogin': codeLogin,
+  '/userExtend/save': loanApplication,
   '/signIn': gjjSignIn,
   '/obtain': gjjObtain
 }

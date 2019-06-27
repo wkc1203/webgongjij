@@ -34,25 +34,25 @@ export default ({ history }: Gjjc) => {
       password: mm.val,
     },
     execute: on,
-    api3: true
+    api3: false
   })
-  useEffect(() => {
-    if (wangqian.code != code.init) {
-      setShow2(false)
-      if (wangqian.success) {
-        history.push({
-          pathname: 'gjjcy',
-          state: {
-            username: zh.val
-          }
-        })
-        routing('gjjcy')
-      } else {
-        setPla(wangqian.msg || '系统错误')
-        setShow(true)
-      }
-    }
-  }, [wangqian.success])
+  // useEffect(() => {
+  //   if (wangqian.code != code.init) {
+  //     setShow2(false)
+  //     if (wangqian.success) {
+  //       history.push({
+  //         pathname: 'gjjcy',
+  //         state: {
+  //           username: zh.val
+  //         }
+  //       })
+  //       routing('gjjcy')
+  //     } else {
+  //       setPla(wangqian.msg || '系统错误')
+  //       setShow(true)
+  //     }
+  //   }
+  // }, [wangqian.success])
   return (
     <div className={style['gjjc']}>
       <Navigationt history={history} title='公积金查询' tbg='Chaxun_bg' second />
@@ -71,7 +71,9 @@ export default ({ history }: Gjjc) => {
       <Check agree='勾选即代表您同意' title='《解析住房网签数据协议》' setState={setCheck} />
       <Cutoff hg='70' />
       <Btus fn={() => {
+        console.log(zh)
         const yanz = validate([zh, mm], (vals) => {
+          console.log(vals)
           setPla(vals.pla)
           setShow(true)
         })
@@ -80,6 +82,7 @@ export default ({ history }: Gjjc) => {
           setShow2(true)
           getwangqian()
         }
+        getwangqian()
       }} text='登录' />
       <Cutoff hg='20' />
       <Center>
