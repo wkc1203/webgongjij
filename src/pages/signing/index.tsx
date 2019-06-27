@@ -42,14 +42,27 @@ export default ({ history }: Test) => {
   const next_step = ()=>{
     sendMessageToNative({ type: 'push' })
     history.push({
-        pathname: 'step_three',
+        pathname: 'protocol',
         // state: {
         //   data: {
         //     resulttype: 'success',
         //   }
         // }
       })
-    routing('step_three')
+    routing('protocol')
+  } 
+  // 重新
+  const step_one = ()=>{
+    sendMessageToNative({ type: 'push' })
+    history.push({
+        pathname: 'step_one',
+        // state: {
+        //   data: {
+        //     resulttype: 'success',
+        //   }
+        // }
+      })
+    routing('step_one')
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
@@ -62,7 +75,7 @@ export default ({ history }: Test) => {
   const applyApplicationShowAlert = ()=>{
     alert('提示', '请确认信息无误', [
         { text: '确认取消签约，重新申请贷款吗？', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
-        { text: '确认', onPress: () => next_step() },
+        { text: '确认', onPress: () => step_one() },
       ]);
 }
   return (
@@ -82,7 +95,7 @@ export default ({ history }: Test) => {
       <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} />
       <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} />
       <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} />
-      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} />
+      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn'/>
       <Cutoff hg='20' />
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
@@ -96,12 +109,6 @@ export default ({ history }: Test) => {
           </div>
         <Cutoff hg='30' />
       </WingBlank>
-      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn'/>
-      <AntdButton fn={() => {
-        console.log(pr)
-        console.log(wi)
-        history.push('creditauthor')
-      }}></AntdButton>
       <Cutoff hg='30' />
     </div>
   )

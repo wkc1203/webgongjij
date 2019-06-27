@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
-import { Accordion, List,WingBlank } from 'antd-mobile';
+import { Accordion, List,WingBlank,Checkbox } from 'antd-mobile';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Center,AntdButton } from '@components/public';
 import cs from 'classnames'
@@ -9,32 +9,47 @@ export type AntdAccordion = {
   resulttype?: string,
 }
 const listItem = [1,2,3,4]
+const AgreeItem = Checkbox.AgreeItem;
 export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
   const [srcType, setsrcType] = useState({value:''})
   
   useEffect(() => {
     
   })
-  
+  const onChange=(value:any)=>{
+    console.log(value)
+  }
   return (
-    <div style={{ margin: '15px' }}>
-      <WingBlank size="sm">
-      <Accordion defaultActiveKey="0" className="my-accordion">
-          <Accordion.Panel header="Title 1">
-            <List className="my-list">
-              {
-                listItem.map((v,i)=>(
-                  <List.Item>{v}</List.Item>
-                ))
-              }
-            </List>
-          </Accordion.Panel>
-          <Accordion.Panel header="Title 2" className="pad">this is panel content2 or other</Accordion.Panel>
-          <Accordion.Panel header="Title 3" className="pad">
-            text text text text text text text text text text text text text text text
-          </Accordion.Panel>
-        </Accordion>
-      </WingBlank>
-    </div>
+    <Accordion  className="my-accordion">
+    <Accordion.Panel header={ 
+      <AgreeItem key={1} onChange={() => onChange(1)}>
+        个人消费性借款合同
+     </AgreeItem>
+   }>
+       
+       <List className="my-list">
+         {
+           listItem.map((v,i)=>(
+             <List.Item>{v}</List.Item>
+           ))
+         }
+       </List>
+     </Accordion.Panel>
+     <Accordion.Panel header={ 
+     <AgreeItem key={1} onChange={() => onChange(1)}>
+       签约协议2
+     </AgreeItem>
+   } className="pad">this is panel content2 or other</Accordion.Panel>
+     
+     <Accordion.Panel header={ 
+     <AgreeItem key={1} onChange={() => onChange(1)}>
+       签约协议3
+     </AgreeItem>
+   } className="pad">
+         text text text text text text text text text text text text text text text
+     </Accordion.Panel>
+     
+     
+   </Accordion>
   )
 }

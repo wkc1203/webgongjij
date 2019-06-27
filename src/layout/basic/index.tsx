@@ -25,6 +25,7 @@ const ParkingSpace = lazy(() => import('@pages/parkingSpace'))
 const Application_step_three = lazy(() => import('@pages/application_step_three'))
 const Application_result = lazy(() => import('@pages/application_result'))
 const creditauthor = lazy(() => import('@pages/creditauthor'))
+const Protocol = lazy(() => import('@pages/protocol'))
 
 
 export const Layout = () => {
@@ -54,6 +55,7 @@ export const Layout = () => {
         <Route path='/step_three' component={Application_step_three} exact />
         <Route path='/application_result' component={Application_result} exact />
         <Route path='/creditauthor' component={creditauthor} exact />
+        <Route path='/protocol' component={Protocol} exact />
       </Switch>
     </Suspense>
   )
