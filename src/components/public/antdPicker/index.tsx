@@ -216,9 +216,9 @@ export const AntdPicker = ({data, getState, labeltext,placeholder, value = ''  }
               title={placeholder}
               cols={1}
               extra={" "}
-              onChange = {v=>{
-                console.log(v)
-                setpicker(v)
+              onChange = {(i)=>{
+                console.log(i)
+                setpicker(i)
               }}
             >
               <List.Item arrow="horizontal" className = {style['am-list-item-picker']}>{picValue?picValue:placeholder}</List.Item>

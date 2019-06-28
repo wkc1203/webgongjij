@@ -134,7 +134,7 @@ export default ({ history }: Step_one) => {
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={withAmount} picker={true} data={dataList}/>
-      {/* <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} />
+      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} />
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={annuaInterestRate} />
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={loanUsedFor} picker={true} data={record}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={lendingWay} picker={true} data={record}/>
@@ -147,7 +147,7 @@ export default ({ history }: Step_one) => {
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={carNumber} picker={true} data={record}/>
       <AntdInputItem  labeltext='亲属联系人' placeholder='请输入一位您亲属联系人的姓名' getState={dealValence} picker={true} data={record}/>
       <AntdPicker  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={kinsRelation} />
-      <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={phone} /> */}
+      <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={phone} />
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
     </div>
