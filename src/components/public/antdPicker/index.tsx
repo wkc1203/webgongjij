@@ -163,16 +163,12 @@ const axionsData =()=>{
 
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
 export const AntdPicker = ({data, getState, labeltext,placeholder, value = ''  }: AntdPicker) => {
-  console.log(data)
-  
-  let dataList=data
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
   const [picmovdata, setMondata] = useState({val:data})
   const [picmov, setMon] = useState({val:data})
   const [yzm, setYzm] = useState('获取验证码')
   const [y, setY] = useState(true)
-  console.log(picmov)
   useEffect(() => {
     getState(num)
   }, [num])
@@ -216,7 +212,7 @@ export const AntdPicker = ({data, getState, labeltext,placeholder, value = ''  }
               title={placeholder}
               cols={1}
               extra={" "}
-              onChange = {v=>{
+              onChange = {(v)=>{
                 console.log(v)
                 setpicker(v)
               }}
