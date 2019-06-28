@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { sendMessageToNative, routing,validate } from '@util/index';
+import { sendMessageToNative, routing,validate,pickertype } from '@util/index';
 import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
 import { Modal,Toast } from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
@@ -10,8 +10,8 @@ type Step_one = {
   history: History
 }
 export default ({ history }: Step_one) => {
- 
-  const [fiedRes] = useAxios({
+  //学历
+  const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
     token:true,
     method: 'get',
@@ -19,12 +19,124 @@ export default ({ history }: Step_one) => {
       parentCode:'XLLX'
     }
   })
-  let dataList:any=[]
-  fiedRes.code!==1?
-  fiedRes.data.map((v:any, i:any) => 
-    dataList.push({value:v.code,label:v.name})
+  let RecordformalList:any=[]
+  Recordformal.code!==1?Recordformal.data.map((v:any, i:any) => 
+    RecordformalList.push({value:v.code,label:v.name})
   ):''
-  console.log(dataList)
+
+   //证件
+   const [certificate] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'ZJLX'
+    }
+  })
+  let certificateList:any=[]
+  certificate.code!==1?certificate.data.map((v:any, i:any) => 
+    certificateList.push({value:v.code,label:v.name})
+  ):''
+
+  //婚姻
+  const [marriage] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'HYLX'
+    }
+  })
+  let marriageList:any=[]
+  marriage.code!==1?marriage.data.map((v:any, i:any) => 
+     marriageList.push({value:v.code,label:v.name})
+  ):''
+
+
+   //民族
+   const [national] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'MZLX'
+    }
+  })
+  let nationalList:any=[]
+  national.code!==1?national.data.map((v:any, i:any) => 
+    nationalList.push({value:v.code,label:v.name})
+  ):''
+
+  //职业
+  const [professional] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'ZYLX'
+    }
+  })
+  let professionalList:any=[]
+  professional.code!==1?professional.data.map((v:any, i:any) => 
+    professionalList.push({value:v.code,label:v.name})
+  ):''
+
+  //性别
+  const [gender] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'XB'
+    }
+  })
+  let genderList:any=[]
+  gender.code!==1?gender.data.map((v:any, i:any) => 
+    genderList.push({value:v.code,label:v.name})
+  ):''
+
+  //国籍
+  const [nationality] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'XB'
+    }
+  })
+  let nationalityList:any=[]
+  nationality.code!==1?nationality.data.map((v:any, i:any) => 
+  nationalityList.push({value:v.code,label:v.name})
+  ):''
+
+  //银行
+  const [bank] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'YHLX'
+    }
+  })
+  let bankList:any=[]
+  bank.code!==1?bank.data.map((v:any, i:any) => 
+    bankList.push({value:v.code,label:v.name})
+  ):''
+
+  //广告
+  const [advertising] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'XB'
+    }
+  })
+  let advertisingList:any=[]
+  advertising.code!==1?advertising.data.map((v:any, i:any) => 
+    advertisingList.push({value:v.code,label:v.name})
+  ):''
+
   const [pr, productName] = useState({ val: '',pla: '请输入身份证号／手机号／用户名' })
   const [get, getName] = useState({ val: '',pla: '请输入身份证号／手机号／用户名'})
   const [wi, withAmount] = useState({ val: '',pla: '请输入身份证号／手机号／用户名'})
@@ -133,7 +245,7 @@ export default ({ history }: Step_one) => {
     <div className={style['xxqyqr']}>
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
-      <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={withAmount} picker={true} data={dataList}/>
+      <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={withAmount} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} />
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={annuaInterestRate} />
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={loanUsedFor} picker={true} data={record}/>
