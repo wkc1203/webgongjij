@@ -52,7 +52,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPick
               extra={" "}
               value={picValue}
               onChange = {(i)=>{
-                console.log(i)
+                console.log(i+'i')
                 setpicker(i)
               }}
             >

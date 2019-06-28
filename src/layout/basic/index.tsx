@@ -26,6 +26,7 @@ const Application_step_three = lazy(() => import('@pages/application_step_three'
 const Application_result = lazy(() => import('@pages/application_result'))
 const creditauthor = lazy(() => import('@pages/creditauthor'))
 const Protocol = lazy(() => import('@pages/protocol'))
+const Signing_result = lazy(() => import('@pages/signing_result'))
 
 
 export const Layout = () => {
@@ -56,6 +57,7 @@ export const Layout = () => {
         <Route path='/application_result' component={Application_result} exact />
         <Route path='/creditauthor' component={creditauthor} exact />
         <Route path='/protocol' component={Protocol} exact />
+        <Route path='/signing_result' component={Signing_result} exact />
       </Switch>
     </Suspense>
   )
