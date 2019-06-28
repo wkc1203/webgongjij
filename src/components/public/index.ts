@@ -11,6 +11,7 @@ import { AntdImagePicker } from './antdImagePicker';
 
 import { AntdSteps } from './antdSteps';
 import { AntdPickerRadio } from './antdPickerRadio';
+import { AntdPicker } from './antdPicker';
 import { AntdResult } from './antdResult';
 
 import { AntdButton } from './antdButton'
@@ -31,6 +32,7 @@ export {
   AntdImagePicker,
   AntdAccordion,
   AntdResult,
+  AntdPicker,
   AntdPickerRadio,
   Tips,
   AntdSteps,
