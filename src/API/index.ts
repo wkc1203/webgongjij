@@ -12,8 +12,10 @@ import { codeLogin } from './codeLogin';
 import { gjjSignIn } from './gjjSignIn';
 import { gjjObtain } from './gjjObtain';
 import { loanApplication } from './loanApplication';
+import { queryUser } from './queryUser';
 
 export interface API {
+  '/dictionarySubitem/queryUser':queryUser,
   '/classiFied/appClassiFied': classiFied,
   '/consultation/hotNewsPage': consultation,
   '/search/result': searchHome,
