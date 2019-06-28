@@ -60,8 +60,8 @@ export default ({ history }: Step_two) => {
       <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={annuaInterestRate} />
       <AntdInputItem  labeltext='贷款金额' placeholder='请输入贷款金额' getState={loanUsedFor} />
       <AntdInputItem  labeltext='首付金额' placeholder='请输入车位及贷款金额后自动计算' getState={lendingWay}/>
-      <AntdInputItem  labeltext='贷款分期数' placeholder='请选择请选择贷款分期数' getState={entrusted}/>
-      <AntdInputItem  labeltext='计息方式' placeholder='请选择计息方式' getState={reimbursementMeans}  picker={true}/>
+      <AntdInputItem  labeltext='贷款分期数' placeholder='请选择请选择贷款分期数' getState={entrusted}  picker={true}/>
+      <AntdInputItem  labeltext='计息方式' placeholder='请输入计息方式' getState={reimbursementMeans} />
       <AntdInputItem  labeltext='贷款年利率' placeholder='请输入工作单位' getState={repaymentperiods} />
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />

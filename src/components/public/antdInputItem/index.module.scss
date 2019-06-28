@@ -5,7 +5,16 @@
   }
   .am-list-item{
     background-color: #f7f7f7;
+    :global{
+      .am-input-control{
+        input{
+          font-size: 14px;
+        }
+      }
+    }
   }
+  
+
   .labelinputs-label{
     color: #999;
     margin-bottom: 10px;
