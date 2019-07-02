@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { List, InputItem, WhiteSpace ,WingBlank, Picker,Icon,Button} from 'antd-mobile';
@@ -30,10 +29,10 @@ export type AntdPicker = {
 }
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
 export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPicker) => {
-  console.log(data)
   
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
+  const [label, setlabel] = useState()
   useEffect(() => {
     setNum({ val: value,labeltext:labeltext,placeholder:placeholder })
   }, [value])
@@ -50,13 +49,18 @@ export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPick
               title={placeholder}
               cols={1}
               extra={" "}
-              value={picValue}
-              onChange = {(i)=>{
-                console.log(i)
-                setpicker(i)
+              // value={picValue}
+              onChange = {(value:any)=>{
+                data.map((v:any,i:any)=>{
+                  if ( data[i].value==value.toString() ){
+                    setpicker(value)
+                    setlabel(data[i].label)
+                  }
+                })
               }}
             >
-              <List.Item arrow="horizontal" className = {style['am-list-item-picker']}>{picValue?picValue:placeholder}</List.Item>
+              
+              <List.Item arrow="horizontal" className = {style['am-list-item-picker']}>{label?label:placeholder}</List.Item>
             </Picker>
           </List>
         </div>
