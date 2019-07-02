@@ -6,6 +6,7 @@ import { getGlobalData } from '@util/index';
 import qs from 'qs';
 
 const api1 = 'http://10.0.11.227:8891/apis'
+// const api1 = 'http://192.168.2.41:8880/apis'
 const api2 = 'http://10.0.11.213:9000'
 const api_3 = 'http://10.0.10.159:50000'
 

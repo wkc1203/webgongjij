@@ -13,8 +13,12 @@ import { gjjSignIn } from './gjjSignIn';
 import { gjjObtain } from './gjjObtain';
 import { loanApplication } from './loanApplication';
 import { queryUser } from './queryUser';
+import { queryUserAccessory } from './queryUserAccessory';
+import { queryBuildingMsg } from './queryBuildingMsg';
 
 export interface API {
+  '/building/queryBuildingMsg':queryBuildingMsg,
+  '/userAccessory/queryUserAccessory':queryUserAccessory,
   '/dictionarySubitem/queryUser':queryUser,
   '/classiFied/appClassiFied': classiFied,
   '/consultation/hotNewsPage': consultation,

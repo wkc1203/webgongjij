@@ -52,22 +52,6 @@ export default ({ history }: Step_one) => {
   marriage.code!==1?marriage.data.map((v:any, i:any) => 
      marriageList.push({value:v.code,label:v.name})
   ):''
-
-
-   //民族
-   const [national] = useAxios({
-    url: '/dictionarySubitem/queryUser',
-    token:true,
-    method: 'get',
-    request: {
-      parentCode:'MZLX'
-    }
-  })
-  let nationalList:any=[]
-  national.code!==1?national.data.map((v:any, i:any) => 
-    nationalList.push({value:v.code,label:v.name})
-  ):''
-
   //职业
   const [professional] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -81,62 +65,98 @@ export default ({ history }: Step_one) => {
   professional.code!==1?professional.data.map((v:any, i:any) => 
     professionalList.push({value:v.code,label:v.name})
   ):''
-
-  //性别
-  const [gender] = useAxios({
-    url: '/dictionarySubitem/queryUser',
+  //楼盘
+  const [queryBuildingMsg] = useAxios({
+    url: '/building/queryBuildingMsg',
     token:true,
     method: 'get',
-    request: {
-      parentCode:'XB'
-    }
+    request: false
   })
-  let genderList:any=[]
-  gender.code!==1?gender.data.map((v:any, i:any) => 
-    genderList.push({value:v.code,label:v.name})
+  let queryBuildingMsgList:any=[]
+  queryBuildingMsg.code!==1?queryBuildingMsg.data.map((v:any, i:any) => 
+    queryBuildingMsgList.push({value:v.code,label:v.name})
   ):''
-
-  //国籍
-  const [nationality] = useAxios({
-    url: '/dictionarySubitem/queryUser',
+   //查询用户身份证信息
+   const [accessory] = useAxios({
+    url: '/userAccessory/queryUserAccessory',
     token:true,
     method: 'get',
-    request: {
-      parentCode:'XB'
-    }
+    request: false
   })
-  let nationalityList:any=[]
-  nationality.code!==1?nationality.data.map((v:any, i:any) => 
-  nationalityList.push({value:v.code,label:v.name})
-  ):''
+  let accessoryData :any
+  accessoryData = accessory.code!==1?accessory.data:''
+  console.log(accessoryData)
+  //  //民族
+  //  const [national] = useAxios({
+  //   url: '/dictionarySubitem/queryUser',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     parentCode:'MZLX'
+  //   }
+  // })
+  // let nationalList:any=[]
+  // national.code!==1?national.data.map((v:any, i:any) => 
+  //   nationalList.push({value:v.code,label:v.name})
+  // ):''
 
-  //银行
-  const [bank] = useAxios({
-    url: '/dictionarySubitem/queryUser',
-    token:true,
-    method: 'get',
-    request: {
-      parentCode:'YHLX'
-    }
-  })
-  let bankList:any=[]
-  bank.code!==1?bank.data.map((v:any, i:any) => 
-    bankList.push({value:v.code,label:v.name})
-  ):''
 
-  //广告
-  const [advertising] = useAxios({
-    url: '/dictionarySubitem/queryUser',
-    token:true,
-    method: 'get',
-    request: {
-      parentCode:'XB'
-    }
-  })
-  let advertisingList:any=[]
-  advertising.code!==1?advertising.data.map((v:any, i:any) => 
-    advertisingList.push({value:v.code,label:v.name})
-  ):''
+
+  // //性别
+  // const [gender] = useAxios({
+  //   url: '/dictionarySubitem/queryUser',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     parentCode:'XB'
+  //   }
+  // })
+  // let genderList:any=[]
+  // gender.code!==1?gender.data.map((v:any, i:any) => 
+  //   genderList.push({value:v.code,label:v.name})
+  // ):''
+
+  // //国籍
+  // const [nationality] = useAxios({
+  //   url: '/dictionarySubitem/queryUser',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     parentCode:'XB'
+  //   }
+  // })
+  // let nationalityList:any=[]
+  // nationality.code!==1?nationality.data.map((v:any, i:any) => 
+  // nationalityList.push({value:v.code,label:v.name})
+  // ):''
+
+  // //银行
+  // const [bank] = useAxios({
+  //   url: '/dictionarySubitem/queryUser',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     parentCode:'YHLX'
+  //   }
+  // })
+  // let bankList:any=[]
+  // bank.code!==1?bank.data.map((v:any, i:any) => 
+  //   bankList.push({value:v.code,label:v.name})
+  // ):''
+
+  // //广告
+  // const [advertising] = useAxios({
+  //   url: '/dictionarySubitem/queryUser',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     parentCode:'XB'
+  //   }
+  // })
+  // let advertisingList:any=[]
+  // advertising.code!==1?advertising.data.map((v:any, i:any) => 
+  //   advertisingList.push({value:v.code,label:v.name})
+  // ):''
 
   const [buildingId, getbuildingId] = useState({ val: '', pla: '' })
   const [name, getName] = useState({ val: '', pla: '请输入合同编号' })
@@ -215,15 +235,15 @@ export default ({ history }: Step_one) => {
     <div className={style['xxqyqr']}>
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
-      <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={RecordformalList}/>
-      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} />
-      <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getIdCard} />
+      <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
+      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
+      <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getIdCard}  value={accessoryData.number} editable={false}/>
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={RecordformalList}/>
-      <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={RecordformalList}/>
+      <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
-      <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob}/>
+      <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
-      <AntdInputItem  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true}/>
+      <AntdInputItem  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
       <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={RecordformalList}/>
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={RecordformalList}/>
