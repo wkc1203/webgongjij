@@ -58,6 +58,7 @@ export default ({ history }: Gjjc) => {
     
     // 下一步
     const next_step = ()=>{
+        sessionStorage.setItem('key','BearereyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NjMwNzg4OTksInVzZXIiOnsiaWQiOjE1NTkwMjUyNzY5NTQ5OCwibmFtZSI6IuWQtOWFq-WTpSIsInBob25lIjoiMTMzNjQwODczMDUiLCJjbGllbnRUeXBlIjoiMCIsInBhc3N3b3JkIjpudWxsLCJhdmF0YXJVcmwiOiJodHRwOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvRFlBSU9ncTgzZXJUUmN4Mkgya0d2VHFwS3VvZTN1ajBlRzZFZVE1SnZrM1NGYWJVZGxwQTBpYW5kT2ttU1VkMExEcXRkaWFRcGZ1ajNDNnNpYTJDTkdmakEvMTMyIn19.HuupS2Mq6EL1PVP1FGtPV_S4gWY7LAwY3OMkAv_ThURaPgkZcVcjrgvzqD-A_MAZeJ7MhY25jYtdBN9vUzcfuQ')
         sendMessageToNative({ type: 'push' })
         history.push({
             pathname: 'step_one',
