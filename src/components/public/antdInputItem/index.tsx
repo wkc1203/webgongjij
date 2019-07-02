@@ -28,22 +28,6 @@ export type AntdInputItem = {
   ImgClick?:(...rest: any) => void,
   
 }
-const colorStyle = {
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  width: '16px',
-  height: '16px',
-  marginRight: '10px',
-};
-
-let once = true;
-const axionsData =()=>{
-  const [fiedRes] = useAxios({
-    url: '/classiFied/appClassiFied',
-    method: 'get'
-  })
-  console.log(fiedRes)
-}
 
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
 export const AntdInputItem = ({data,rightType=false,rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
@@ -94,7 +78,7 @@ export const AntdInputItem = ({data,rightType=false,rightBtntype,ImgClick,inputi
               value={num.val}
               onFocus = {onFocus}
               onChange={v => {
-                console.log(v)
+                console.log(v+'v')
                 setNum({
                   val: v,
                   labeltext:labeltext,
