@@ -7,10 +7,11 @@ import { Center,AntdButton } from '@components/public';
 import cs from 'classnames'
 export type AntdAccordion = {
   resulttype?: string,
+  getState: (...rest: any) => void,
 }
 const listItem = [1,2,3,4]
 const AgreeItem = Checkbox.AgreeItem;
-export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
+export const AntdAccordion = ({  resulttype,getState}: AntdAccordion) => {
   const [srcType, setsrcType] = useState({value:''})
   
   useEffect(() => {
@@ -23,7 +24,7 @@ export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
   return (
     <Accordion  className="my-accordion">
     <Accordion.Panel header={ 
-      <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
+      <AgreeItem key={1} onChange={(e:any) => getState(e,1)}>
         个人消费性借款合同
      </AgreeItem>
    }>
@@ -37,13 +38,13 @@ export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
        </List>
      </Accordion.Panel>
      <Accordion.Panel header={ 
-     <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
+     <AgreeItem key={1} onChange={(e:any) => getState(e)}>
        签约协议2
      </AgreeItem>
    } className="pad">this is panel content2 or other</Accordion.Panel>
      
      <Accordion.Panel header={ 
-     <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
+     <AgreeItem key={1} onChange={(e:any) => getState(e)}>
        签约协议3
      </AgreeItem>
    } className="pad">
