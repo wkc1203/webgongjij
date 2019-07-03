@@ -18,8 +18,14 @@ import { queryBuildingMsg } from './queryBuildingMsg';
 import { querySign } from './querySign';
 import { loanSignupdate } from './update';
 import { senSms } from './senSms';
+import { personIncomes } from './personIncomes';
+import { familyIncomes } from './familyIncomes';
+import { selectCity } from './selectCity';
 
 export interface API {
+  '/product/pro/queryBuildings':selectCity,
+  '/familyIncomes':familyIncomes,
+  '/personIncomes':personIncomes,
   '/senSms':senSms,
   '/loanSign/update':loanSignupdate,
   '/loanSign/querySign':querySign,

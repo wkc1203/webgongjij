@@ -3,9 +3,7 @@
     width: 100%;
     margin-bottom: 20px;
   }
-  .am-list-item{
-    background-color: #f7f7f7;
-  }
+ 
   .labelinputs-label{
     color: #999;
     margin-bottom: 10px;
@@ -22,20 +20,13 @@
     }
   }
   .am-list-item-picker{
-    background-color: #f7f7f7 !important;
-    div{
-      
-    }
-  }
-  .am-list-item-extra{
-    position: relative;
-    .am-list-item-extra-icon{
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      img{
-        width: 20px;
+    background-color: #f7f7f7 ;
+    :global{
+      .am-list-line{
+        div{
+          font-size: 14px !important;
+        }
+        
       }
     }
   }
-  

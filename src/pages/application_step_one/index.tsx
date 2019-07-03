@@ -12,6 +12,8 @@ type Step_one = {
 }
 const alert=Modal.alert;
 export default ({ history }: Step_one) => {
+  console.log(district)
+
   //学历
   const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -53,6 +55,33 @@ export default ({ history }: Step_one) => {
   marriage.code!==1?marriage.data.map((v:any, i:any) => 
      marriageList.push({value:v.code,label:v.name})
   ):''
+
+  //个人月收入
+  const [personIncomes] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'GRYSR'
+    }
+  })
+  let PersonIncomeList:any=[]
+  personIncomes.code!==1?personIncomes.data.map((v:any, i:any) => 
+  PersonIncomeList.push({value:v.code,label:v.name})
+  ):''
+ //家庭月收入
+  const [familyIncomes] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'GRYSR'
+    }
+  })
+  let FamilyIncomeList:any=[]
+  familyIncomes.code!==1?familyIncomes.data.map((v:any, i:any) => 
+  FamilyIncomeList.push({value:v.code,label:v.name})
+  ):''
   //职业
   const [professional] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -77,6 +106,21 @@ export default ({ history }: Step_one) => {
   queryBuildingMsg.code!==1?queryBuildingMsg.data.map((v:any, i:any) => 
     queryBuildingMsgList.push({value:v.id,label:v.name})
   ):''
+
+  //查询产品支持城市列表
+  const [selectCity] = useAxios({
+    url: '/product/pro/queryBuildings',
+    token:true,
+    method: 'get',
+    request: {
+      productId:'156154195324502'
+    }
+  })
+  let selectCityList:any=[]
+  selectCity.code!==1?selectCity.data.map((v:any, i:any) => 
+    selectCityList.push({value:v.id,label:v.name})
+  ):''
+
    //查询用户身份证信息
    const [accessory] = useAxios({
     url: '/userAccessory/queryUserAccessory',
@@ -174,11 +218,11 @@ export default ({ history }: Step_one) => {
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
       <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} col={3} />
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
-      <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={RecordformalList}/>
-      <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={RecordformalList}/>
+      <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={PersonIncomeList}/>
+      <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={FamilyIncomeList}/>
       <AntdInputItem  labeltext='亲属联系人' placeholder='请输入一位您亲属联系人的姓名' getState={getKinsfolk} />
       <AntdPicker  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={getKinsRelation} picker={true} data={RecordformalList}/>
-      <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={getKinsPhone} />
+      <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={getKinsPhone} type="phone"/>
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
     </div>

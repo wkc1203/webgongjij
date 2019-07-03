@@ -14,7 +14,7 @@ export type AntdInputItem = {
   labeltext: string,
   getState: (...rest: any) => void,
   Child?: JSX.Element,
-  type?: string,
+  type?: any,
   disabled?: boolean,
   value?: string,
   extra?: string,
@@ -45,28 +45,6 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm
   useEffect(() => {
     setNum({ val: value,labeltext:labeltext,placeholder:placeholder })
   }, [value])
-  let i = 60
-  let s = true
-  let timer: any = null
-  // const getYzm = () => {
-  //   getwangqian()
-  //   if (y) {
-  //     setY(false)
-  //     timer = setInterval(() => {
-  //       if (s) {
-  //         console.log('object')
-  //         setYzm(i + 's')
-  //         i--
-  //         if (i <= 0) {
-  //           clearInterval(timer)
-  //           setYzm('发送失败')
-  //         }
-  //       }else{
-  //         clearInterval(timer)
-  //       }
-  //     }, 1000)
-  //   }
-  // }
   
   return (
     <div style={{ margin: '15px' }}>
@@ -80,6 +58,7 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm
               // extra="<span  className = { cs(style['iconfont'], [style['icon-1-copy'] ]) }></span>"
               placeholder={placeholder}
               value={num.val}
+              type={type}
               editable={editable}
               onFocus = {onFocus}
               onChange={v => {
