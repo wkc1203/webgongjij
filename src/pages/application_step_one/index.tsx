@@ -1,11 +1,12 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
 import { sendMessageToNative, routing,validate,pickertype } from '@util/index';
-import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
-import { Modal } from 'antd-mobile';
+import { Navigationt,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
+import { Modal,Toast,Picker  } from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
+import { district, provinceLite } from 'antd-mobile-demo-data';
+
 type Step_one = {
   history: History
 }
@@ -74,7 +75,7 @@ export default ({ history }: Step_one) => {
   })
   let queryBuildingMsgList:any=[]
   queryBuildingMsg.code!==1?queryBuildingMsg.data.map((v:any, i:any) => 
-    queryBuildingMsgList.push({value:v.code,label:v.name})
+    queryBuildingMsgList.push({value:v.id,label:v.name})
   ):''
    //查询用户身份证信息
    const [accessory] = useAxios({
@@ -85,116 +86,44 @@ export default ({ history }: Step_one) => {
   })
   let accessoryData :any
   accessoryData = accessory.code!==1?accessory.data:''
-  console.log(accessoryData)
-  //  //民族
-  //  const [national] = useAxios({
-  //   url: '/dictionarySubitem/queryUser',
-  //   token:true,
-  //   method: 'get',
-  //   request: {
-  //     parentCode:'MZLX'
-  //   }
-  // })
-  // let nationalList:any=[]
-  // national.code!==1?national.data.map((v:any, i:any) => 
-  //   nationalList.push({value:v.code,label:v.name})
-  // ):''
-
-
-
-  // //性别
-  // const [gender] = useAxios({
-  //   url: '/dictionarySubitem/queryUser',
-  //   token:true,
-  //   method: 'get',
-  //   request: {
-  //     parentCode:'XB'
-  //   }
-  // })
-  // let genderList:any=[]
-  // gender.code!==1?gender.data.map((v:any, i:any) => 
-  //   genderList.push({value:v.code,label:v.name})
-  // ):''
-
-  // //国籍
-  // const [nationality] = useAxios({
-  //   url: '/dictionarySubitem/queryUser',
-  //   token:true,
-  //   method: 'get',
-  //   request: {
-  //     parentCode:'XB'
-  //   }
-  // })
-  // let nationalityList:any=[]
-  // nationality.code!==1?nationality.data.map((v:any, i:any) => 
-  // nationalityList.push({value:v.code,label:v.name})
-  // ):''
-
-  // //银行
-  // const [bank] = useAxios({
-  //   url: '/dictionarySubitem/queryUser',
-  //   token:true,
-  //   method: 'get',
-  //   request: {
-  //     parentCode:'YHLX'
-  //   }
-  // })
-  // let bankList:any=[]
-  // bank.code!==1?bank.data.map((v:any, i:any) => 
-  //   bankList.push({value:v.code,label:v.name})
-  // ):''
-
-  // //广告
-  // const [advertising] = useAxios({
-  //   url: '/dictionarySubitem/queryUser',
-  //   token:true,
-  //   method: 'get',
-  //   request: {
-  //     parentCode:'XB'
-  //   }
-  // })
-  // let advertisingList:any=[]
-  // advertising.code!==1?advertising.data.map((v:any, i:any) => 
-  //   advertisingList.push({value:v.code,label:v.name})
-  // ):''
 
   const [buildingId, getbuildingId] = useState({ val: '', pla: '' })
-  const [name, getName] = useState({ val: '', pla: '请输入合同编号' })
-  const [idCard, getIdCard] = useState({ val: '', pla: '请输入合同编号' })
-  const [city, getCity] = useState({ val: '', pla: '请输入合同编号' })
-  const [marriageState, getMarriageState] = useState('')
-  const [education, getEducation] = useState('')
-  const [job, getJob] = useState('')
-  const [company, getCompany] = useState('')
-  const [address, getAddress] = useState('')
-  const [addressDetail, getAddressDetail] = useState('')
-  const [personIncome, getPersonIncome] = useState('')
-  const [familyIncome, getFamilyIncome] = useState('')
-  const [kinsfolk, getKinsfolk] = useState('')
-  const [kinsRelation, getKinsRelation] = useState('')
-  const [kinsPhone, getKinsPhone] = useState('')
+  const [loanId, getLoanId] = useState({ val: '', pla: '' })
+  const [cityName, getCityName] = useState({ val: '', pla: '' })
+  const [city, getCity] = useState({ val: '', pla: '' })
+  const [marriageState, getMarriageState] = useState({ val: '', pla: '' })
+  const [education, getEducation] = useState({ val: '', pla: '' })
+  const [job, getJob] = useState({ val: '', pla: '' })
+  const [company, getCompany] = useState({ val: '', pla: '' })
+  const [address, getAddress] = useState({ val: '', pla: '' })
+  const [addressDetail, getAddressDetail] = useState({ val: '', pla: '' })
+  const [personIncome, getPersonIncome] = useState({ val: '', pla: '' })
+  const [familyIncome, getFamilyIncome] = useState({ val: '', pla: '' })
+  const [kinsfolk, getKinsfolk] = useState({ val: '', pla: '' })
+  const [kinsRelation, getKinsRelation] = useState({ val: '', pla: '' })
+  const [kinsPhone, getKinsPhone] = useState({ val: '', pla: '' })
+  const [name, getName] = useState({ val: '', pla: '' })
+  const [number, getNumber] = useState({ val: '', pla: '' })
   const [on, toggle] = useState(false)
   const [wangqian, getwangqian] = useAxios({
     url: '/userExtend/save',
     method: 'post',
     request: {
       buildingId: buildingId.val,
-      name: name.val,
-      idCard:idCard.val,
+      loanId:loanId.val,
       city: city.val,
-      marriageState: marriageState,
-      education: education,
-      job:job,
-      address: address,
-      company: company,
-      addressDetail: addressDetail,
-      personIncome: personIncome,
-      familyIncome: familyIncome,
-      kinsfolk: kinsfolk,
-      kinsRelation:kinsRelation,
-      kinsPhone:kinsPhone,
-      loanId: '1',
-      cityName: '1',
+      cityName: cityName.val,
+      marriageState: marriageState.val,
+      education: education.val,
+      job:job.val,
+      address: address.val,
+      company: company.val,
+      addressDetail: addressDetail.val,
+      personIncome: personIncome.val,
+      familyIncome: familyIncome.val,
+      kinsfolk: kinsfolk.val,
+      kinsRelation:kinsRelation.val,
+      kinsPhone:kinsPhone.val,
     },
     token:true,
     execute: on,
@@ -215,17 +144,17 @@ export default ({ history }: Step_one) => {
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
-    // const yanz = validate([buildingId, name,idCard,city], (vals) => {
-    //   console.log(vals)
-    //   Toast.info(vals.placeholder, 1);
-    // })
-    // if (yanz) {
-    //   console.log(yanz)
-    //   toggle(true)
-    //   getwangqian()
-    // }
-    // // toggle(true)
-    // getwangqian()
+    const yanz = validate([marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
+      console.log(vals)
+      Toast.info(vals.placeholder, 1);
+    })
+    if (yanz) {
+      console.log(yanz)
+      toggle(true)
+      getwangqian()
+    }
+    // toggle(true)
+    getwangqian()
     alert('提示', '请确认信息无误', [
         { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
         { text: '确认无误', onPress: () => next_step() },
@@ -237,13 +166,13 @@ export default ({ history }: Step_one) => {
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
-      <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getIdCard}  value={accessoryData.number} editable={false}/>
+      <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={RecordformalList}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
-      <AntdInputItem  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={professionalList}/>
+      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} />
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
       <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={RecordformalList}/>
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={RecordformalList}/>

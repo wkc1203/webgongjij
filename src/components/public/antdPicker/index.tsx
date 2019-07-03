@@ -49,7 +49,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPick
               title={placeholder}
               cols={1}
               extra={" "}
-              // value={picValue}
+              value={picValue}
               onChange = {(value:any)=>{
                 data.map((v:any,i:any)=>{
                   if ( data[i].value==value.toString() ){

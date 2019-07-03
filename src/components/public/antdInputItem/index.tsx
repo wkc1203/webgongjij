@@ -38,7 +38,7 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,ImgCli
   const [yzm, setYzm] = useState('获取验证码')
   const [y, setY] = useState(true)
   useEffect(() => {
-    getState(num)
+     getState(num)
   }, [num])
   useEffect(() => {
     setNum({ val: value,labeltext:labeltext,placeholder:placeholder })
