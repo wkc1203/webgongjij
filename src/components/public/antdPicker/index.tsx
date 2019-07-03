@@ -50,12 +50,25 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1 }: An
               title={placeholder}
               cols={col}
               extra={" "}
-              // value={picValue}
+              value={picValue}
               onChange = {(value:any)=>{
-                data.map((v:any,i:any)=>{
-                  if ( data[i].value==value.toString() ){
+                data.map((item:any)=>{
+                  if ( item.value===value.toString()){
                     setpicker(value)
-                    setlabel(data[i].label)
+                    setlabel(item.label)
+                  }else if( col===3 && item.value===value[0] ){
+                    let labels=item.label
+                    item.children.forEach((a:any)=>{
+                      if(a.value===value[1]){
+                        labels+=a.label
+                      }
+                      a.children.forEach((b:any)=>{
+                        if(b.value===value[2]){
+                          labels+=b.label
+                        }
+                      })
+                    })
+                    setlabel(labels)
                   }
                 })
               }}

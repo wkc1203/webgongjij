@@ -5,15 +5,23 @@ import { sendMessageToNative, routing,validate,pickertype } from '@util/index';
 import { Navigationt,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
 import { Modal,Toast  } from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
-import { district, provinceLite } from 'antd-mobile-demo-data';
 
 type Step_one = {
   history: History
 }
 const alert=Modal.alert;
-export default ({ history }: Step_one) => {
-  console.log(district)
-
+export default  ({ history }: Step_one) => {
+  //居住地
+  const [selectAddress] = useAxios({
+    url: '/address/queryAllAddress',
+    token:true,
+    method: 'get',
+    request: false
+  })
+  let selectAddressList:any=[]
+  selectAddress.code!==1?selectAddress.data.map(item => 
+  selectAddressList.push(item)
+  ):''
   //学历
   const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -118,8 +126,10 @@ export default ({ history }: Step_one) => {
   })
   let selectCityList:any=[]
   selectCity.code!==1?selectCity.data.map((v:any, i:any) => 
-    selectCityList.push({value:v.id,label:v.name})
+    selectCityList.push({value:v.code,label:v.full})
   ):''
+
+
 
    //查询用户身份证信息
    const [accessory] = useAxios({
@@ -211,12 +221,12 @@ export default ({ history }: Step_one) => {
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
-      <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={RecordformalList}/>
+      <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
-      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} col={3} />
+      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={selectAddressList} col={3} />
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
       <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={PersonIncomeList}/>
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={FamilyIncomeList}/>
