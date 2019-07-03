@@ -59,7 +59,7 @@ export const Yzm = ({ username = '', disabled = false }: Yzm) => {
   }, [disabled])
   return (
     <div onClick={getYzm} className={cs(style['yzm'], !y && style['y1'])}>
-      {yzm}
+     111 {yzm}
     </div>
   )
 }
