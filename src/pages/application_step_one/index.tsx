@@ -172,7 +172,7 @@ export default ({ history }: Step_one) => {
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
-      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} />
+      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} col={3} />
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
       <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={RecordformalList}/>
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={RecordformalList}/>

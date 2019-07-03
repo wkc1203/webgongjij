@@ -13,6 +13,7 @@ export type AntdPicker = {
   getState: (...rest: any) => void,
   Child?: JSX.Element,
   type?: string,
+  col?:number,
   disabled?: boolean,
   value?: string,
   extra?: string,
@@ -28,7 +29,7 @@ export type AntdPicker = {
   
 }
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
-export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPicker) => {
+export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1 }: AntdPicker) => {
   
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
@@ -47,7 +48,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = ''  }: AntdPick
             <Picker
               data={data}
               title={placeholder}
-              cols={1}
+              cols={col}
               extra={" "}
               value={picValue}
               onChange = {(value:any)=>{

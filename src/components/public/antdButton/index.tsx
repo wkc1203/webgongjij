@@ -13,7 +13,6 @@ export type AntdButton = {
 export const AntdButton = ({ text="提交", fn }: AntdButton) => (
     <WingBlank>
         <Button
-        disabled
             className = {cs(style['btus'])}
             onClick = { fn }
         >
