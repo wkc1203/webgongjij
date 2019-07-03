@@ -13,13 +13,18 @@ export default ({ history }: Protocol) => {
     useEffect(() => {
         console.log(Accordion!==undefined?Accordion.target.checked:'',Accordion!==undefined?Accordion.target.children:'')
         if(Accordion!==undefined){
-            if(Accordion.target.checked===true&&Accordion.target.children==="个人消费性借款合同"||Accordion.target.children==="签约协议2"||Accordion.target.children==="签约协议3"){
-                btndisabled(false)
+            if(Accordion.target.checked===true){
+                
+                console.log(btn,1111111)
+                if(Accordion.target.children==="个人消费性借款合同"||Accordion.target.children==="签约协议2"||Accordion.target.children==="签约协议3"){
+                    btndisabled(false)
+                }else{
+                    btndisabled(true)
+                }
             }else{
                 btndisabled(true)
+                console.log(btn,2222)
             }
-            console.log(btn,1111111)
-            console.log(!btn,2222)
         }
     })
     return (
