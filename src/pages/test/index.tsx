@@ -44,7 +44,6 @@ export default ({ history }: Test) => {
         show={show1}
         setShow={setShow1}
       />
-      <AntdAccordion/>
       <AntdImagePicker labeltext = '上传购车位证明' />
       <AntdResult fn={() => {
         console.log(111)
