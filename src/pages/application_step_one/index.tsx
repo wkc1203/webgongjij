@@ -116,18 +116,18 @@ export default  ({ history }: Step_one) => {
   ):''
 
   //查询产品支持城市列表
-  const [selectCity] = useAxios({
-    url: '/product/pro/queryBuildings',
-    token:true,
-    method: 'get',
-    request: {
-      productId:'156154195324502'
-    }
-  })
-  let selectCityList:any=[]
-  selectCity.code!==1?selectCity.data.map((v:any, i:any) => 
-    selectCityList.push({value:v.code,label:v.full})
-  ):''
+  // const [selectCity] = useAxios({
+  //   url: '/product/pro/queryBuildings',
+  //   token:true,
+  //   method: 'get',
+  //   request: {
+  //     productId:'156154195324502'
+  //   }
+  // })
+  // let selectCityList:any=[]
+  // selectCity.code!==1?selectCity.data.map((v:any, i:any) => 
+  //   selectCityList.push({value:v.code,label:v.full})
+  // ):''
 
 
 
@@ -141,7 +141,7 @@ export default  ({ history }: Step_one) => {
   let accessoryData :any
   accessoryData = accessory.code!==1?accessory.data:''
 
-  const [buildingId, getbuildingId] = useState({ val: '', pla: '' })
+  const [buildingId, getbuildingId] = useState({ val: ''})
   const [loanId, getLoanId] = useState({ val: '', pla: '' })
   const [cityName, getCityName] = useState({ val: '', pla: '' })
   const [city, getCity] = useState({ val: '', pla: '' })
@@ -159,7 +159,7 @@ export default  ({ history }: Step_one) => {
   const [name, getName] = useState({ val: '', pla: '' })
   const [number, getNumber] = useState({ val: '', pla: '' })
   const [on, toggle] = useState(false)
-  const [wangqian, getwangqian] = useAxios({
+  const [save, getSave] = useAxios({
     url: '/userExtend/save',
     method: 'post',
     request: {
@@ -203,16 +203,13 @@ export default  ({ history }: Step_one) => {
       Toast.info(vals.placeholder, 1);
     })
     if (yanz) {
-      console.log(yanz)
       toggle(true)
-      getwangqian()
-    }
-    // toggle(true)
-    getwangqian()
-    alert('提示', '请确认信息无误', [
-        { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
-        { text: '确认无误', onPress: () => next_step() },
+      getSave()
+      alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
       ]);
+    }
   }
   return (
     <div className={style['xxqyqr']}>
@@ -221,7 +218,7 @@ export default  ({ history }: Step_one) => {
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
-      <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/>
+      {/* <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/> */}
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
