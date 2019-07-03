@@ -77,7 +77,6 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1,getSt
                 })
               }}
             >
-              
               <List.Item arrow="horizontal" className = {style['am-list-item-picker']}>{label?label:placeholder}</List.Item>
             </Picker>
           </List>

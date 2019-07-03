@@ -32,8 +32,6 @@ export type AntdInputItem = {
   getYzm?:(...rest: any) => void,
   
 }
-
-// pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
 export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm,ImgClick,yzmtype=false,inputiconright='',yzm, placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
