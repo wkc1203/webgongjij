@@ -3,7 +3,7 @@ import style from './index.module.scss';
 import { History } from 'history';
 import { sendMessageToNative, routing,validate,pickertype } from '@util/index';
 import { Navigationt,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
-import { Modal,Toast,Picker  } from 'antd-mobile';
+import { Modal,Toast  } from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 

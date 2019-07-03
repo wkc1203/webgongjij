@@ -9,6 +9,7 @@ import districtData from './address';
 import { useAxios } from '@hooks/useAxios';
 export type AntdInputItem = {
   data?: Array<Object>,
+  editable?:boolean,
   placeholder: string,
   labeltext: string,
   getState: (...rest: any) => void,
@@ -20,23 +21,24 @@ export type AntdInputItem = {
   pickertype?:string,
   picker?:boolean,
   rightType?:boolean,
-  editable?:boolean,
   rightBtntype?:string,
   inputiconright?:string,
   fiedRes?:string,
+  yzm?:string,
   onChange?:(...rest: any) => void,
   onFocus?:(...rest: any) => void,
   ImgClick?:(...rest: any) => void,
+  getYzm?:(...rest: any) => void,
   
 }
 
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
-export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,ImgClick,inputiconright='', placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm,ImgClick,inputiconright='',yzm, placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   const [picValue, setpicker] = useState()
   const [picmovdata, setMondata] = useState({val:data})
-  const [yzm, setYzm] = useState('获取验证码')
   const [y, setY] = useState(true)
+  const [on, toggle] = useState(false)
   useEffect(() => {
      getState(num)
   }, [num])
@@ -46,24 +48,25 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,ImgCli
   let i = 60
   let s = true
   let timer: any = null
-  const getYzm = () => {
-    if (y) {
-      setY(false)
-      timer = setInterval(() => {
-        if (s) {
-          console.log('object')
-          setYzm(i + 's')
-          i--
-          if (i <= 0) {
-            clearInterval(timer)
-            setYzm('发送失败')
-          }
-        }else{
-          clearInterval(timer)
-        }
-      }, 1000)
-    }
-  }
+  // const getYzm = () => {
+  //   getwangqian()
+  //   if (y) {
+  //     setY(false)
+  //     timer = setInterval(() => {
+  //       if (s) {
+  //         console.log('object')
+  //         setYzm(i + 's')
+  //         i--
+  //         if (i <= 0) {
+  //           clearInterval(timer)
+  //           setYzm('发送失败')
+  //         }
+  //       }else{
+  //         clearInterval(timer)
+  //       }
+  //     }, 1000)
+  //   }
+  // }
   
   return (
     <div style={{ margin: '15px' }}>
@@ -74,10 +77,10 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,ImgCli
           <List className = {style['am-list-item-extra']}>
             <InputItem className = {cs(style['am-list-item'])}
               clear
-              editable={editable}
               // extra="<span  className = { cs(style['iconfont'], [style['icon-1-copy'] ]) }></span>"
               placeholder={placeholder}
               value={num.val}
+              editable={editable}
               onFocus = {onFocus}
               onChange={v => {
                 console.log(v+'v')
