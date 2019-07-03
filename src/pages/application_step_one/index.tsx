@@ -117,7 +117,7 @@ export default ({ history }: Step_one) => {
   })
   let queryBuildingMsgList:any=[]
   queryBuildingMsg.code!==1?queryBuildingMsg.data.map((v:any, i:any) => 
-    queryBuildingMsgList.push({value:v.id,label:v.name})
+    queryBuildingMsgList.push({value:v.area,label:v.name})
   ):''
 
   //查询产品支持城市列表
