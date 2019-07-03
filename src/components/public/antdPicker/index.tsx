@@ -68,6 +68,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1 }: An
                         }
                       })
                     })
+                    setpicker(value)
                     setlabel(labels)
                   }
                 })

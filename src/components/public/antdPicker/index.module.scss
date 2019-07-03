@@ -27,7 +27,8 @@
           font-size: 14px !important;
         }
       .am-list-extra{
-        opacity:0;
+        -webkit-flex-basis:0;
+        flex-basis:0;
       }
       }
     }
