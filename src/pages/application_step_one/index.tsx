@@ -95,6 +95,19 @@ export default ({ history }: Step_one) => {
   professional.code!==1?professional.data.map((v:any, i:any) => 
     professionalList.push({value:v.code,label:v.name})
   ):''
+   //关系
+   const [KinsRelation] = useAxios({
+    url: '/dictionarySubitem/queryUser',
+    token:true,
+    method: 'get',
+    request: {
+      parentCode:'QSGX'
+    }
+  })
+  let KinsRelationList:any=[]
+  KinsRelation.code!==1?KinsRelation.data.map((v:any, i:any) => 
+    KinsRelationList.push({value:v.code,label:v.name})
+  ):''
   //楼盘
   const [queryBuildingMsg] = useAxios({
     url: '/building/queryBuildingMsg',
@@ -118,7 +131,19 @@ export default ({ history }: Step_one) => {
   })
   let selectCityList:any=[]
   selectCity.code!==1?selectCity.data.map((v:any, i:any) => 
-    selectCityList.push({value:v.id,label:v.name})
+    selectCityList.push({value:v.code,label:v.full})
+  ):''
+
+   //省市区
+   const [selectAddress] = useAxios({
+    url: '/address/queryAllAddress',
+    token:true,
+    method: 'get',
+    request:false
+  })
+  let selectAddressList:any=[]
+  selectAddress.code!==1?selectAddress.data.map((item:any) => 
+  selectAddressList.push(item)
   ):''
 
    //查询用户身份证信息
@@ -149,7 +174,7 @@ export default ({ history }: Step_one) => {
   const [name, getName] = useState({ val: '', pla: '' })
   const [number, getNumber] = useState({ val: '', pla: '' })
   const [on, toggle] = useState(false)
-  const [wangqian, getwangqian] = useAxios({
+  const [save, getSave] = useAxios({
     url: '/userExtend/save',
     method: 'post',
     request: {
@@ -188,21 +213,17 @@ export default ({ history }: Step_one) => {
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
-    const yanz = validate([marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
-      console.log(vals)
+    const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
       Toast.info(vals.placeholder, 1);
     })
     if (yanz) {
-      console.log(yanz)
       toggle(true)
-      getwangqian()
+      getSave()
+      alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
+        ]);
     }
-    // toggle(true)
-    getwangqian()
-    alert('提示', '请确认信息无误', [
-        { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
-        { text: '确认无误', onPress: () => next_step() },
-      ]);
   }
   return (
     <div className={style['xxqyqr']}>
@@ -211,17 +232,17 @@ export default ({ history }: Step_one) => {
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
-      <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={RecordformalList}/>
+      <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
       <AntdPicker  labeltext='最高学历' placeholder='请选择最高学历' getState={getEducation} picker={true} data={RecordformalList}/>
       <AntdInputItem  labeltext='职业' placeholder='请输入职业' getState={getJob} picker={true} data={professionalList}/>
       <AntdInputItem  labeltext='工作单位' placeholder='请输入工作单位' getState={getCompany} />
-      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getCompany} picker={true} data={district} col={3} />
+      <AntdPicker  labeltext='居住地' placeholder='请选择居住地' getState={getAddress} picker={true} data={selectAddressList} col={3} />
       <AntdInputItem  labeltext='详细地址' placeholder='请输入详细地址' getState={getAddressDetail} />
       <AntdPicker  labeltext='个人月收入' placeholder='请选择个人月收入' getState={getPersonIncome} picker={true} pickertype='Rec' data={PersonIncomeList}/>
       <AntdPicker  labeltext='家庭月收入' placeholder='请选择家庭月收入' getState={getFamilyIncome} picker={true} data={FamilyIncomeList}/>
       <AntdInputItem  labeltext='亲属联系人' placeholder='请输入一位您亲属联系人的姓名' getState={getKinsfolk} />
-      <AntdPicker  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={getKinsRelation} picker={true} data={RecordformalList}/>
+      <AntdPicker  labeltext='亲属关系' placeholder='请选择您填写人的亲属关系' getState={getKinsRelation} picker={true} data={KinsRelationList}/>
       <AntdInputItem  labeltext='亲属手机号码' placeholder='请输入亲属手机号码' getState={getKinsPhone} type="phone"/>
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />
