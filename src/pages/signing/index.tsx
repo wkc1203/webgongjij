@@ -28,6 +28,8 @@ export default ({ history }: Test) => {
     }
   })
   let dataList:any=Recordformal.data
+  let accessoryData :any
+  accessoryData = Recordformal.code!==1?Recordformal.data:''
   const [data, dataListInfo] = useState()
   const [prs, productName] = useState({ val: '' })
   const [wi, withAmount] = useState({ val: '' })
@@ -46,29 +48,11 @@ export default ({ history }: Test) => {
   const [co, code] = useState({ val: ''})
   const [xm, setXm] = useState('')
   const [list, setList] = useState(l)
-  const [y, setY] = useState(0)
+  const [y, setY] = useState(true)
   const refresh = useRef(null)
   const [on, toggle] = useState(false)
+  const [yzm, setYzm] = useState('获取验证码')
   
-  useEffect(() => {
-    productName({val:'123' })
-    // if(Recordformal.code==="0"){
-      // dataListInfo(dataList)
-      // productName({val:dataList.buildingName })
-      // withAmount({val:dataList.amount })
-      // annuaInterestRate({val:dataList.rate })
-      // loanUsedFor({val:dataList.purpose })
-      // lendingWay({val:dataList.calculate })
-      // entrusted({val:dataList.commissionedPart })
-      // reimbursementMeans({val:dataList.repaymentWay })
-      // repaymentperiods({val:dataList.periods })
-      // shouldAlso({val:dataList.totalInterest })
-      // serviceFee({val:dataList.serviceFee })
-      // repaymentAccount({val:dataList.serviceChargeNo })
-      // carNumber({val:dataList.serialNo })
-      // dealValence({val:dataList.dealAmount })
-    // }
-  },[productName])
   const [wangqian, getwangqian] = useAxios({
     url: '/loanSign/update',
     method: 'post',
@@ -80,7 +64,7 @@ export default ({ history }: Test) => {
       serialNo: ca.val,
       dealAmount: de.val,
       purpose: lo.val,
-      amount: '1',
+      amount: wi.val,
       preAmount: '1',
       periods: rep.val,
       calculate: '1',
@@ -91,16 +75,25 @@ export default ({ history }: Test) => {
       serviceChargeNo: repa.val,
       serviceFee: se.val,
       repaymentWay: re.val,
-      repayBankCardId: '1',
+      repayBankCardId: '156144849152773',
       repaymentAccount: repa.val,
       commissionedPart: en.val,
-      phone: '1',
-      sms	: '1',
+      phone: ph.val,
+      sms	: co.val,
     },
     token:true,
     execute: on,
     api3: false
   })
+  useEffect(() => {
+    console.log(1)
+    if(wangqian.code==="0"){
+        alert('提示', '请确认信息无误', [
+          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '确认无误', onPress: () => next_step() },
+        ]);
+    }
+  },[wangqian])
   // 下一步
   const next_step = ()=>{
     sendMessageToNative({ type: 'push' })
@@ -127,6 +120,39 @@ export default ({ history }: Test) => {
       })
     routing('step_one')
   } 
+  const [getYzms, getYzmFn] = useAxios({
+    url: '/senSms',
+    method: 'get',
+    request: {
+      phone: ph.val,
+    },
+    token:true,
+    execute: on,
+    api3: false
+  })
+  let i = 60
+  let s = true
+  let timer: any = null
+  const getYzm = () => {
+    console.log(123)
+    getYzmFn()
+    if (y) {
+      setY(false)
+      timer = setInterval(() => {
+        if (s) {
+          setYzm(i + 's')
+          i--
+          if (i <= 0) {
+            clearInterval(timer)
+            setYzm('发送失败')
+          }
+          
+        }else{
+          clearInterval(timer)
+        }
+      }, 1000)
+    }
+  }
     // 提交申请
   const passAllShowAlert = ()=>{
     console.log(prs)
@@ -138,11 +164,9 @@ export default ({ history }: Test) => {
       console.log(yanz)
       toggle(true)
       getwangqian()
+      console.log(wangqian)
     }
-      // alert('提示', '请确认信息无误', [
-      //     { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
-      //     { text: '确认无误', onPress: () => next_step() },
-      //   ]);
+      
   }
   // 重新申请
   const applyApplicationShowAlert = ()=>{
@@ -154,21 +178,21 @@ export default ({ history }: Test) => {
   return (
     <div className={style['xxqyqr']}>
       <Navigationt title='签约信息确认' history={history} />
-      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} value={prs.val} />
-      <AntdInputItem  labeltext='用款金额' placeholder='请输入用款金额' getState={withAmount} value={wi.val}/>
-      <AntdInputItem  labeltext='贷款年利率' placeholder='请输入贷款年利率' getState={annuaInterestRate}value={an.val} />
-      <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={loanUsedFor} value={lo.val}/>
-      <AntdInputItem  labeltext='放款方式' placeholder='请输入放款方式' getState={lendingWay} value={le.val}/>
-      <AntdInputItem  labeltext='受托方' placeholder='请输入受托方' getState={entrusted} value={en.val}/>
-      <AntdInputItem  labeltext='还款方式' placeholder='请输入还款方式' getState={reimbursementMeans} value={re.val}/>
-      <AntdInputItem  labeltext='还款期数' placeholder='请输入还款期数' getState={repaymentperiods} value={rep.val}/>
-      <AntdInputItem  labeltext='应还本息' placeholder='请输入应还本息' getState={shouldAlso} value={sh.val}/>
-      <AntdInputItem  labeltext='壹米金融服务费' placeholder='请输入壹米金融服务费' getState={serviceFee} value={se.val}/>
-      <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} value={repa.val}/>
-      <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} value={ca.val}/>
-      <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} value={de.val}/>
-      <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} value={ph.val}/>
-      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn' value={co.val}/>
+      <AntdInputItem  labeltext='产品名称' placeholder='请输入产品名称' getState={productName} value={accessoryData.buildingName} />
+      <AntdInputItem  labeltext='用款金额' placeholder='请输入用款金额' getState={withAmount} value={accessoryData.amount}/>
+      <AntdInputItem  labeltext='贷款年利率' placeholder='请输入贷款年利率' getState={annuaInterestRate} value={accessoryData.rate} />
+      <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={loanUsedFor} value={accessoryData.purpose}/>
+      <AntdInputItem  labeltext='放款方式' placeholder='请输入放款方式' getState={lendingWay} value={accessoryData.calculate}/>
+      <AntdInputItem  labeltext='受托方' placeholder='请输入受托方' getState={entrusted} value={accessoryData.commissionedPart}/>
+      <AntdInputItem  labeltext='还款方式' placeholder='请输入还款方式' getState={reimbursementMeans} value={accessoryData.repaymentWay}/>
+      <AntdInputItem  labeltext='还款期数' placeholder='请输入还款期数' getState={repaymentperiods} value={accessoryData.periods}/>
+      <AntdInputItem  labeltext='应还本息' placeholder='请输入应还本息' getState={shouldAlso} value={accessoryData.totalInterest}/>
+      <AntdInputItem  labeltext='壹米金融服务费' placeholder='请输入壹米金融服务费' getState={serviceFee} value={accessoryData.serviceFee}/>
+      <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} value={accessoryData.serviceChargeNo}/>
+      <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} value={accessoryData.serialNo}/>
+      <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} value={accessoryData.dealAmount}/>
+      <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} value={accessoryData.phone}/>
+      <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn' yzm={yzm} value={co.val} getYzm={() => getYzm()}/>
       <Cutoff hg='20' />
       <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
       <Cutoff hg='20' />

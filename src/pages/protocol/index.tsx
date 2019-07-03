@@ -15,7 +15,7 @@ export default ({ history }: Protocol) => {
             <Cutoff hg='20' />
             <AntdAccordion/>
             <Cutoff hg='30' />
-            <AntdButton text='确认' fn={() => {}}></AntdButton>
+            <AntdButton text='确认' fn={() => {}} ></AntdButton>
         </div>
     )
 }

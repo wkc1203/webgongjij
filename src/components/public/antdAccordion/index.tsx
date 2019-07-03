@@ -18,11 +18,12 @@ export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
   })
   const onChange=(value:any)=>{
     console.log(value)
+    console.log(value.target.checked)
   }
   return (
     <Accordion  className="my-accordion">
     <Accordion.Panel header={ 
-      <AgreeItem key={1} onChange={() => onChange(1)}>
+      <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
         个人消费性借款合同
      </AgreeItem>
    }>
@@ -36,13 +37,13 @@ export const AntdAccordion = ({  resulttype}: AntdAccordion) => {
        </List>
      </Accordion.Panel>
      <Accordion.Panel header={ 
-     <AgreeItem key={1} onChange={() => onChange(1)}>
+     <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
        签约协议2
      </AgreeItem>
    } className="pad">this is panel content2 or other</Accordion.Panel>
      
      <Accordion.Panel header={ 
-     <AgreeItem key={1} onChange={() => onChange(1)}>
+     <AgreeItem key={1} onChange={(e:any) => onChange(e)}>
        签约协议3
      </AgreeItem>
    } className="pad">

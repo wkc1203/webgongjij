@@ -17,8 +17,10 @@ import { queryUserAccessory } from './queryUserAccessory';
 import { queryBuildingMsg } from './queryBuildingMsg';
 import { querySign } from './querySign';
 import { loanSignupdate } from './update';
+import { senSms } from './senSms';
 
 export interface API {
+  '/senSms':senSms,
   '/loanSign/update':loanSignupdate,
   '/loanSign/querySign':querySign,
   '/building/queryBuildingMsg':queryBuildingMsg,
