@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import style from './index.module.scss';
 import { History } from 'history';
-import { Navigationt, Cutoff, Title, Inputs, Yzm, Btus, Modal, Load } from '@components/public';
+import { Navigationt, Cutoff, Title, Inputs, Yzm, Btus,  Load } from '@components/public';
 import { useAxios } from '@hooks/useAxios';
+import { Modal,Flex ,WingBlank,Toast} from 'antd-mobile';
 import { validate, routing } from '@util/index';
 import { code } from '@api/basis';
 import {useWindowScroll} from 'react-use';
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
+
+const alert=Modal.alert;
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
 
@@ -32,6 +35,16 @@ export default ({ history }: Wqcx) => {
     execute: on,
     apiSwitch: true,
     form: true
+  })
+  const [getYzms, getYzmFn] = useAxios({
+    url: '/senSms',
+    method: 'get',
+    request: {
+      phone: '123',
+    },
+    token:true,
+    execute: on,
+    api3: false
   })
   useEffect(() => {
     if (wangqian.code === code.success) {
@@ -71,15 +84,19 @@ export default ({ history }: Wqcx) => {
           setShow(true)
         })
         if (yanz) {
-          getwangqian()
+          alert('提示', '请确认信息无误', [
+            { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+            { text: '确认无误', onPress: () => getwangqian() },
+          ]);
           toggle(true)
+          
         }
       }} />
-      <Modal
+      {/* <Modal
         title={pla||'系统错误'}
         show={show}
         setShow={setShow}
-      />
+      /> */}
       <Load
         show={on && wangqian.code === code.init}
       />

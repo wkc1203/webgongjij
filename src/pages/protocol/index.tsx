@@ -19,6 +19,7 @@ export default ({ history }: Protocol) => {
                 btndisabled(true)
             }
             console.log(btn,1111111)
+            console.log(!btn,2222)
         }
     })
     return (
@@ -29,7 +30,7 @@ export default ({ history }: Protocol) => {
             <Cutoff hg='20' />
             <AntdAccordion getState={AccordionOnchange}/>
             <Cutoff hg='30' />
-            <AntdButton disabled={btn} text='确认' fn={() => {}} ></AntdButton>
+            <AntdButton disabled={btn} distype={btn} text='确认' fn={() => {}} ></AntdButton>
         </div>
     )
 }

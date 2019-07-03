@@ -9,4 +9,10 @@
     font-size: 17px;
     font-weight: 400;
     box-shadow:0px 4px 10px 0px rgba(255,68,0,0.3);
+    &::after{
+      border: none !important;
+    }
+  }
+  .btn-disabled{
+    color: #fff !important;
   }

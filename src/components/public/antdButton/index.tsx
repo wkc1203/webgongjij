@@ -9,12 +9,13 @@ export type AntdButton = {
   text?: string,
   fn?: (...rest: any) => any,
   disabled?:boolean,
+  distype?:boolean,
 }
 
-export const AntdButton = ({ text="提交", fn,disabled=false }: AntdButton) => (
+export const AntdButton = ({ text="提交", fn,disabled=false,distype }: AntdButton) => (
     <WingBlank>
         <Button
-            className = {cs(style['btus'])}
+            className = {cs(style['btus'], { [style['btn-disabled']]: distype})}
             onClick = { fn }
             disabled={disabled}
         >

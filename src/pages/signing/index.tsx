@@ -75,7 +75,7 @@ export default ({ history }: Test) => {
       serviceChargeNo: repa.val,
       serviceFee: se.val,
       repaymentWay: re.val,
-      repayBankCardId: '156144849152773',
+      repayBankCardId: accessoryData!=undefined?accessoryData.repayBankCardId:'',
       repaymentAccount: repa.val,
       commissionedPart: en.val,
       phone: ph.val,
@@ -88,24 +88,33 @@ export default ({ history }: Test) => {
   useEffect(() => {
     console.log(1)
     if(wangqian.code==="0"){
-        alert('提示', '请确认信息无误', [
-          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
-          { text: '确认无误', onPress: () => next_step() },
-        ]);
+        sendMessageToNative({ type: 'push' })
+        history.push({
+            pathname: 'protocol',
+            state: {
+              data: {
+                resulttype: 'success',
+              }
+            }
+          })
+        routing('protocol')
     }
   },[wangqian])
   // 下一步
   const next_step = ()=>{
-    sendMessageToNative({ type: 'push' })
-    history.push({
-        pathname: 'protocol',
-        // state: {
-        //   data: {
-        //     resulttype: 'success',
-        //   }
-        // }
-      })
-    routing('protocol')
+    console.log(123)
+    console.log(prs)
+    // getwangqian()
+    // sendMessageToNative({ type: 'push' })
+    // history.push({
+    //     pathname: 'protocol',
+    //     state: {
+    //       data: {
+    //         resulttype: 'success',
+    //       }
+    //     }
+    //   })
+    // routing('protocol')
   } 
   // 重新
   const step_one = ()=>{
@@ -134,39 +143,28 @@ export default ({ history }: Test) => {
   let s = true
   let timer: any = null
   const getYzm = () => {
-    console.log(123)
-    getYzmFn()
-    if (y) {
-      setY(false)
-      timer = setInterval(() => {
-        if (s) {
-          setYzm(i + 's')
-          i--
-          if (i <= 0) {
+    console.log(ph)
+    if(ph.val===null){
+      Toast.info('请输入手机号码', 1);
+    }else{
+      getYzmFn()
+      if (y) {
+        setY(false)
+        timer = setInterval(() => {
+          if (s) {
+            setYzm(i + 's')
+            i--
+            if (i <= 0) {
+              clearInterval(timer)
+              setYzm('发送失败')
+            }
+            
+          }else{
             clearInterval(timer)
-            setYzm('发送失败')
           }
-          
-        }else{
-          clearInterval(timer)
-        }
-      }, 1000)
+        }, 1000)
+      }
     }
-  }
-    // 提交申请
-  const passAllShowAlert = ()=>{
-    console.log(prs)
-    const yanz = validate([prs, wi,an,lo], (vals) => {
-      console.log(vals)
-      Toast.info(vals.placeholder, 1);
-    })
-    if (yanz) {
-      console.log(yanz)
-      toggle(true)
-      getwangqian()
-      console.log(wangqian)
-    }
-      
   }
   // 重新申请
   const applyApplicationShowAlert = ()=>{
@@ -194,7 +192,16 @@ export default ({ history }: Test) => {
       <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' getState={phone} value={accessoryData.phone}/>
       <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' getState={code} rightType={true} rightBtntype='btn' yzm={yzm} value={co.val} getYzm={() => getYzm()}/>
       <Cutoff hg='20' />
-      <AntdButton text='下一步' fn={() => passAllShowAlert()}></AntdButton>
+      <AntdButton text='下一步' fn={(e) =>{
+        const yanz = validate([prs, wi,an,lo], (vals) => {
+          console.log(vals)
+          Toast.info(vals.placeholder, 1);
+        })
+        if (yanz) {
+          toggle(true)
+          getwangqian()
+        }
+      }}></AntdButton>
       <Cutoff hg='20' />
       <WingBlank>
         <div>
