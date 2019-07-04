@@ -11,6 +11,8 @@ import { AntdImagePicker } from './antdImagePicker';
 
 import { AntdSteps } from './antdSteps';
 import { AntdPickerRadio } from './antdPickerRadio';
+import { AntdPopup } from './antdPopup';
+
 import { AntdPicker } from './antdPicker';
 import { AntdResult } from './antdResult';
 
@@ -29,6 +31,7 @@ import { Check } from './check';
 import { Clipboard } from './clipboard';
 
 export {
+  AntdPopup,
   AntdImagePicker,
   AntdAccordion,
   AntdResult,

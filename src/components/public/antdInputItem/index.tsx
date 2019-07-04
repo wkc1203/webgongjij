@@ -26,13 +26,14 @@ export type AntdInputItem = {
   fiedRes?:string,
   yzm?:string,
   yzmtype?:boolean,
+  clear?:boolean,
   onChange?:(...rest: any) => void,
   onFocus?:(...rest: any) => void,
   ImgClick?:(...rest: any) => void,
   getYzm?:(...rest: any) => void,
   
 }
-export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm,ImgClick,yzmtype=false,inputiconright='',yzm, placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
+export const AntdInputItem = ({editable,data,clear=true,rightType=false,rightBtntype,getYzm,ImgClick,yzmtype=false,inputiconright='',yzm, placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
   useEffect(() => {
      getState(num)
@@ -49,11 +50,12 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm
           <label className={style['labelinputs-label']}>{labeltext}</label>
           <List className = {style['am-list-item-extra']}>
             <InputItem className = {cs(style['am-list-item'])}
-              clear
+              clear={clear}
               // extra="<span  className = { cs(style['iconfont'], [style['icon-1-copy'] ]) }></span>"
               placeholder={placeholder}
               value={num.val}
               type={type}
+
               editable={editable}
               onFocus = {onFocus}
               onChange={v => {

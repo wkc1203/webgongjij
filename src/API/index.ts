@@ -22,8 +22,10 @@ import { personIncomes } from './personIncomes';
 import { familyIncomes } from './familyIncomes';
 import { selectCity } from './selectCity';
 import { selectAddress } from './selectAddress';
+import { bankCard } from './bankCard';
 
 export interface API {
+  '/bankCard/page':bankCard,
   '/address/queryAllAddress':selectAddress,
   '/product/pro/queryBuildings':selectCity,
   '/familyIncomes':familyIncomes,

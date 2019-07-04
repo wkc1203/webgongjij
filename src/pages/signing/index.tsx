@@ -5,7 +5,7 @@ import style from './index.module.scss';
 import { History } from 'history';
 import cs from 'classnames';
 import { sendMessageToNative, routing,validate } from '@util/index';
-import { Navigationt ,AntdInputItem,AntdButton,Cutoff} from '@components/public';
+import { Navigationt ,AntdInputItem,AntdButton,Cutoff,AntdPopup} from '@components/public';
 import { Modal,Flex ,WingBlank,Toast} from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
 import axios from 'axios';
@@ -55,7 +55,7 @@ export default ({ history }: Test) => {
   const refresh = useRef(null)
   const [on, toggle] = useState(false)
   const [yzm, setYzm] = useState('获取验证码')
-  
+  const [pickertype, pickertypepro] = useState();
   const [wangqian, getwangqian] = useAxios({
     url: '/loanSign/update',
     method: 'post',
@@ -164,12 +164,17 @@ export default ({ history }: Test) => {
       <AntdInputItem  labeltext='贷款年利率' placeholder='请输入贷款年利率' getState={annuaInterestRate} value={accessoryData.rate} />
       <AntdInputItem  labeltext='贷款用途' placeholder='请输入贷款用途' getState={loanUsedFor} value={accessoryData.purpose}/>
       <AntdInputItem  labeltext='放款方式' placeholder='请输入放款方式' getState={lendingWay} value={accessoryData.calculate}/>
-      <AntdInputItem  labeltext='受托方' placeholder='请输入受托方' getState={entrusted} value={accessoryData.commissionedPart}/>
+      <AntdInputItem  labeltext='受托方' placeholder='请输入受托方' getState={entrusted} value={accessoryData.commissionedPart} rightType = {true} rightBtntype='icon' inputiconright={require('./img/icon_tips_small.png')} ImgClick={()=>(
+         alert('提示', '签约成功后，您的贷款款项将支付至该公司', [
+          { text: '确认'},
+        ])
+      )}/>
       <AntdInputItem  labeltext='还款方式' placeholder='请输入还款方式' getState={reimbursementMeans} value={accessoryData.repaymentWay}/>
       <AntdInputItem  labeltext='还款期数' placeholder='请输入还款期数' getState={repaymentperiods} value={accessoryData.periods}/>
       <AntdInputItem  labeltext='应还本息' placeholder='请输入应还本息' getState={shouldAlso} value={accessoryData.totalInterest}/>
       <AntdInputItem  labeltext='壹米金融服务费' placeholder='请输入壹米金融服务费' getState={serviceFee} value={accessoryData.serviceFee}/>
-      <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} value={accessoryData.serviceChargeNo}/>
+      <AntdPopup pickertype = {pickertype} pickertypepro = {pickertypepro} getState={repaymentAccount} value={accessoryData.serviceChargeNo}/>
+      {/* <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} value={accessoryData.serviceChargeNo}/> */}
       <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} value={accessoryData.serialNo}/>
       <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} value={accessoryData.dealAmount}/>
       <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' type='phone' getState={phone} value={accessoryData.phone}/>
