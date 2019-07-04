@@ -14,6 +14,7 @@ import { gjjObtain } from './gjjObtain';
 import { loanApplication } from './loanApplication';
 import { queryUser } from './queryUser';
 import { queryUserAccessory } from './queryUserAccessory';
+import { loanApply } from './loanApply';
 import { queryBuildingMsg } from './queryBuildingMsg';
 import { querySign } from './querySign';
 import { loanSignupdate } from './update';
@@ -23,8 +24,11 @@ import { familyIncomes } from './familyIncomes';
 import { selectCity } from './selectCity';
 import { selectAddress } from './selectAddress';
 import { bankCard } from './bankCard';
+import { loanApplySecond } from './loanApplySecond';
 
 export interface API {
+  '/loanApply/save':loanApplySecond,
+  '/loanApply/loan/queryById':loanApply,
   '/bankCard/page':bankCard,
   '/address/queryAllAddress':selectAddress,
   '/product/pro/queryBuildings':selectCity,

@@ -182,6 +182,7 @@ export default ({ history }: Test) => {
         if(ph.val===null||ph.val===""){
           Toast.info('请输入手机号码', 1);
         }else{
+          console.log(y)
           senSms()
           if (y) {
             setY(false)
@@ -194,6 +195,7 @@ export default ({ history }: Test) => {
                   clearInterval(timer)
                   setYzm('重新发送')
                   getyzmtype(false)
+                  setY(true)
                 }
                 
               }else{
