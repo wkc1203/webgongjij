@@ -228,7 +228,7 @@ export default ({ history }: Step_one) => {
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
-      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} />
+      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
