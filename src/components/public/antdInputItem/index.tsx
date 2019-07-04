@@ -34,10 +34,6 @@ export type AntdInputItem = {
 }
 export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm,ImgClick,yzmtype=false,inputiconright='',yzm, placeholder, onChange, getState, labeltext,Child, type = 'text', onFocus, disabled = false, extra = '', value = '' ,picker = false, pickertype  }: AntdInputItem) => {
   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
-  const [picValue, setpicker] = useState()
-  const [picmovdata, setMondata] = useState({val:data})
-  const [y, setY] = useState(true)
-  const [on, toggle] = useState(false)
   useEffect(() => {
      getState(num)
   }, [num])
