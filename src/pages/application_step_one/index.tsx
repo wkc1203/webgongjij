@@ -199,11 +199,12 @@ export default ({ history }: Step_one) => {
       sendMessageToNative({ type: 'push' })
       history.push({
           pathname: 'step_two',
-          // state: {
-          //   data: {
-          //     resulttype: 'success',
-          //   }
-          // }
+          state: {
+            data: {
+              loanData: v.data.data,
+              buildingId:buildingId.val
+            }
+          }
         })
       routing('step_two')
     })

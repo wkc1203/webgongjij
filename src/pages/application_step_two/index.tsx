@@ -12,6 +12,13 @@ type Step_two = {
 const alert=Modal.alert;
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default ({ history }: Step_two) => {
+
+  const {
+    data: {
+      loanData,//第一成功后的结果
+      buildingId//楼盘id
+    }
+  } = history.location.state
   const [pr, productName] = useState({ val: ''})
   const [wi, withAmount] = useState({ val: ''})
   const [an, annuaInterestRate] = useState({ val: ''})
