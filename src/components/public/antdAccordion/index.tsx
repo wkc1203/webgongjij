@@ -4,6 +4,8 @@ import style from './index.module.scss';
 import { Accordion, List,WingBlank,Checkbox } from 'antd-mobile';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 import { Center,AntdButton } from '@components/public';
+import {xieyi} from './xieyi'
+import {xieyi1} from './xieyi'
 import cs from 'classnames'
 export type AntdAccordion = {
   resulttype?: string,
@@ -25,33 +27,23 @@ export const AntdAccordion = ({  resulttype,getState}: AntdAccordion) => {
     <Accordion  className="my-accordion">
     <Accordion.Panel header={ 
       <AgreeItem key={1} onChange={(e:any) => getState(e,1)}>
-        个人消费性借款合同
+        壹米金融服务费用协议
      </AgreeItem>
    }>
        
        <List className="my-list">
-         {
-           listItem.map((v,i)=>(
-             <List.Item>{v}</List.Item>
-           ))
-         }
+       <div className = { style['cbox'] } dangerouslySetInnerHTML={{ __html: xieyi }}>
+                {  }
+              </div>
        </List>
      </Accordion.Panel>
      <Accordion.Panel header={ 
      <AgreeItem key={1} onChange={(e:any) => getState(e)}>
-       签约协议2
+       一麻袋协议支付服务协议
      </AgreeItem>
-   } className="pad">this is panel content2 or other</Accordion.Panel>
-     
-     <Accordion.Panel header={ 
-     <AgreeItem key={1} onChange={(e:any) => getState(e)}>
-       签约协议3
-     </AgreeItem>
-   } className="pad">
-         text text text text text text text text text text text text text text text
-     </Accordion.Panel>
-     
-     
+   } className="pad"><div className = { style['cbox'] } dangerouslySetInnerHTML={{ __html: xieyi1 }}>
+   {  }
+ </div></Accordion.Panel>
    </Accordion>
   )
 }
