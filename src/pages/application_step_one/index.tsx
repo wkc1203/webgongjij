@@ -153,7 +153,7 @@ export default ({ history }: Step_one) => {
   })
   let accessoryData :any
   accessoryData = accessory.code!==1?accessory.data:''
-
+  console.log(accessoryData)
   const [buildingId, getbuildingId] = useState({ val: '', pla: '' })
   const [loanId, getLoanId] = useState({ val: '', pla: '' })
   const [cityName, getCityName] = useState({ val: '', pla: '' })
@@ -211,7 +211,7 @@ export default ({ history }: Step_one) => {
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
-    const yanz = validate([name,buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
+    const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone], (vals) => {
       Toast.info(vals.placeholder, 1);
     })
     if (yanz) {

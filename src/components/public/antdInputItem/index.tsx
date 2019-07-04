@@ -57,7 +57,6 @@ export const AntdInputItem = ({editable,data,rightType=false,rightBtntype,getYzm
               editable={editable}
               onFocus = {onFocus}
               onChange={v => {
-                console.log(v+'v')
                 setNum({
                   val: v,
                   labeltext:labeltext,
