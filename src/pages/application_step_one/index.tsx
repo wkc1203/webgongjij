@@ -12,8 +12,6 @@ type Step_one = {
 }
 const alert=Modal.alert;
 export default ({ history }: Step_one) => {
-  console.log(district)
-
   //学历
   const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -213,7 +211,7 @@ export default ({ history }: Step_one) => {
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
-    const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
+    const yanz = validate([name,buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone,buildingId, loanId,cityName,city], (vals) => {
       Toast.info(vals.placeholder, 1);
     })
     if (yanz) {
@@ -230,7 +228,7 @@ export default ({ history }: Step_one) => {
       <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
-      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
+      <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} />
       <AntdInputItem  labeltext='身份证号' placeholder='请输入您的身份证号' getState={getNumber}  value={accessoryData.number} editable={false}/>
       <AntdPicker  labeltext='申请城市' placeholder='请选择申请城市' getState={getCity} picker={true} data={selectCityList}/>
       <AntdPicker  labeltext='婚姻情况' placeholder='请选择婚姻情况' getState={getMarriageState} picker={true} data={marriageList}/>
