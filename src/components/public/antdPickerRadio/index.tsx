@@ -55,7 +55,9 @@ export const AntdPickerRadio = ({ placeholder,pickertype,pickertypepro}: AntdPic
             ))}
           </List>
         </div>
-        <div className={style['am-popover-mask']}></div>
+        <div className={style['am-popover-mask']} onClick={()=>(
+          pickertypepro(false)
+        )}></div>
       </div>
       </WingBlank>
     </div>

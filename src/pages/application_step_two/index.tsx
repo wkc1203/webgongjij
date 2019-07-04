@@ -5,6 +5,7 @@ import { History } from 'history';
 import { sendMessageToNative, routing } from '@util/index';
 import { Navigationt ,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
 import { Modal } from 'antd-mobile';
+import { useAxios } from '@hooks/useAxios';
 type Step_two = {
   history: History
 }
@@ -30,7 +31,14 @@ export default ({ history }: Step_two) => {
   const [list, setList] = useState(l)
   const [y, setY] = useState(0)
   const refresh = useRef(null)
-
+  const [accessory] = useAxios({
+    url: '/loanApply/loan/queryById',
+    token:true,
+    method: 'get',
+    request: {
+      loanApplyId:'10384'
+    }
+  })
     // 下一步
     const next_step = ()=>{
       sendMessageToNative({ type: 'push' })

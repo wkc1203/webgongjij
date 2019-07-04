@@ -1,0 +1,52 @@
+
+.pirckerido-box{
+ display: none;
+}
+.pirckerido-acitve{
+  display: block;
+}
+.am-popover-mask {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  z-index: 999;
+}
+.card-title{
+  font-size: 20px;
+  color: #999;
+  padding-left: 40px;
+}
+.pirckerido-rido{
+  min-height: 300px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1999;
+  max-height: 500px;
+  border-radius: 10px 10px 0 0;
+}
+.card-cancle{
+  float: right;
+  padding-right: 10px;
+}
+.card-box{
+  max-height: 500px;
+  overflow-y: auto;
+  .card-box-list{
+    margin-bottom: 10px;
+    background-color: rgba(242, 242, 242, 1);
+    width: 100%;
+    height: 105px;
+    line-height: 30px;
+    padding-top: 30px;
+    p{
+      padding-left: 40px;
+    }
+  }
+}

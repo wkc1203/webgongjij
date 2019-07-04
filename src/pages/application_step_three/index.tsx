@@ -3,7 +3,7 @@ import style from './index.module.scss';
 import { History } from 'history';
 import { sendMessageToNative, routing } from '@util/index';
 import { Modal } from 'antd-mobile';
-import { Navigationt ,AntdButton,AntdSteps,AntdPickerRadio,AntdImagePicker,Cutoff} from '@components/public';
+import { Navigationt ,AntdButton,AntdSteps,AntdPickerRadio,AntdImagePicker,Cutoff,AntdPopup} from '@components/public';
 
 export const Item = () => (
   <div className={style['item']}>
@@ -26,8 +26,6 @@ export default ({ history }: Test) => {
   const [pr, productName] = useState({ val: ''})
   const [count, setCount] = useState(0)
   useEffect(() => {
-    console.log('you name is', currentNum)
-    console.log(pickertype,'111111')
     if(currentNum>2){
       return
     }
