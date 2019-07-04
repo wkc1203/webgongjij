@@ -55,14 +55,12 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1,getSt
               extra={" "}
               value={picValue}
               onChange = {(value:any)=>{
-                console.log(data)
-                console.log(value)
                 data.map((item:any)=>{
                   if ( item.value===value.toString()){
                     setpicker(value)
                     setlabel(item.label)
                     setNum({
-                      val: item.label,
+                      val: item.value,
                       labeltext:labeltext,
                       placeholder:placeholder
                     })
@@ -81,7 +79,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1,getSt
                     setpicker(value)
                     setlabel(labels)
                     setNum({
-                      val: labels,
+                      val: value.join(','),
                       labeltext:labeltext,
                       placeholder:placeholder
                     })

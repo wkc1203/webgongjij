@@ -22,7 +22,6 @@ export interface loanApplication {
     buildingId: string,
     loanId: string,
     city: string,
-    cityName: string,
   },
   response: {
     data: {
