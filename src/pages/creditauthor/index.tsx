@@ -77,6 +77,7 @@ export default ({ history }: Test) => {
           passAllShowAlert()
           setcurrentNum(currentNum + 1)
         }}></AntdButton>
+         <Cutoff hg='40' />
     </div>
   )
 }

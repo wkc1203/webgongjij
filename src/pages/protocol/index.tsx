@@ -14,9 +14,7 @@ export default ({ history }: Protocol) => {
         console.log(Accordion!==undefined?Accordion.target.checked:'',Accordion!==undefined?Accordion.target.children:'')
         if(Accordion!==undefined){
             if(Accordion.target.checked===true){
-                
-                console.log(btn,1111111)
-                if(Accordion.target.children==="个人消费性借款合同"||Accordion.target.children==="签约协议2"||Accordion.target.children==="签约协议3"){
+                if(Accordion.target.children==="壹米金融服务费用协议"||Accordion.target.children==="一麻袋协议支付服务协议"){
                     btndisabled(false)
                 }else{
                     btndisabled(true)
@@ -36,6 +34,7 @@ export default ({ history }: Protocol) => {
             <AntdAccordion getState={AccordionOnchange}/>
             <Cutoff hg='30' />
             <AntdButton disabled={btn} distype={btn} text='确认' fn={() => {}} ></AntdButton>
+            <Cutoff hg='30' />
         </div>
     )
 }
