@@ -27,7 +27,7 @@ export const AntdAccordion = ({  resulttype,getState}: AntdAccordion) => {
     <Accordion  className="my-accordion">
     <Accordion.Panel header={ 
       <AgreeItem key={1} onChange={(e:any) => getState(e,1)}>
-        壹米金融服务费用协议
+       平方金融服务费用协议
      </AgreeItem>
    }>
        

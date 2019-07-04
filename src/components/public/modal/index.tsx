@@ -177,35 +177,35 @@ export const Modal = ({ show, setShow, title = '', onDetermine, onCancel, textDe
                         <p className = { style['theloan-list-l'] }>08-03</p>
                         <p className = { style['theloan-list-r'] }>¥ 3,868</p>
                       </div>
-                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元平方金融服务费20元</p>
                     </div>
                     <div className = { style['theloan-list-g'] }>
                       <div className = { style['theloan-list-lr'] }>
                         <p className = { style['theloan-list-l'] }>08-03</p>
                         <p className = { style['theloan-list-r'] }>¥ 3,868</p>
                       </div>
-                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元平方金融服务费20元</p>
                     </div>
                     <div className = { style['theloan-list-g'] }>
                       <div className = { style['theloan-list-lr'] }>
                         <p className = { style['theloan-list-l'] }>08-03</p>
                         <p className = { style['theloan-list-r'] }>¥ 3,868</p>
                       </div>
-                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元平方金融服务费20元</p>
                     </div>
                     <div className = { style['theloan-list-g'] }>
                       <div className = { style['theloan-list-lr'] }>
                         <p className = { style['theloan-list-l'] }>08-03</p>
                         <p className = { style['theloan-list-r'] }>¥ 3,868</p>
                       </div>
-                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元平方金融服务费20元</p>
                     </div>
                     <div className = { style['theloan-list-g'] }>
                       <div className = { style['theloan-list-lr'] }>
                         <p className = { style['theloan-list-l'] }>08-03</p>
                         <p className = { style['theloan-list-r'] }>¥ 3,868</p>
                       </div>
-                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元 壹米金融服务费20元</p>
+                      <p className = { style['theloan-list-text'] }>本金3000元 利息约600元平方金融服务费20元</p>
                     </div>
                   </div>
                 </div>

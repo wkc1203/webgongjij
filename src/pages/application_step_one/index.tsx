@@ -5,6 +5,8 @@ import { sendMessageToNative, routing,validate,pickertype } from '@util/index';
 import { Navigationt,AntdInputItem,AntdButton,AntdSteps,Cutoff,AntdPicker} from '@components/public';
 import { Modal,Toast  } from 'antd-mobile';
 import { useAxios } from '@hooks/useAxios';
+import axios from 'axios';
+import qs from 'qs';
 import { district, provinceLite } from 'antd-mobile-demo-data';
 
 type Step_one = {
@@ -12,6 +14,7 @@ type Step_one = {
 }
 const alert=Modal.alert;
 export default ({ history }: Step_one) => {
+  console.log(1)
   //学历
   const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -73,7 +76,7 @@ export default ({ history }: Step_one) => {
     token:true,
     method: 'get',
     request: {
-      parentCode:'GRYSR'
+      parentCode:'JTYSR'
     }
   })
   let FamilyIncomeList:any=[]
@@ -106,6 +109,7 @@ export default ({ history }: Step_one) => {
   KinsRelation.code!==1?KinsRelation.data.map((v:any, i:any) => 
     KinsRelationList.push({value:v.code,label:v.name})
   ):''
+
   //楼盘
   const [queryBuildingMsg] = useAxios({
     url: '/building/queryBuildingMsg',
@@ -153,10 +157,8 @@ export default ({ history }: Step_one) => {
   })
   let accessoryData :any
   accessoryData = accessory.code!==1?accessory.data:''
-  console.log(accessoryData)
   const [buildingId, getbuildingId] = useState({ val: '', pla: '' })
   const [loanId, getLoanId] = useState({ val: '', pla: '' })
-  const [cityName, getCityName] = useState({ val: '', pla: '' })
   const [city, getCity] = useState({ val: '', pla: '' })
   const [marriageState, getMarriageState] = useState({ val: '', pla: '' })
   const [education, getEducation] = useState({ val: '', pla: '' })
@@ -171,54 +173,58 @@ export default ({ history }: Step_one) => {
   const [kinsPhone, getKinsPhone] = useState({ val: '', pla: '' })
   const [name, getName] = useState({ val: '', pla: '' })
   const [number, getNumber] = useState({ val: '', pla: '' })
-  const [on, toggle] = useState(false)
-  const [save, getSave] = useAxios({
-    url: '/userExtend/save',
-    method: 'post',
-    request: {
-      buildingId: buildingId.val,
-      loanId:loanId.val,
-      city: city.val,
-      cityName: cityName.val,
-      marriageState: marriageState.val,
-      education: education.val,
-      job:job.val,
-      address: address.val,
-      company: company.val,
-      addressDetail: addressDetail.val,
-      personIncome: personIncome.val,
-      familyIncome: familyIncome.val,
-      kinsfolk: kinsfolk.val,
-      kinsRelation:kinsRelation.val,
-      kinsPhone:kinsPhone.val,
-    },
-    token:true,
-    execute: on,
-    api3: false
-  })
+
+  const params={
+    buildingId: buildingId.val,
+    loanId:'1',
+    city: city.val,
+    marriageState: marriageState.val,
+    education: education.val,
+    job:job.val,
+    address: address.val,
+    company: company.val,
+    addressDetail: addressDetail.val,
+    personIncome: personIncome.val,
+    familyIncome: familyIncome.val,
+    kinsfolk: kinsfolk.val,
+    kinsRelation:kinsRelation.val,
+    kinsPhone:kinsPhone.val.replace(/\s+/g,""),
+  }
   // 下一步
   const next_step = ()=>{
-    sendMessageToNative({ type: 'push' })
-    history.push({
-        pathname: 'step_two',
-        // state: {
-        //   data: {
-        //     resulttype: 'success',
-        //   }
-        // }
-      })
-    routing('step_two')
+    axios.post('http://10.0.11.227:8891/apis//userExtend/save',params,{
+      headers: {"Authorization":sessionStorage.getItem('key')}
+    })
+    .then(v => {
+      sendMessageToNative({ type: 'push' })
+      history.push({
+          pathname: 'step_two',
+          state: {
+            data: {
+              loanData: v.data.data,
+              buildingId:buildingId.val
+            }
+          }
+        })
+      routing('step_two')
+    })
+    .catch(v => {
+      console.log(v);
+    })
+   
   } 
     // 提交申请
   const passAllShowAlert = ()=>{
+    // alert('提示', '请确认信息无误', [
+    //   { text: '再检查下', onPress: () => {}, style: {color:'rgba(193, 193, 193, 1)'} },
+    //   { text: '确认无误', onPress: () => next_step() },
+    // ]);
     const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone], (vals) => {
       Toast.info(vals.placeholder, 1);
     })
     if (yanz) {
-      toggle(true)
-      getSave()
       alert('提示', '请确认信息无误', [
-          { text: '再检查下', onPress: () => console.log('cancel'), style: {color:'rgba(193, 193, 193, 1)'} },
+          { text: '再检查下', onPress: () => {}, style: {color:'rgba(193, 193, 193, 1)'} },
           { text: '确认无误', onPress: () => next_step() },
         ]);
     }
