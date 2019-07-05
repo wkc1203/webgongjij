@@ -197,6 +197,7 @@ export default ({ history }: Step_one) => {
     })
     .then(v => {
       sendMessageToNative({ type: 'push' })
+      routing('step_two')
       history.push({
           pathname: 'step_two',
           state: {
@@ -206,7 +207,7 @@ export default ({ history }: Step_one) => {
             }
           }
         })
-      routing('step_two')
+      
     })
     .catch(v => {
       console.log(v);
@@ -232,7 +233,7 @@ export default ({ history }: Step_one) => {
   }
   return (
     <div className={style['xxqyqr']}>
-      <Navigationt title='申请流程' history={history} />
+      
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>
