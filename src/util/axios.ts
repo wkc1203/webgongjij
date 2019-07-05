@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { getGlobalData } from '@util/index';
 import  {config}  from '@util/config';
+import { Modal,Toast  } from 'antd-mobile';
 import qs from 'qs';
 export function apiAxios (method:any, url:any, params:any) {
     console.log(config)
@@ -25,7 +26,13 @@ export function apiAxios (method:any, url:any, params:any) {
       axios(httpDefault)
         // 此处的.then属于axios
         .then((res) => {
-          resolve(res)
+          let data=res.data
+          if(data.code==='0'){
+            resolve(data)
+          }else{
+            Toast.info(data.message, 1);
+          }
+          
         }).catch((response) => {
           reject(response)
         })
