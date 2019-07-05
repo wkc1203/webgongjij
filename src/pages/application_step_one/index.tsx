@@ -219,9 +219,10 @@ export default ({ history }: Step_one) => {
     //   { text: '再检查下', onPress: () => {}, style: {color:'rgba(193, 193, 193, 1)'} },
     //   { text: '确认无误', onPress: () => next_step() },
     // ]);
-    const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone], (vals) => {
-      Toast.info(vals.placeholder, 1);
-    })
+    // const yanz = validate([buildingId,city,marriageState,education,job,company,address,addressDetail,personIncome,familyIncome,kinsfolk,kinsRelation,kinsPhone], (vals) => {
+    //   Toast.info(vals.placeholder, 1);
+    // })
+    let yanz=true
     if (yanz) {
       alert('提示', '请确认信息无误', [
           { text: '再检查下', onPress: () => {}, style: {color:'rgba(193, 193, 193, 1)'} },

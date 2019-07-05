@@ -89,7 +89,6 @@ export default ({ history }: Test) => {
     api3: false
   })
   useEffect(() => {
-    console.log(1)
     if(wangqian.code==="0"){
         sendMessageToNative({ type: 'push' })
         history.push({
@@ -103,22 +102,6 @@ export default ({ history }: Test) => {
         routing('protocol')
     }
   },[wangqian])
-  // 下一步
-  const next_step = ()=>{
-    console.log(123)
-    console.log(prs)
-    // getwangqian()
-    // sendMessageToNative({ type: 'push' })
-    // history.push({
-    //     pathname: 'protocol',
-    //     state: {
-    //       data: {
-    //         resulttype: 'success',
-    //       }
-    //     }
-    //   })
-    // routing('protocol')
-  } 
   // 重新
   const step_one = ()=>{
     sendMessageToNative({ type: 'push' })
