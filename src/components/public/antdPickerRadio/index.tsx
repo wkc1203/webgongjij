@@ -37,7 +37,7 @@ export const AntdPickerRadio = ({ placeholder,pickertype,pickertypepro}: AntdPic
   return (
     <div>
       <WingBlank size="sm">
-      <AntdInputItem  labeltext='上传购房相关证明（四选一）'  value={radioItemLabel} placeholder='请选择您需要上传的证明组合' inputiconright={require('./down-icon.png')} getState={productName}  onFocus={() => {
+      <AntdInputItem editable={false}  labeltext='上传购房相关证明（四选一）'  value={radioItemLabel} placeholder='请选择您需要上传的证明组合' inputiconright={require('./down-icon.png')} getState={productName}  onFocus={() => {
             pickertypepro(true)
           }}/>
       <div className = { cs(style['pirckerido-box'], { [style['pirckerido-acitve']]: pickertype}) }>
