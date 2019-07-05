@@ -12,7 +12,6 @@ export function apiAxios (method:any, url:any, params:any) {
       url: config.server+url,
       // `params` 是即将与请求一起发送的 URL 参数
       // `data` 是作为请求主体被发送的数据
-      params: method === 'GET' || method === 'DELETE' ? params : null,
       data: params ,
       timeout: 10000,
       headers: {

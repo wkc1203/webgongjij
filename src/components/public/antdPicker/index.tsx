@@ -55,6 +55,7 @@ export const AntdPicker = ({data, labeltext,placeholder, value = '' ,col=1,getSt
               extra={" "}
               value={picValue}
               onChange = {(value:any)=>{
+                console.log(value)
                 data.map((item:any)=>{
                   if ( item.value===value.toString()){
                     setpicker(value)
