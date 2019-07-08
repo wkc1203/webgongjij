@@ -21,7 +21,7 @@ export default ({ history }: Step_two) => {
       buildingId//楼盘id
     }
   } = history.location.state
-  console.log(history.location.state)
+  
   const [wi, withAmount] = useState({ val: ''})
   const [del, dealAmount] = useState({ val: ''})
   
@@ -54,7 +54,7 @@ export default ({ history }: Step_two) => {
  
   const loanApply =()=>{
     apiAxios('post','/loanApply/save',{
-      id: buildingId,
+      // id: buildingId,
       serialNo: wi.val,
       dealAmount: del.val,
       purpose: an.val,
@@ -101,7 +101,6 @@ export default ({ history }: Step_two) => {
   
   return (
     <div className={style['xxqyqr']}>
-      <Navigationt title='申请流程' history={history} />
       <AntdSteps currentNum={1} ></AntdSteps>
       <AntdPicker  labeltext='意向车位编号' placeholder='请搜索或选择购买车位编号'  getState={withAmount} picker={true} data={BuildingMsgList} />
       <AntdInputItem  labeltext='车位实际成交价'type='number' placeholder='请输入购买车位合同销售价格（元）' getState={dealAmount} />
