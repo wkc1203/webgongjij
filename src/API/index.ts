@@ -25,9 +25,11 @@ import { selectCity } from './selectCity';
 import { selectAddress } from './selectAddress';
 import { bankCard } from './bankCard';
 import { loanApplySecond } from './loanApplySecond';
+import { queryParkingLotMsg } from './queryParkingLotMsg';
 
 export interface API {
   '/loanApply/save':loanApplySecond,
+  '/parkingLot/queryParkingLotMsg':queryParkingLotMsg,
   '/loanApply/loan/queryById':loanApply,
   '/bankCard/page':bankCard,
   '/address/queryAllAddress':selectAddress,

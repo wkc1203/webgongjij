@@ -32,28 +32,12 @@ export type AntdPickerPopup = {
   rightflg?:boolean,
   pickertypels?:boolean,
   getrepayAmountdata?:any,
+  loanAmount:string,
+  year:string,
   pickertypepro: (...rest: any) => any
 }
 // pickertype Mon  月收入 Tot 家庭月收入 Kin 亲属关系 Rec 最高学历 Mar 婚姻情况 areas 区域 rightBtntype 输入框右边类型 (icon btn) rightType 是否展示右边按钮或图片
-export const AntdPickerPopup = ({data, labeltext,placeholder, value = '' ,col=1,getState,listOnclick,rightflg=false,rightOnclick,pickertypepro,pickertypels,getrepayAmountdata }: AntdPickerPopup) => {
-//   console.log(pickertypels,getState)
-//   const [num, setNum] = useState({ val: value,labeltext:labeltext,placeholder:placeholder })
-//   const [picValue, setpicker] = useState()
-//   const [label, setlabel] = useState()
-//   useEffect(() => {
-//     getState(num)
-//  }, [num])
-//   useEffect(() => {
-//     setNum({ val: value,labeltext:labeltext,placeholder:placeholder })
-//   }, [value])
-  console.log(getrepayAmountdata)
-  let repaymentAmount:any=[]
-  apiAxios('get','/loanApply/loan/repaymentAmount?loanAmount=100000&year=48',{})
-  .then(v => {
-    repaymentAmount=v
-    console.log(repaymentAmount)
-   
-  })
+export const AntdPickerPopup = ({loanAmount,year, value = '' ,col=1,getState,pickertypepro,pickertypels,getrepayAmountdata }: AntdPickerPopup) => {
   return (
     <div style={{ margin: '15px' }}>
       <WingBlank size="sm">
@@ -66,14 +50,14 @@ export const AntdPickerPopup = ({data, labeltext,placeholder, value = '' ,col=1,
               <div className={style['card-ti-box']}>
                 <p>贷款总额（元）年利率9%</p>
                 <div className={style['card-ti-box-p']}>
-                  <p>100,000</p>
-                  <p>48期</p>
+                  <p>{loanAmount}</p>
+                  <p>{year}期</p>
                 </div>
               </div>
               <div className={style['card-box']}>
                 {
-                  getrepayAmountdata.map((v:any,i:any) => (
-                    <div className={style['card-box-list-o']}>
+                  getrepayAmountdata.hits===undefined?getrepayAmountdata.map((v:any,i:any) => (
+                    <div className={style['card-box-list-o']} key={i}>
                       <div className={style['card-box-list-o-l']}>
                         <p>{v.date}</p>
                       </div>
@@ -83,7 +67,7 @@ export const AntdPickerPopup = ({data, labeltext,placeholder, value = '' ,col=1,
                         <p>壹平方服务费{v.serviceCharge}</p>
                       </div>
                     </div>
-                  ))
+                  )):''
                 }
               </div>
             </div>
