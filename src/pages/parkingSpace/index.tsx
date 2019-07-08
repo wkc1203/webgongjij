@@ -5,7 +5,6 @@ import {Flex,Icon,Modal} from 'antd-mobile'
 import { Navigationt, Inputs, Cutoff, Title, AntdButton } from '@components/public';
 import { History } from 'history';
 import { sendMessageToNative, routing } from '@util/index';
-
 const requireContext = require.context("./img", true, /^\.\/.*\.png$/);
 const pImgs: any = {}
 requireContext.keys().forEach((key: any) => pImgs[key.slice(2, -4)] = requireContext(key))
@@ -14,6 +13,9 @@ type Gjjc = {
 }
 const alert=Modal.alert;
 export default ({ history }: Gjjc) => {
+    useEffect(() => {
+        document.title = '我的贷款';
+     })
     const Block=({text_one,text_two,img}:{text_one:any,text_two:any,img:any})=>(
         <div className={style['container']}>
             <img src={pImgs[img]}  className={style['container_img']}></img>
