@@ -8,13 +8,14 @@ import { useAxios } from '@hooks/useAxios';
 import axios from 'axios';
 import qs from 'qs';
 import { district, provinceLite } from 'antd-mobile-demo-data';
-
 type Step_one = {
   history: History
 }
 const alert=Modal.alert;
 export default ({ history }: Step_one) => {
-  console.log(1)
+  useEffect(() => {
+    document.title = '申请流程';
+ })
   //学历
   const [Recordformal] = useAxios({
     url: '/dictionarySubitem/queryUser',
@@ -119,7 +120,7 @@ export default ({ history }: Step_one) => {
   })
   let queryBuildingMsgList:any=[]
   queryBuildingMsg.code!==1?queryBuildingMsg.data.map((v:any, i:any) => 
-    queryBuildingMsgList.push({value:String(v.id),label:v.name})
+    queryBuildingMsgList.push({value:v.area,label:v.name})
   ):''
 
   //查询产品支持城市列表
@@ -233,7 +234,6 @@ export default ({ history }: Step_one) => {
   }
   return (
     <div className={style['xxqyqr']}>
-      
       <AntdSteps currentNum={0} ></AntdSteps>
       <AntdPicker  labeltext='选择楼盘' placeholder='请选择购买车位楼盘'  getState={getbuildingId} picker={true} data={queryBuildingMsgList}/>
       <AntdInputItem  labeltext='姓名' placeholder='请输入您的姓名' getState={getName} value={accessoryData.name} editable={false}/>

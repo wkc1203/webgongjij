@@ -11,6 +11,7 @@ import { useAxios } from '@hooks/useAxios';
 import axios from 'axios';
 import qs from 'qs';
 import { any } from 'prop-types';
+
 const pImgs: any = {}
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -160,7 +161,7 @@ export default ({ history }: Test) => {
       {/* <AntdInputItem  labeltext='还款账号' placeholder='请输入还款账号' getState={repaymentAccount} value={accessoryData.serviceChargeNo}/> */}
       <AntdInputItem  labeltext='意向车位编号' placeholder='请输入意向车位编号' getState={carNumber} value={accessoryData.serialNo}/>
       <AntdInputItem  labeltext='车位实际成交价' placeholder='请输入车位实际成交价' getState={dealValence} value={accessoryData.dealAmount}/>
-      <AntdInputItem  labeltext='手机号' placeholder='请输入手机号' type='phone' getState={phone} value={accessoryData.phone}/>
+      <AntdInputItem  labeltext='手机号' editable={false} placeholder='请输入手机号' type='phone' getState={phone} value={accessoryData.phone}/>
       <AntdInputItem  labeltext='验证码' placeholder='请输入验证码' yzmtype={yzmtype} getState={code} rightType={true} rightBtntype='btn' yzm={yzm} value={co.val} getYzm={() =>{
         if(ph.val===null||ph.val===""){
           Toast.info('请输入手机号码', 1);
