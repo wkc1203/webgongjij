@@ -14,7 +14,9 @@ type Step_two = {
 const alert=Modal.alert;
 export const l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default ({ history }: Step_two) => {
-  document.title="内容22";
+  useEffect(() => {
+    document.title = '申请流程';
+ })
   const {
     data: {
       loanData,//第一成功后的结果
