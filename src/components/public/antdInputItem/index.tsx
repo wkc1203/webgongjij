@@ -55,7 +55,6 @@ export const AntdInputItem = ({editable,data,clear=true,rightType=false,rightBtn
               placeholder={placeholder}
               value={num.val}
               type={type}
-
               editable={editable}
               onFocus = {onFocus}
               onChange={v => {

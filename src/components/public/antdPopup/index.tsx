@@ -40,7 +40,7 @@ export const AntdPopup = ({ placeholder,pickertype,pickertypepro,value,getState}
   return (
     <div>
       <WingBlank size="sm">
-      <AntdInputItem  clear ={false} labeltext='还款账号'  value={radioItemLabel===undefined?value:radioItemLabel} placeholder='还款账号' rightType = {true} rightBtntype='icon' inputiconright={require('./img/icon_mycard.png')} ImgClick={()=>(
+      <AntdInputItem  clear ={false}  labeltext='还款账号'  value={radioItemLabel===undefined?value:radioItemLabel} placeholder='还款账号' rightType = {true} rightBtntype='icon' inputiconright={require('./img/icon_mycard.png')} ImgClick={()=>(
          pickertypepro(true)
       )} getState={productName}  onFocus={() => {
             pickertypepro(true)
@@ -63,7 +63,7 @@ export const AntdPopup = ({ placeholder,pickertype,pickertypepro,value,getState}
                     placeholder:placeholder
                   })
                 }}>
-                  <p><img src={v.url}/>{v.bankName}</p>
+                  <p><img src={v.url} width='25px'/>{v.bankName}</p>
                   <p>{v.cardNo}</p>
                 </div>
               ))

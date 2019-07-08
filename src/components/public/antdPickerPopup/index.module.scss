@@ -86,6 +86,7 @@
  .card-box{
    max-height: 500px;
    overflow-y: auto;
+   padding-top: 20px;
    .card-box-list{
      margin-bottom: 10px;
      background-color: rgba(242, 242, 242, 1);
@@ -96,5 +97,69 @@
      p{
        padding-left: 40px;
      }
+   }
+ }
+.card-ti-box{
+  padding-left: 20px;
+  line-height: 30px;
+  padding-bottom: 20px;
+  .card-ti-box-p{
+    display: flex;
+    p:nth-child(1){
+      font-size: 35px;
+      font-weight: 700;
+    }
+    p:nth-child(2){
+      margin-left: auto;
+      margin-right: 20px;
+      background: #f7f7f7;
+      border-radius: 10px;
+      width: 50px;
+      text-align: center;
+      display: block;
+    }
+  }
+}
+ .card-box-list-o{
+   display: flex;
+   height: 90px;
+   padding-left: 20px;
+   .card-box-list-o-l{
+     font-size: 13px;
+     padding-right: 25px;
+     p{
+       padding-top: 15px;
+     }
+   }
+   .card-box-list-o-r{
+    font-size: 13px;
+    padding-left: 25px;
+    border-left: 1px solid #ccc;
+    position: relative;
+    p{
+      padding-top: 15px;
+    }
+    &::after{
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 15px;
+      left: -10px;
+      background: #ccc;
+      border-radius: 50%;
+      margin: 5px;
+      z-index: 99999;
+    }
+    &::before{
+      content: "";
+      width: 25px;
+      height: 25px;
+      background: #fff;
+      position: absolute;
+      top: 15px;
+      left: -10px;
+    }
    }
  }
